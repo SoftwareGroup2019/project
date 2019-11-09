@@ -15,4 +15,6 @@ echo "Hello this is me Mr mohamad";
 
 
 echo "iam ayhan ";
+
+echo "i am muhamad";
  ?>
