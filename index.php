@@ -2,5 +2,6 @@
 
 
 echo "Hello this is user page";
+echo "Test";
 
  ?>
