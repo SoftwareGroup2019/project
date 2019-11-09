@@ -7,4 +7,8 @@ echo "Hello new Saqat";
 
 echo "40 3aibi nya";
 
+echo "This xatw ayhan pc";
+
+echo "Hello";
+
  ?>
