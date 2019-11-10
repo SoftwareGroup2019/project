@@ -23,6 +23,8 @@
 
 <h1>Hello xatw hawar</h1>
 
+<h2>Hello this me</h2>
+
 
 
 <?php include 'include/template/footer.php' ?>
