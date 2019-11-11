@@ -27,7 +27,7 @@
 <div class="row">
   <div class="col s6"><a href ="#">creat Account</a>
 </div>
-<div class="col s6 right.laign"><a class="waves-effect waves-light btn" >login</a>
+<div class="col s6 right.laign"><a class="waves-effect waves-light btn" >   login</a>
 </div>
 </div>
 </div>
