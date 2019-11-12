@@ -10,8 +10,8 @@ body{
   align-items: center;
   justify-content: center;
 }
-login-div{
-max-width:430px;
+.login-div{
+  background - color: #e1f5fe;
 padding:35px;
 border:1 px solid #ddd;
 porder-redius:8px;
