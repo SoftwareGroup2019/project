@@ -11,12 +11,8 @@ body{
   justify-content: center;
 }
 .login-div{
-<<<<<<< HEAD
-  background - color: #e1f5fe;
-=======
-  background-color: #e1f5fe;
-max-width:420px;
->>>>>>> ae2d530af38ad6424455eaa9f9cd89cf110adab5
+background-color: #e1f5fe;
+max-width:430px;
 padding:35px;
 border:1px solid #ddd;
 proder-redius:8px;
