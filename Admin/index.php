@@ -26,10 +26,10 @@
 </div>
 
 <div class="row">
-  <div class="col s12"><a href ="#"> Creat Account </a>
+  <div class="col s6"><a href ="#"> Creat Account </a>
 </div>
 <div class="col s12 m2">
-<div class="col s12  center-align "><a class="waves-effect waves-light btn" >  Login  </a>
+<div class="col s6  "><a class="waves-effect waves-light btn" >  Login  </a>
   <p class="z-depth 2"></p>
 
 </div>
