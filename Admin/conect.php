@@ -7,8 +7,6 @@ $pass= "";
 try {
   $con = new PDO ($dsn ,$user, $pass);
   $con -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo "conection done";
-
 }
 catch(PDOException $e){
   echo "Failed to connect" . $e->getMessage();

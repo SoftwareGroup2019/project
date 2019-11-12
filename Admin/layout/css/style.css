@@ -18,3 +18,8 @@ padding:10px 80px;
 border:1px solid #ddd;
 border-radius:12px;
 }
+
+.btn, .btn-large, .btn-small
+{
+  background-color: #0d47a1 !important;
+}
