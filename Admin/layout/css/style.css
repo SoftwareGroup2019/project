@@ -11,9 +11,10 @@ body{
   justify-content: center;
 }
 .login-div{
+  margin-top: 20px;
 background-color: #e1f5fe;
 max-width:430px;
-padding:35px;
+padding:10px 80px;
 border:1px solid #ddd;
-proder-redius:8px;
+border-radius:12px;
 }
