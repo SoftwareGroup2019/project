@@ -30,7 +30,7 @@
 </div>
 <div class="col s12 m2">
 <div class="col s6  "><a class="waves-effect waves-light btn" >  Login  </a>
-  <p class="z-depth 2"></p>
+<p class="z-depth 2"></p>
 
 </div>
 </div>
