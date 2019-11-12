@@ -1,23 +1,17 @@
 <?php
 
 
-$dsn='mysql:host=localhost;dbname=shop';
-$user= 'root';
-$pass= '';
-$option= array (
-PDO::MYSQL_ATTR_INIT_COMMAND =>'SET NAMES utf8';
-
-
-
-);
+$dsn="mysql:host=localhost;dbname=shop";
+$user= "root";
+$pass= "";
 try {
-  $con = new PDO ($dsn , $pass, $option);
+  $con = new PDO ($dsn ,$user, $pass);
   $con -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  echo 'you are connected Welcome to Database ';
+  echo "conection done";
 
 }
 catch(PDOException $e){
-  echo 'Failed to connect' . $e->getMessage();
+  echo "Failed to connect" . $e->getMessage();
 }
 
 
