@@ -3,12 +3,18 @@
 
 <?php
 
-echo "kak ayman write the login code here";
+if (isset($_POST['ok'])) {
+  // code...
+  if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $username = $_POST['UserName'];
+    $password = $_POST['Password'];
+    echo $username . ' ' . $password;
+  }
+
+}
 
 
  ?>
-
-
 <div class="z-depth-2 login-div">
   <div class="row ">
 <div class="col s12 ">
@@ -17,27 +23,27 @@ echo "kak ayman write the login code here";
 </div>
 
   </div>
-  <form class="" action="" method="post">
+  <form class="" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
 
 <div class="row">
   <div class="input-field col s12">
 
-<input id ="text-input" type="text" class="validate">
+<input id ="text-input" type="text" class="validate" name="UserName">
 <label for ="text-input"> UserName </label>
 </div>
 </div>
 
 <div class="row">
   <div class="input-field col s12">
-<input id ="Password-input" type="Password" class="validate">
+<input id ="Password-input" type="Password" class="validate" name="Password">
 <label for ="Password-input"> Password </label>
 
 </div>
 </div>
 
 <div class="row right">
-  <a class="waves-effect waves-light btn"><i class="material-icons right">send</i>Signin</a>
+  <button class="waves-effect waves-light btn" name="ok"><i class="material-icons right">send</i>Signin</button>
 </div>
 </div>
 </div>
