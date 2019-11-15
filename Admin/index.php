@@ -1,19 +1,31 @@
+<?php
+  session_start();
+  if(isset($_SESSION['UserName'])){
+    header('Location: dashboar.php'); // lo chuna naw dashbord page
+  }
+ ?>
 <?php include 'include/template/header.php';?>
 <?php  include 'conect.php'; ?>
 
 <?php
-
-if (isset($_POST['ok'])) {
-  // code...
   if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = $_POST['UserName'];
     $password = $_POST['Password'];
-    echo $username . ' ' . $password;
+    $hashedPass =sha1($password);
+  //  echo $hashedPass; lo away bzanyn passwordakaman tawawa
+  // sha1() bakar det lo tek dany passwordakaman
+    $stmt = $con->prepare("SELECT UserName, Password FROM users WHERE UserName = ? AND Password = ? AND GroupID = 1 ");
+    $stmt->execute(array($username,$hashedPass));
+    $count =$stmt->rowCount();
+    //echo $count; agar count =1 mabasty awaya aw usera daxl kraya
+    // la database
+     if($count > 0){
+       $_SESSION['UserName'] = $username;
+       header('Location: dashboar.php'); // lo chuna naw dashbord page
+       exit();
+     }
+
   }
-
-}
-
-echo "dast xosh kak ayman";
 
  ?>
 <div class="z-depth-2 login-div">

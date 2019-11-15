@@ -1,10 +1,14 @@
 <?php
 
 
-echo "this dashboard of admin";
 
-echo "this test inside dashboard";
+  session_start();
+  if(isset($_SESSION['UserName'])){
+    echo 'Welcome ' . $_SESSION['UserName'];
+  }
+  else {
 
-
-echo "Hello this dashboard of xatw ayhan";
+    header('Location: index.php');
+    exit();
+  }
  ?>
