@@ -14,7 +14,7 @@
     $hashedPass =sha1($password);
   //  echo $hashedPass; lo away bzanyn passwordakaman tawawa
   // sha1() bakar det lo tek dany passwordakaman
-    $stmt = $con->prepare("SELECT UserName, Password FROM users WHERE UserName = ? AND Password = ? AND GroupID = 1 ");
+    $stmt = $con->prepare("SELECT UserName, Password FROM user WHERE GrupID = 1 ");
     $stmt->execute(array($username,$hashedPass));
     $count =$stmt->rowCount();
     //echo $count; agar count =1 mabasty awaya aw usera daxl kraya
