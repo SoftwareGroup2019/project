@@ -1,6 +1,6 @@
 <?php
   session_start();
-  $pageTitle = "Dashboard";
+  $pageTitle = "Categoris";
   if(isset($_SESSION['UserName']))
   {
    include 'include/template/header.php';
@@ -10,7 +10,7 @@
 
 
 
-<p>Hello</p>
+<h1>This is Ctaegoris page</h1>
 
 
 

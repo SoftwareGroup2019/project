@@ -1,5 +1,7 @@
 <?php
   session_start();
+$pageTitle = "Login";
+
   if(isset($_SESSION['UserName'])){
     header('Location: dashboar.php'); // lo chuna naw dashbord page
   }

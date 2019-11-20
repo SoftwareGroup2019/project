@@ -1,6 +1,12 @@
 <?php
-echo "this function file";
-
+function getTitl(){
+global $pageTitle;
+if ( isset ($pageTitle)){
+echo $pageTitle;
+}else {
+echo "Default";
+}
+}
 
 
  ?>
