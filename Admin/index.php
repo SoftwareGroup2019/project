@@ -28,7 +28,7 @@ Limit  1");
     // la database
      if($count > 0){
        $_SESSION['UserName'] = $username;
-       $_SESSION['ID'] =$$row['UserID'];
+       $_SESSION['ID'] =$row['UserID'];
        header('Location: dashboar.php'); // lo chuna naw dashbord page
        exit();
      }

@@ -1,30 +1,36 @@
 <?php
-
-
-
-sessinon_start();
-if (isset($_SESSION['USERNAME '])){
-
+session_start();
+  $pageTitle = "Members";
+if (!isset($_SESSION['UserName ']))
+{
   include 'include/template/header.php';
   include 'include/template/navbar.php';
   include 'conect.php';
-$do= isset($_GET['do'])?$_GET['do']: 'manage';
+$do = isset($_GET['do'])? $_GET['do']: 'manage';
 
 
-if ($d0 =='Manage'){
+if ($do =='manage')
+{
 
-
-}elseif($do=='Edit'){
-  echo 'welcome To Edit page'
+echo "this is manage page";
+echo $_SESSION['UserName '];
+}
+elseif($do=='Edit'){
+  echo 'welcome To Edit page';
 
 }
 
 
-include 'include/template/footer.php'
 
 
 
-}else {
+include 'include/template/footer.php';
+
+}
+
+// Reuest end here
+else
+{
   header('location: index.php');
   exit();
 }
