@@ -16,13 +16,19 @@ $pageTitle = "Login";
     $hashedPass =sha1($password);
   //  echo $hashedPass; lo away bzanyn passwordakaman tawawa
   // sha1() bakar det lo tek dany passwordakaman
-    $stmt = $con->prepare("SELECT UserName, Password FROM user WHERE GrupID = 1 ");
+    $stmt = $con->prepare("SELECT
+    UserID,  UserName, Password
+      FROM user
+       WHERE GrupID = 1
+Limit  1");
     $stmt->execute(array($username,$hashedPass));
+    $row=$stmt->fetch();
     $count =$stmt->rowCount();
     //echo $count; agar count =1 mabasty awaya aw usera daxl kraya
     // la database
      if($count > 0){
        $_SESSION['UserName'] = $username;
+       $_SESSION['ID'] =$$row['UserID'];
        header('Location: dashboar.php'); // lo chuna naw dashbord page
        exit();
      }

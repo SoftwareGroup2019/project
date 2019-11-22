@@ -1,6 +1,6 @@
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">Edit</a></li>
+  <li><a href="members.php$d0=Edit&userid =<$php echo $SESSION['ID']$>">Edit</a></li>
   <li><a href="#!">Settings</a></li>
   <li class="divider"></li>
   <li><a href="logout.php">Logout</a></li>
