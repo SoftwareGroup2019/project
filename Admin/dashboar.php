@@ -5,6 +5,7 @@
   {
    include 'include/template/header.php';
    include 'include/template/navbar.php';
+   include 'conect.php';
 ?>
 
 

@@ -5,7 +5,9 @@
 sessinon_start();
 if (isset($_SESSION['USERNAME '])){
 
-include 'init.php';
+  include 'include/template/header.php';
+  include 'include/template/navbar.php';
+  include 'conect.php';
 $do= isset($_GET['do'])?$_GET['do']: 'manage';
 
 
@@ -18,7 +20,7 @@ if ($d0 =='Manage'){
 }
 
 
-include $tp1 .'footer.php'.$_GET['userid'];
+include 'include/template/footer.php'
 
 
 
