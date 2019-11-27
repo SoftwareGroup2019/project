@@ -68,7 +68,7 @@ else if($do=='Edit'){ //Edit page
       <div class="row">
         <div class="input-field col s9">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" class="validate"> value="<?php echo $row['FullName'];?>">
+          <input id="icon_prefix" type="text" class="validate" value="<?php echo $row['FullName'];?>">
           <label for="icon_prefix">FullName</label>
         </div>
       </div>
