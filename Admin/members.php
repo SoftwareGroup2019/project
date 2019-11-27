@@ -20,11 +20,12 @@ echo "this is manage page";
 
 }
 else if($do=='Edit'){ //Edit page
+
   //chek if get request userid is numeric &get the int value of it
   $userid = isset ($_GET['userid'])&& is_numeric($_GET['userid']) ? intval ($_GET['userid']) : 0;
  //select all data depend on this ID
 
-    $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? Limit  1");
+    $stmt = $con->prepare("SELECT * FROM user WHERE UserID = 1 Limit  1");
 
 //execute query
 
@@ -114,7 +115,8 @@ else if($do=='Edit'){ //Edit page
 
 }
 }
-else {
+else
+{
   echo   'theres no such ID';
 }
 
@@ -134,13 +136,3 @@ else
 
 
 ?>
-
-
-
-
-
-
-
-
-
- ?>
