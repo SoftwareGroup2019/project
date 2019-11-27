@@ -25,7 +25,7 @@ $userid = $_GET['userid'];
 
 
 
-$stmt = $con->prepare("SELECT UserName,Email,Password,FullName FROM user WHERE UserID = ? LIMIT 1");
+$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
 
 //execute query
 
@@ -85,7 +85,8 @@ $stmt = $con->prepare("SELECT UserName,Email,Password,FullName FROM user WHERE U
        <!-- Password -->
        <div class="input-field col s12">
          <i class="material-icons prefix">lock</i>
-      <input id="password" type="password" class="validate">
+      <input id="password" type="hidden" name="oldpassword" class="validate" value="<?php echo $row['Password']?>">
+      <input id="password" type="password" name="newpassword" class="validate">
       <label for="password">Password</label>
       </div>
     <!-- ////////////////// -->
@@ -120,32 +121,34 @@ else
 } //end of else if ($do == 'Edit')
     elseif($do == 'Update')  {
     echo   " <h1 class = 'text-center'> Update Member </h>";
-  }
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
       $id = $_POST['userid'];
       $user = $_POST['user'];
       $email = $_POST['email'];
       $name = $_POST['full'];
-    //  echo $id . $user . $email . $name;
-    // update zanyryakany usery la naw database dakay
-    $stmt = $con->prepare("UPDATE user SET UserName =?,Email = ?,FullName =? WHERE UserID = ? ");
-    $stmt->execute(array($id, $user, $name, $email));
-    echo $stmt->rowCount() . ' Record Update';
+      //  echo $id . $user . $email . $name;
+      // update zanyryakany usery la naw database dakay
+      if (empty($_POST['newpassword'])){
+        $pass = $_POST['oldpassword'];
+      } else {
+        $pass = sha1($_POST['newpassword']);
+      }
 
-    } else {
-       echo 'Sorry You Cant Brouse This Page Directly';
 
 
+      $stmt = $con->prepare("UPDATE user SET UserName =?,Email = ?,FullName =?, Password = ? WHERE UserID = ? ");
+      $stmt->execute(array($user, $email,$name ,$pass,$id));
+      echo $stmt->rowCount() . ' Record Update';
+  }
+  else
+  {
+       echo "Sorry You Cant Brouse This Page Directly";
     }
-
-
-
-
-
+  }
 include 'include/template/footer.php';
-
 }
-
 // Reuest end here
 else
 {
