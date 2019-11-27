@@ -52,7 +52,8 @@ $stmt = $con->prepare("SELECT UserName,Email,Password,FullName FROM user WHERE U
 
 
    <!-- start of form -->
-   <form class="col s12">
+   <form class="col s12" action="?do=Update" method="POST">
+     <input type="hidden" name="userid" value="<?php echo $userid ?>" />
 
      <!-- start of row -->
      <div class="row">
@@ -60,7 +61,7 @@ $stmt = $con->prepare("SELECT UserName,Email,Password,FullName FROM user WHERE U
         <!-- Username -->
        <div class="input-field col s12">
          <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" class="validate" value="<?php echo $row ['UserName'];?>">
+         <input id="icon_prefix" type="text" name="user" class="validate" value="<?php echo $row ['UserName'];?>">
          <label for="icon_prefix">UserName</label>
        </div>
        <!-- ////////////////// -->
@@ -68,7 +69,7 @@ $stmt = $con->prepare("SELECT UserName,Email,Password,FullName FROM user WHERE U
         <!-- Full Name -->
        <div class="input-field col s12">
          <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" class="validate" value="<?php echo $row['FullName'];?>">
+         <input id="icon_prefix" type="text" name="full"  class="validate" value="<?php echo $row['FullName'];?>">
          <label for="icon_prefix">FullName</label>
        </div>
        <!-- ////////////////// -->
@@ -76,7 +77,7 @@ $stmt = $con->prepare("SELECT UserName,Email,Password,FullName FROM user WHERE U
       <!-- Email -->
        <div class="input-field col s12">
          <i class="material-icons prefix">email</i>
-         <input id="icon_prefix" type="email" class="validate" value="<?php echo $row['Email'];?>">
+         <input id="icon_prefix" type="email" name="email" class="validate" value="<?php echo $row['Email'];?>">
          <label for="icon_prefix">Email</label>
        </div>
        <!-- ////////////////// -->
@@ -117,6 +118,25 @@ else
 }
 
 } //end of else if ($do == 'Edit')
+    elseif($do == 'Update')  {
+    echo   " <h1 class = 'text-center'> Update Member </h>";
+  }
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+      $id = $_POST['userid'];
+      $user = $_POST['user'];
+      $email = $_POST['email'];
+      $name = $_POST['full'];
+    //  echo $id . $user . $email . $name;
+    // update zanyryakany usery la naw database dakay
+    $stmt = $con->prepare("UPDATE user SET UserName =?,Email = ?,FullName =? WHERE UserID = ? ");
+    $stmt->execute(array($id, $user, $name, $email));
+    echo $stmt->rowCount() . ' Record Update';
+
+    } else {
+       echo 'Sorry You Cant Brouse This Page Directly';
+
+
+    }
 
 
 
