@@ -23,7 +23,7 @@ else if($do=='Edit'){ //Edit page
   //chek if get request userid is numeric &get the int value of it
   $userid = isset ($_GET['userid'])&& is_numeric($_GET['userid']) ? intval ($_GET['userid']) : 0;
  //select all data depend on this ID
-  }
+
     $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? Limit  1");
 
 //execute query
@@ -40,7 +40,8 @@ else if($do=='Edit'){ //Edit page
 
 //if ther is such id show the form
 
-    if ($stmt->rowCount() > 0 {
+    if ($stmt->rowCount() > 0)
+    {
 
        ?>
 
@@ -53,7 +54,7 @@ else if($do=='Edit'){ //Edit page
      <div class="row">
        <div class="input-field col s6">
          <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" class="validate" value="<?php echo " $row ['UserName']">
+         <input id="icon_prefix" type="text" class="validate" value="<?php echo  $row ['UserName']?>">
          <label for="icon_prefix">UserName</label>
 
        </div>
@@ -66,7 +67,7 @@ else if($do=='Edit'){ //Edit page
       <div class="row">
         <div class="input-field col s9">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" class="validate"> value="<?php echo " $row ['FullName'] >
+          <input id="icon_prefix" type="text" class="validate"> value="<?php echo $row['FullName'];?>">
           <label for="icon_prefix">FullName</label>
         </div>
       </div>
@@ -79,7 +80,7 @@ else if($do=='Edit'){ //Edit page
            <div class="row">
              <div class="input-field col s9">
                <i class="material-icons prefix">lock</i>
-            <input id="password" type="password" class="validate"  value="<?php echo " $row ['Password'] >
+            <input id="password" type="password" class="validate"  value="<?php echo $row ['Password']; ?>">
             <label for="password">Password</label>
           </div>
         </div>
@@ -89,7 +90,7 @@ else if($do=='Edit'){ //Edit page
          <div class="row">
            <div class="input-field col s9">
              <i class="material-icons prefix">email</i>
-                <input id="email" type="email" class="validate" value="<?php echo " $row ['Email'] >
+                <input id="email" type="email" class="validate" value="<?php echo  $row ['Email']?>">
                 <label for="email">Email</label>
                 <span class="helper-text" data-error="wrong Email" data-success="right Email">Helper text</span>
               </div>
@@ -105,14 +106,14 @@ else if($do=='Edit'){ //Edit page
 
 
 
-      
-  <?php
 
 
+
+<?php
 
 
 }
-
+}
 else {
   echo   'theres no such ID';
 }
@@ -132,7 +133,7 @@ else
 }
 
 
-
+?>
 
 
 
