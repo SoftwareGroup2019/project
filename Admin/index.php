@@ -19,7 +19,7 @@ $pageTitle = "Login";
     $stmt = $con->prepare("SELECT
     UserID,  UserName, Password
       FROM user
-       WHERE GrupID = 1
+       WHERE UserName =? AND password =? And GrupID = 1
 Limit  1");
     $stmt->execute(array($username,$hashedPass));
     $row=$stmt->fetch();
