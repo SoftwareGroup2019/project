@@ -128,19 +128,36 @@ else
       $user = $_POST['user'];
       $email = $_POST['email'];
       $name = $_POST['full'];
-      //  echo $id . $user . $email . $name;
-      // update zanyryakany usery la naw database dakay
-      if (empty($_POST['newpassword'])){
-        $pass = $_POST['oldpassword'];
-      } else {
-        $pass = sha1($_POST['newpassword']);
+
+      $pass = empty($_POST['newpassword']) ? $_POST['oldpassword'] : sha1($_POST['newpassword']);
+      // agar inputakan ba bataly baje bely away xware tatbyq dabi
+      $formErrors = array();
+      if (strlen($user)<4){
+        $formErrors[] = 'User cant Be Less Than 4 Characters';
+      }
+      // agar username zyatr by la20 error dada away xware lo awaya
+      if (strlen($user)>20){
+        $formErrors[] = 'UserN cant Be more Than 20 Characters';
+      }
+      // awanash har awhaya agar batal bi aw ifana tatbyq dabi barxola
+      if(empty($user)){
+        $formErrors[] = 'UserName cant Be Empty';
+      }
+      if(empty($name)){
+        $formErrors[] = 'Full Name cant Be Empty';
+      }
+      if(empty($email)){
+        $formErrors[] = 'Email cant Be Empty';
+      }
+      foreach($formErrors as $error){
+        echo $error . '<br/>';
       }
 
-
-
-      $stmt = $con->prepare("UPDATE user SET UserName =?,Email = ?,FullName =?, Password = ? WHERE UserID = ? ");
-      $stmt->execute(array($user, $email,$name ,$pass,$id));
-      echo $stmt->rowCount() . ' Record Update';
+      //  echo $id . $user . $email . $name;
+      // update zanyryakany usery la naw database dakay
+    //  $stmt = $con->prepare("UPDATE user SET UserName =?,Email = ?,FullName =?, Password = ? WHERE UserID = ? ");
+    //  $stmt->execute(array($user, $email,$name ,$pass,$id));
+    //  echo $stmt->rowCount() . ' Record Update';
   }
   else
   {
