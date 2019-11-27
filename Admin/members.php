@@ -21,11 +21,11 @@ echo "this is manage page";
 }
 else if($do=='Edit'){ //Edit page
 
-  //chek if get request userid is numeric &get the int value of it
-  $userid = isset ($_GET['userid'])&& is_numeric($_GET['userid']) ? intval ($_GET['userid']) : 0;
- //select all data depend on this ID
+$userid = $_GET['userid'];
 
-    $stmt = $con->prepare("SELECT * FROM user WHERE UserID = 1 Limit  1");
+
+
+$stmt = $con->prepare("SELECT UserName,Email,Password,FullName FROM user WHERE UserID = ? LIMIT 1");
 
 //execute query
 
@@ -41,71 +41,67 @@ else if($do=='Edit'){ //Edit page
 
 //if ther is such id show the form
 
-    if ($stmt->rowCount() > 0)
+    if ($count > 0)
     {
 
        ?>
 
+ <!-- start of container -->
   <div class="container">
 
 
 
-    <div class="row">
-   <form class="col s9">
+   <!-- start of form -->
+   <form class="col s12">
+
+     <!-- start of row -->
      <div class="row">
-       <div class="input-field col s6">
+
+        <!-- Username -->
+       <div class="input-field col s12">
          <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" class="validate" value="<?php echo  $row ['UserName']?>">
+         <input id="icon_prefix" type="text" class="validate" value="<?php echo $row ['UserName'];?>">
          <label for="icon_prefix">UserName</label>
-
        </div>
-     </div>
-  </form>
-   </div>
+       <!-- ////////////////// -->
 
-     <div class="row">
-    <form class="col s9">
-      <div class="row">
-        <div class="input-field col s9">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" class="validate" value="<?php echo $row['FullName'];?>">
-          <label for="icon_prefix">FullName</label>
-        </div>
+        <!-- Full Name -->
+       <div class="input-field col s12">
+         <i class="material-icons prefix">account_circle</i>
+         <input id="icon_prefix" type="text" class="validate" value="<?php echo $row['FullName'];?>">
+         <label for="icon_prefix">FullName</label>
+       </div>
+       <!-- ////////////////// -->
+
+      <!-- Email -->
+       <div class="input-field col s12">
+         <i class="material-icons prefix">email</i>
+         <input id="icon_prefix" type="email" class="validate" value="<?php echo $row['Email'];?>">
+         <label for="icon_prefix">Email</label>
+       </div>
+       <!-- ////////////////// -->
+
+       <!-- Password -->
+       <div class="input-field col s12">
+         <i class="material-icons prefix">lock</i>
+      <input id="password" type="password" class="validate">
+      <label for="password">Password</label>
       </div>
+    <!-- ////////////////// -->
+
+      <!-- Buttton -->
+    <button class="btn waves-effect waves-light" type="submit" name="action">Save
+      <i class="material-icons right"></i>
+    </button>
+      <!-- ////////////////// -->
+
+  </div>
+  <!-- end of row -->
+
   </form>
-    </div>
-
-
-          <div class="row">
-         <form class="col s9">
-           <div class="row">
-             <div class="input-field col s9">
-               <i class="material-icons prefix">lock</i>
-            <input id="password" type="password" class="validate"  value="<?php echo $row ['Password']; ?>">
-            <label for="password">Password</label>
-          </div>
-        </div>
-
-        <div class="row">
-       <form class="col s9">
-         <div class="row">
-           <div class="input-field col s9">
-             <i class="material-icons prefix">email</i>
-                <input id="email" type="email" class="validate" value="<?php echo  $row ['Email']?>">
-                <label for="email">Email</label>
-                <span class="helper-text" data-error="wrong Email" data-success="right Email">Helper text</span>
-              </div>
-            </div>
-          </form>
-        </div>
-
-            <div class="row">
-           <form class="col s9">
-      <button class="btn waves-effect waves-light" type="submit" name="action">Save
-        <i class="material-icons right"></i>
-      </button>
-
-
+  <!-- end of form  -->
+   </div>
+   <!-- end of container -->
 
 
 
@@ -114,11 +110,14 @@ else if($do=='Edit'){ //Edit page
 
 
 }
-}
+
 else
 {
   echo   'theres no such ID';
 }
+
+} //end of else if ($do == 'Edit')
+
 
 
 
