@@ -1,6 +1,6 @@
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="members.php$d0=Edit&userid =<$php echo $SESSION['ID']$>">Edit</a></li>
+  <li><a href="members.php?do=Edit>">Edit</a></li>
   <li><a href="#!">Settings</a></li>
   <li class="divider"></li>
   <li><a href="logout.php">Logout</a></li>
@@ -14,7 +14,7 @@
         <li><a href="members.php">Members</a></li>
       <li><a href="Categories.html">Categories</a></li>
       <!-- Dropdown Trigger -->
-      <li><a class="dropdown-trigger" href="logout.php" data-target="dropdown1">Dropdown<i class="material-icons right"></i></a></li>
+      <li><a class="dropdown-trigger" href="logout.php" data-target="dropdown1">Dropdown<i class="material-icons right">dropdown_arrow-down</i></a></li>
     </ul>
   </div>
 </nav>

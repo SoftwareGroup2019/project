@@ -19,7 +19,7 @@ if ($do =='manage')
 echo "this is manage page";
 
 }
-elseif($do=='Edit'){ //Edit page
+else if($do=='Edit'){ //Edit page
   //chek if get request userid is numeric &get the int value of it
   $userid = isset ($_GET['userid'])&& is_numeric($_GET['userid']) ? intval ($_GET['userid']) : 0;
  //select all data depend on this ID
@@ -40,9 +40,11 @@ elseif($do=='Edit'){ //Edit page
 
 //if ther is such id show the form
 
-    if ($stmt->rowCount() > 0 {  ?>
+    if ($stmt->rowCount() > 0 {
 
-  <div class="containe">
+       ?>
+
+  <div class="container">
 
 
 
@@ -51,7 +53,7 @@ elseif($do=='Edit'){ //Edit page
      <div class="row">
        <div class="input-field col s6">
          <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" class="validate" value="<?php echo " $row ['UserName'] >
+         <input id="icon_prefix" type="text" class="validate" value="<?php echo " $row ['UserName']">
          <label for="icon_prefix">UserName</label>
 
        </div>
@@ -100,6 +102,10 @@ elseif($do=='Edit'){ //Edit page
       <button class="btn waves-effect waves-light" type="submit" name="action">Save
         <i class="material-icons right"></i>
       </button>
+
+
+
+      
   <?php
 
 
