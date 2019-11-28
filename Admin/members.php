@@ -61,7 +61,7 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
         <!-- Username -->
        <div class="input-field col s12">
          <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" name="user" class="validate" value="<?php echo $row ['UserName'];?>">
+         <input id="icon_prefix" type="text" name="user" class="validate" value="<?php echo $row ['UserName'];?>" required="required">
          <label for="icon_prefix">UserName</label>
        </div>
        <!-- ////////////////// -->
@@ -69,7 +69,7 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
         <!-- Full Name -->
        <div class="input-field col s12">
          <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" name="full"  class="validate" value="<?php echo $row['FullName'];?>">
+         <input id="icon_prefix" type="text" name="full"  class="validate" value="<?php echo $row['FullName'];?>"required="required">
          <label for="icon_prefix">FullName</label>
        </div>
        <!-- ////////////////// -->
@@ -77,7 +77,7 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
       <!-- Email -->
        <div class="input-field col s12">
          <i class="material-icons prefix">email</i>
-         <input id="icon_prefix" type="email" name="email" class="validate" value="<?php echo $row['Email'];?>">
+         <input id="icon_prefix" type="email" name="email" class="validate" value="<?php echo $row['Email'];?>"required="required">
          <label for="icon_prefix">Email</label>
        </div>
        <!-- ////////////////// -->
@@ -86,7 +86,7 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
        <div class="input-field col s12">
          <i class="material-icons prefix">lock</i>
       <input id="password" type="hidden" name="oldpassword" class="validate" value="<?php echo $row['Password']?>">
-      <input id="password" type="password" name="newpassword" class="validate">
+      <input id="password" type="password" name="newpassword" class="validate" placeholder="am basha bparena gar natawe bygory">
       <label for="password">Password</label>
       </div>
     <!-- ////////////////// -->
@@ -121,6 +121,7 @@ else
 } //end of else if ($do == 'Edit')
     elseif($do == 'Update')  {
     echo   " <h1 class = 'text-center'> Update Member </h>";
+    echo "<div class='container'>";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
@@ -133,36 +134,39 @@ else
       // agar inputakan ba bataly baje bely away xware tatbyq dabi
       $formErrors = array();
       if (strlen($user)<4){
-        $formErrors[] = 'User cant Be Less Than 4 Characters';
+        $formErrors[] = '<div class="alert alert-danger"> UserName cant Be Less Than <strong> 4 Characters</strong></div>';
       }
       // agar username zyatr by la20 error dada away xware lo awaya
       if (strlen($user)>20){
-        $formErrors[] = 'UserN cant Be more Than 20 Characters';
+        $formErrors[] = '<div class="alert alert-danger">UserN cant Be more Than <strong> 20 Characters</strong></div>';
       }
       // awanash har awhaya agar batal bi aw ifana tatbyq dabi barxola
       if(empty($user)){
-        $formErrors[] = 'UserName cant Be Empty';
+        $formErrors[] = '<div class="alert alert-danger">UserName cant Be <strong> Empty </strong></div>';
       }
       if(empty($name)){
-        $formErrors[] = 'Full Name cant Be Empty';
+        $formErrors[] = '<div class="alert alert-danger">Full Name cant Be <strong> Empty </strong></div>';
       }
       if(empty($email)){
-        $formErrors[] = 'Email cant Be Empty';
+        $formErrors[] = '<div class="alert alert-danger">Email cant Be <strong> Empty </strong></div>';
       }
+      // loop labo away bzany error haya
       foreach($formErrors as $error){
-        echo $error . '<br/>';
+        echo $error ;
       }
+      if (empty($formErrors)){
 
       //  echo $id . $user . $email . $name;
       // update zanyryakany usery la naw database dakay
-    //  $stmt = $con->prepare("UPDATE user SET UserName =?,Email = ?,FullName =?, Password = ? WHERE UserID = ? ");
-    //  $stmt->execute(array($user, $email,$name ,$pass,$id));
-    //  echo $stmt->rowCount() . ' Record Update';
+      $stmt = $con->prepare("UPDATE user SET UserName =?,Email = ?,FullName =?, Password = ? WHERE UserID = ? ");
+      $stmt->execute(array($user, $email,$name ,$pass,$id));
+      echo "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Update</div>';
+    }
   }
-  else
-  {
+  else{
        echo "Sorry You Cant Brouse This Page Directly";
     }
+    echo "</div>";
   }
 include 'include/template/footer.php';
 }
