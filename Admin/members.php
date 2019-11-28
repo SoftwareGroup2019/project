@@ -61,7 +61,7 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
         <!-- Username -->
        <div class="input-field col s12">
          <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" name="user" class="validate" value="<?php echo $row ['UserName'];?>" required="required">
+         <input id="icon_prefix" type="text" name="user" class="validate" value="<?php echo $row ['Username'];?>" required="required">
          <label for="icon_prefix">UserName</label>
        </div>
        <!-- ////////////////// -->
