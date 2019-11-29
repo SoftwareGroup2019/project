@@ -15,8 +15,15 @@ if ($do =='manage')
 {
 
 // mange page
+?>
 
-echo "this is manage page";
+
+<a href="members.php?do=add">Add Users</a>
+<br>
+
+<?php
+
+echo "this is manage";
 
 }
 else if($do=='Edit'){ //Edit page
@@ -49,7 +56,7 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
  <!-- start of container -->
   <div class="container">
 
-
+      <h4 class="center">Edit User</h4>
 
    <!-- start of form -->
    <form class="col s12" action="?do=Update" method="POST">
@@ -92,7 +99,7 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
     <!-- ////////////////// -->
 
       <!-- Buttton -->
-    <button class="btn waves-effect waves-light" type="submit" name="action">Save
+    <button class="btn waves-effect waves-light" type="submit" name="action">Update
       <i class="material-icons right"></i>
     </button>
       <!-- ////////////////// -->
@@ -168,6 +175,83 @@ else
     }
     echo "</div>";
   }
+
+
+  elseif ($do =='add') {
+    // code..
+    ?>
+    <div class="container">
+
+<h4 class="center">Add Users</h4>
+
+     <!-- start of form -->
+     <form class="col s12" action="?do=Update" method="POST">
+
+
+       <!-- start of row -->
+       <div class="row">
+
+          <!-- Username -->
+         <div class="input-field col s12">
+           <i class="material-icons prefix">account_circle</i>
+           <input id="icon_prefix" type="text" name="user" class="validate" required="required">
+           <label for="icon_prefix">UserName</label>
+         </div>
+         <!-- ////////////////// -->
+
+          <!-- Full Name -->
+         <div class="input-field col s12">
+           <i class="material-icons prefix">account_circle</i>
+           <input id="icon_prefix" type="text" name="full" required="required">
+           <label for="icon_prefix">FullName</label>
+         </div>
+         <!-- ////////////////// -->
+
+        <!-- Email -->
+         <div class="input-field col s12">
+           <i class="material-icons prefix">email</i>
+           <input id="icon_prefix" type="email" name="email" class="validate" required="required">
+           <label for="icon_prefix">Email</label>
+         </div>
+         <!-- ////////////////// -->
+
+         <!-- Password -->
+         <div class="input-field col s12">
+           <i class="material-icons prefix">lock</i>
+        <input id="password" type="password" name="newpassword" class="validate">
+        <label for="password">Password</label>
+        </div>
+      <!-- ////////////////// -->
+
+        <!-- Buttton -->
+      <button class="btn waves-effect waves-light" type="submit" name="action">Add
+        <i class="material-icons right"></i>
+      </button>
+        <!-- ////////////////// -->
+
+    </div>
+    <!-- end of row -->
+
+    </form>
+    <!-- end of form  -->
+     </div>
+     <!-- end of container -->
+
+
+
+
+  <?php
+
+
+  }
+
+  elseif ($do == 'insert') {
+    // code...
+  }
+
+
+
+
 include 'include/template/footer.php';
 }
 // Reuest end here
@@ -177,5 +261,4 @@ else
   exit();
 }
 
-
-?>
+  ?>

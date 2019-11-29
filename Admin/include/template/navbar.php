@@ -14,7 +14,7 @@
         <li><a href="members.php">Members</a></li>
       <li><a href="Categories.html">Categories</a></li>
       <!-- Dropdown Trigger -->
-      <li><a class="dropdown-trigger" href="logout.php" data-target="dropdown1"><?php echo $_SESSION['UserName']; ?><i class="material-icons right">expand_more</i></a></li>
+      <li><a class="dropdown-trigger" href="#" data-target="dropdown1"><?php echo $_SESSION['UserName']; ?><i class="material-icons right">expand_more</i></a></li>
     </ul>
   </div>
 </nav>
