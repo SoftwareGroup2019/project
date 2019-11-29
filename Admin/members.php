@@ -68,7 +68,7 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
         <!-- Username -->
        <div class="input-field col s12">
          <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" name="user" class="validate" value="<?php echo $row ['Username'];?>" required="required">
+         <input id="icon_prefix" type="text" name="user" class="validate" value="<?php echo $row ['Username'];?>>
          <label for="icon_prefix">UserName</label>
        </div>
        <!-- ////////////////// -->
@@ -137,37 +137,43 @@ else
       $email = $_POST['email'];
       $name = $_POST['full'];
 
-      $pass = empty($_POST['newpassword']) ? $_POST['oldpassword'] : sha1($_POST['newpassword']);
-      // agar inputakan ba bataly baje bely away xware tatbyq dabi
       $formErrors = array();
       if (strlen($user)<4){
-        $formErrors[] = '<div class="alert alert-danger"> UserName cant Be Less Than <strong> 4 Characters</strong></div>';
+        $formErrors[] = 'UserName cant Be Less Than <strong> 4 Characters</strong>';
       }
       // agar username zyatr by la20 error dada away xware lo awaya
       if (strlen($user)>20){
-        $formErrors[] = '<div class="alert alert-danger">UserN cant Be more Than <strong> 20 Characters</strong></div>';
+        $formErrors[] = 'UserN cant Be more Than <strong> 20 Characters</strong>';
       }
       // awanash har awhaya agar batal bi aw ifana tatbyq dabi barxola
       if(empty($user)){
-        $formErrors[] = '<div class="alert alert-danger">UserName cant Be <strong> Empty </strong></div>';
+        $formErrors[] = 'UserName cant Be <strong> Empty </strong>';
+        if(empty($pass)){
+          $formErrors[] = 'password cant Be <strong> Empty </strong>';
       }
       if(empty($name)){
-        $formErrors[] = '<div class="alert alert-danger">Full Name cant Be <strong> Empty </strong></div>';
+        $formErrors[] = 'Full Name cant Be <strong> Empty </strong>';
       }
       if(empty($email)){
-        $formErrors[] = '<div class="alert alert-danger">Email cant Be <strong> Empty </strong></div>';
+        $formErrors[] = 'Email cant Be <strong> Empty </strong>';
       }
       // loop labo away bzany error haya
       foreach($formErrors as $error){
-        echo $error ;
+        echo ' <div class="alert alert-danger" ' .  $error .'</div>';
+
       }
       if (empty($formErrors)){
 
       //  echo $id . $user . $email . $name;
       // update zanyryakany usery la naw database dakay
-      $stmt = $con->prepare("UPDATE user SET UserName =?,Email = ?,FullName =?, Password = ? WHERE UserID = ? ");
-      $stmt->execute(array($user, $email,$name ,$pass,$id));
-      echo "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Update</div>';
+
+      echo "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Inserted</div>';
+    }
+  }
+  else{
+       echo "Sorry You Cant Brouse This Page Directly";
+    }
+    echo "</div>";
     }
   }
   else{
@@ -206,6 +212,7 @@ else
            <label for="icon_prefix">FullName</label>
          </div>
          <!-- ////////////////// -->
+
 
         <!-- Email -->
          <div class="input-field col s12">
@@ -246,7 +253,56 @@ else
   }
 
   elseif ($do == 'insert') {
-    // code...
+    if ($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+      echo   " <h1 class = 'text-center'> Update Member </h>";
+      echo "<div class='container'>";
+
+      $user = $_POST['user'];
+        $pass = $_POST['password'];
+      $email = $_POST['email'];
+      $name = $_POST['full'];
+$hashpass=sha1($_POST['email']);
+
+      // agar inputakan ba bataly baje bely away xware tatbyq dabi
+      $formErrors = array();
+      if (strlen($user)<4){
+        $formErrors[] = 'UserName cant Be Less Than <strong> 4 Characters</strong>';
+      }
+      // agar username zyatr by la20 error dada away xware lo awaya
+      if (strlen($user)>20){
+        $formErrors[] = 'UserN cant Be more Than <strong> 20 Characters</strong>';
+      }
+      // awanash har awhaya agar batal bi aw ifana tatbyq dabi barxola
+      if(empty($user)){
+        $formErrors[] = 'UserName cant Be <strong> Empty </strong>';
+
+        if(empty($pass)){
+          $formErrors[] = 'password cant Be <strong> Empty </strong>';
+      }
+      if(empty($name)){
+        $formErrors[] = 'Full Name cant Be <strong> Empty </strong>';
+      }
+      if(empty($email)){
+        $formErrors[] = 'Email cant Be <strong> Empty </strong>';
+      }
+      // loop labo away bzany error haya
+      foreach($formErrors as $error){
+        echo ' <div class="alert alert-danger" ' .  $error .'</div>';
+
+      }
+      if (empty($formErrors)){
+
+      //  echo $id . $user . $email . $name;
+      // update zanyryakany usery la naw database dakay
+
+      echo "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Inserted</div>';
+    }
+  }
+  else{
+       echo "Sorry You Cant Brouse This Page Directly";
+    }
+    echo "</div>";
   }
 
 
@@ -260,5 +316,4 @@ else
   header('location: index.php');
   exit();
 }
-
   ?>
