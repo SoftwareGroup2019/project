@@ -279,12 +279,25 @@ elseif ($do =='add') {
 
         }
         if (empty($formErrors)){
-
+$stmt=$con ->prepare("INSERT INTO
+                     user(UserName ,password,email,FullName)
+                     VALUES(:zuser,:zpass,:zmail,:zname)");
         //  echo $id . $user . $email . $name;
         // update zanyryakany usery la naw database dakay
+$stmt->execute(array(
 
+'zuser'=>$user,
+'zpass'=>$pass,
+'zmail'=>$email,
+'zname'=>$name
+
+
+// zanyary user nuwe daxl dakay baw array dachta naw database
+
+)
+);
        echo "Done";
-       
+
 
      } // end of empty error
 
