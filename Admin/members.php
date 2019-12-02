@@ -14,16 +14,70 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 if ($do =='manage')
 {
 
+  $stmt = $con->prepare("SELECT
+    *
+    FROM user
+     WHERE GrupID != 1");
+
+     $stmt->execute();
+
+     $rows=$stmt->fetchAll();
+
+
+
 // mange page
 ?>
 
+<h4 class="center">Manage Users</h4>
 
-<a href="members.php?do=add">Add Users</a>
-<br>
+<div class="container">
+  <table class="responsive-table striped centered card">
+         <thead>
+           <tr>
+               <th>ID</th>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Date</th>
+               <th>Options</th>
+           </tr>
+         </thead>
+
+         <tbody>
+
+        <?php
+
+        foreach ($rows as $row ) {
+          echo "<tr>";
+           echo "<td>". $row["UserID"] ."</td>";
+           echo "<td>". $row["Username"] ."</td>";
+           echo "<td>". $row["Email"] ."</td>";
+           echo "<td>". "----" ."</td>";
+           echo "<td>". '
+           <a class="waves-effect waves-light btn-small"><i class="material-icons">edit</i></a>
+           <a class="waves-effect waves-light btn-small" style="background-color:#d32f2f;"><i class="material-icons">delete</i></a>
+           '
+           ."</td>";
+          echo "</tr>";
+        }
+
+         ?>
+
+
+
+         </tbody>
+       </table>
+
+    <br>
+    <a class="waves-effect waves-light btn" href="members.php?do=add" style="background-color:#1976d2;">
+      <i class="material-icons right">add</i>Add User</a>
+</div>
+
+
+
 
 <?php
 
-echo "this is manage";
+
 
 }
 else if($do=='Edit'){ //Edit page
@@ -249,7 +303,7 @@ elseif ($do =='add') {
   elseif ($do == 'insert') {
       if ($_SERVER['REQUEST_METHOD'] == 'POST')
       {
-        echo   " <h1 class = 'center'> Add Users </h1>";
+        echo   " <h4 class = 'center'> Insert Users </h4>";
 
 
         $user = $_POST['user'];
@@ -296,7 +350,7 @@ $stmt->execute(array(
 
 )
 );
-       echo "Done";
+       echo "User Added successfully";
 
 
      } // end of empty error
