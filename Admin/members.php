@@ -53,8 +53,8 @@ if ($do =='manage')
            echo "<td>". $row["Email"] ."</td>";
            echo "<td>". "----" ."</td>";
            echo "<td>". '
-           <a class="waves-effect waves-light btn-small"><i class="material-icons">edit</i></a>
-           <a class="waves-effect waves-light btn-small" style="background-color:#d32f2f;"><i class="material-icons">delete</i></a>
+           <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit"><i class="material-icons">edit</i></a>
+           <a class="waves-effect waves-light btn-small tooltipped" data-position="right" data-tooltip="Delete" style="background-color:#d32f2f;"><i class="material-icons">delete</i></a>
            '
            ."</td>";
           echo "</tr>";
