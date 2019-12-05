@@ -52,11 +52,12 @@ if ($do =='manage')
            echo "<td>". $row["Username"] ."</td>";
            echo "<td>". $row["Email"] ."</td>";
            echo "<td>". "----" ."</td>";
-           echo "<td>". '
+           echo "<td>";
+           ?>
            <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit"><i class="material-icons">edit</i></a>
-           <a class="waves-effect waves-light btn-small tooltipped" data-position="right" data-tooltip="Delete" style="background-color:#d32f2f;"><i class="material-icons">delete</i></a>
-           '
-           ."</td>";
+           <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#d32f2f;"><i class="material-icons">delete</i></a
+           <?php
+           echo "</td>";
           echo "</tr>";
         }
 
@@ -364,6 +365,43 @@ $stmt->execute(array(
       }
   } // end of insert
 
+elseif ($do =='Delete') {
+
+$userid = $_GET['userid'];
+//lerash userman bang krditawa.
+$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
+
+//execute query
+
+    $stmt->execute(array($userid));
+//id database rabt dakatn.
+//fetch the data
+
+    $row=$stmt->fetch();
+
+//the row count
+
+    $count =$stmt->rowCount();
+
+if  ($count >0) {
+//agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
+  $stmt = $con->prepare("DELETE FROM user WHERE UserID=:zuserid");
+
+ $stmt->bindparam(':zuserid',$userid);
+
+ $stmt->execute();
+
+ echo "User Deleted";
+
+}
+
+else {
+  echo "There is no user";
+//agar hatw userid nabu pet ble aw usera nya.
+}
+
+  // code...
+}
 
 
 
