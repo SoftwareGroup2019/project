@@ -353,7 +353,7 @@ $stmt->execute(array(
 )
 );
        echo "User Added successfully";
-
+      redirectHome(" ");
 
      } // end of empty error
 
@@ -394,12 +394,14 @@ if  ($count >0) {
  $stmt->execute();
 
  echo "User Deleted";
+ redirectHome(" ");
 
 }
 
 else {
-  echo "There is no user";
-//agar hatw userid nabu pet ble aw usera nya.
+ //agar hatw userid nabu pet ble aw usera nya.
+  $errormsg= "There is no user";
+  redirectHome($errormsg , 3);
 }
 
   // code...
