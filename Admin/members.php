@@ -227,6 +227,7 @@ else
   }
   else{
        echo "Sorry You Cant Brouse This Page Directly";
+
     }
 
   } //end of post update requst
@@ -361,7 +362,8 @@ $stmt->execute(array(
     } // end of post insert requst
 
     else{
-         echo "Sorry You Cant Brouse This Page Directly";
+         $errormsg= "Sorry You Cant Brouse This Page Directly";
+         redirectHome($errormsg , 3);
       }
   } // end of insert
 
