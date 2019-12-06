@@ -13,9 +13,13 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 
 if ($do =='manage')
 {
-
-  $stmt = $con->prepare("SELECT
-    *
+  // $value = "Ayman";
+  // $check = checkItem("Username", "user", $value);
+  // if ($check == 1){
+  //
+  //   echo 'hahaha';
+  // } aw coda loo awaya agaer user habu ba haman naw aw if tatbyq daby
+  $stmt = $con->prepare("SELECT *
     FROM user
      WHERE GrupID != 1");
 
@@ -335,6 +339,12 @@ elseif ($do =='add') {
 
         }
         if (empty($formErrors)){
+          $check = checkItem("Username", "user", $user);
+          if ($check == 1){
+            echo 'Sorry this user is Exist';
+          } else {
+
+
 $stmt=$con ->prepare("INSERT INTO
                      user(UserName ,password,email,FullName)
                      VALUES(:zuser,:zpass,:zmail,:zname)");
@@ -350,12 +360,11 @@ $stmt->execute(array(
 
 // zanyary user nuwe daxl dakay baw array dachta naw database
 
-)
-);
+));
        echo "User Added successfully";
       redirectHome(" ");
 
-     } // end of empty error
+    } }// end of empty error
 
 
 
