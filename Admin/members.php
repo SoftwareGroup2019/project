@@ -220,6 +220,7 @@ else
       foreach($formErrors as $error){
         echo ' <div class="alert alert-danger" ' .  $error .'</div>';
 
+
       }
       if (empty($formErrors)){
 
@@ -227,6 +228,8 @@ else
       // update zanyryakany usery la naw database dakay
 
       echo "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Inserted</div>';
+      redirectHome($theMsg, 'back');
+
     }
   }
   else{
@@ -371,9 +374,10 @@ $stmt->execute(array(
     } // end of post insert requst
 
     else{
-         $errormsg= "Sorry You Cant Brouse This Page Directly";
-         redirectHome($errormsg , 3);
+         $theMsg= '<div class="alert alert-danger">Sorry You Cant Brouse This Page Directly </div>';
+         redirectHome($theMsg,'back');
       }
+      echo "</div>";
   } // end of insert
 
 elseif ($do =='Delete') {

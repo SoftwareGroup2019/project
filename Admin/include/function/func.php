@@ -5,13 +5,25 @@ if ( isset ($pageTitle)){
 echo $pageTitle;
 }else {
 echo "Default";
-}
-}
+}}
 //bashe errormsg
-function redirectHome($errormsg,$seconds=3){
-echo "<div class=''>$errormsg</div>";
-echo "<div class=''>you will Re Redirected to Homepage After $seconds Seconds.</div>";
-header("refresh:$seconds;url=index.php");
+function redirectHome($theMsg, $url =null ,$seconds=3){
+  if($url === null){
+    $nrl='index.php';
+    $link='Homepage';
+  }
+  else{
+    if(isset($_SERVER['HTTP_REFERER'])&& $_SERVER['HTTP_REFERER'] !=='')
+    {
+$link='previous page';
+} else {
+$url = 'index.php';
+$link = 'Homepage';
+
+}}
+echo $theMsg;
+echo "<div calss='alert alert-info'>You Will Be Rrdirected to Homepage After $seconds seconds .</div>";
+header("refresh:$seconds:$url");
 
 exit();
 
@@ -26,6 +38,4 @@ function checkItem($select, $from , $value){
 
 
 }
-
-
  ?>
