@@ -181,7 +181,10 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
 
 else
 {
-  echo   'theres no such ID';
+  echo "<div calass='container'>";
+  $theMsg = '<div class="alert alert-danger">theres no such ID</div>';
+  redirectHome($theMsg);
+  echo "</div>";
 }
 
 } //end of else if ($do == 'Edit')
@@ -233,7 +236,8 @@ else
     }
   }
   else{
-       echo "Sorry You Cant Brouse This Page Directly";
+      $theMsg ='<div calss="alert alert-danger">Sorry You Cant Brouse This Page Directly</div>';
+      redirectHome($theMsg);
 
     }
 
@@ -375,7 +379,7 @@ $stmt->execute(array(
 
     else{
          $theMsg= '<div class="alert alert-danger">Sorry You Cant Brouse This Page Directly </div>';
-         redirectHome($theMsg,'back');
+         redirectHome($theMsg);
       }
       echo "</div>";
   } // end of insert
@@ -406,8 +410,8 @@ if  ($count >0) {
 
  $stmt->execute();
 
- echo "User Deleted";
- redirectHome(" ");
+$theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Deleted</div>';
+ redirectHome($theMsg);
 
 }
 
