@@ -348,7 +348,8 @@ elseif ($do =='add') {
         if (empty($formErrors)){
           $check = checkItem("Username", "user", $user);
           if ($check == 1){
-            echo 'Sorry this user is Exist';
+            echo '<div class = "alert alert-dnger">Sorry this user is Exist</div>';
+            redirectHome($theMsg, 'back');
           } else {
 
 
@@ -388,21 +389,23 @@ elseif ($do =='Delete') {
 
 $userid = $_GET['userid'];
 //lerash userman bang krditawa.
-$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
+//$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
+
+$chek = checkItem('userid', 'user' , $userid);
 
 //execute query
 
-    $stmt->execute(array($userid));
+  //  $stmt->execute(array($userid));
 //id database rabt dakatn.
 //fetch the data
 
-    $row=$stmt->fetch();
+  //  $row=$stmt->fetch();
 
 //the row count
 
-    $count =$stmt->rowCount();
+    //$count =$stmt->rowCount();
 
-if  ($count >0) {
+if  ($chek >0) {
 //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
   $stmt = $con->prepare("DELETE FROM user WHERE UserID=:zuserid");
 
