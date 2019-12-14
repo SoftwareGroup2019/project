@@ -55,7 +55,7 @@ if ($do =='manage')
            echo "<td>". $row["UserID"] ."</td>";
            echo "<td>". $row["Username"] ."</td>";
            echo "<td>". $row["Email"] ."</td>";
-           echo "<td>". "----" ."</td>";
+           echo "<td>". $row['Date'] ."</td>";
            echo "<td>";
            ?>
            <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit"><i class="material-icons">edit</i></a>
@@ -353,8 +353,8 @@ elseif ($do =='add') {
 
 
 $stmt=$con ->prepare("INSERT INTO
-                     user(UserName ,password,email,FullName)
-                     VALUES(:zuser,:zpass,:zmail,:zname)");
+                     user(UserName ,password,email,FullName,Date)
+                     VALUES(:zuser,:zpass,:zmail,:zname,now())");
         //  echo $id . $user . $email . $name;
         // update zanyryakany usery la naw database dakay
 $stmt->execute(array(
