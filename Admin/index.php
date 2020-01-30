@@ -36,39 +36,65 @@ Limit  1");
   }
 
  ?>
-<div class="z-depth-2 login-div">
-  <div class="row ">
-<div class="col s12 ">
+<div class="container">
+
+<div class="row">
+
+<div class="col s12 m4 l2"></div>
+
+<div class="z-depth-2 center col s12 m4 l8" id="log">
+
   <h5 > Sign in <h5>
   <h6 >Welcome Admin to Panel</h6>
-</div>
 
+<form class="" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+
+<div class="row">
+
+  <div class="input-field col s12">
+     <i class="material-icons prefix">account_circle</i>
+  <input id ="icon_prefix" type="text" class="validate" name="UserName">
+  <label for="icon_prefix"> UserName </label>
   </div>
-  <form class="" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 
+
+  <div class="input-field col s12">
+    <i class="material-icons prefix">lock</i>
+  <input id ="icon_telephone" type="Password" class="validate" name="Password">
+  <label for ="icon_telephone"> Password </label>
+  </div>
+
+</div>
+
+<button class="waves-effect waves-light btn" name="ok">
+  <i class="material-icons right">
+    send
+  </i>
+  Signin
+</button>
+
+</form>
+
+
+</div>
+
+  <div class="col s12 m4 l2"></div>
+
+</div>
 
 <div class="row">
-  <div class="input-field col s12">
 
-<input id ="text-input" type="text" class="validate" name="UserName">
-<label for ="text-input"> UserName </label>
-</div>
-</div>
+         <div class="col s12 center">
 
-<div class="row">
-  <div class="input-field col s12">
-<input id ="Password-input" type="Password" class="validate" name="Password">
-<label for ="Password-input"> Password </label>
+             <h5 id="ghost"></h5>
+
+         </div>
+
+     </div>
 
 </div>
-</div>
 
-<div class="row right">
-  <button class="waves-effect waves-light btn" name="ok"><i class="material-icons right">send</i>Signin</button>
-</div>
-</div>
-</div>
-  </form>
-</div>
+
+
 
 <?php include 'include/template/footer.php' ?>
