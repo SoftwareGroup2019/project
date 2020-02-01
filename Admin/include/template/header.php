@@ -18,7 +18,48 @@
 
    <script src="layout/js/jquery-3.3.1.min.js"></script>
     <script src="layout/js/ghost-typer.min.js"></script>
+
    <style media="screen">
+
+    body{
+    background-color: #e1f5fe ;
+
+    }
+
+    nav .nav-wrapper
+    {
+      background-color: #01579b;
+    }
+
+    .btn, .btn-large, .btn-small
+    {
+      background-color: #0d47a1 !important;
+    }
+
+    /* section{
+      width: 100%;
+      height: 100%;
+      color:#fff;
+      background :Linear-gradient(-45 deg ,#EE7752 ,#E73c7E ,#23A6D5,#23D5AB);
+        background-size: 400% 400% ;
+        position: relative;
+      } */
+
+a
+{
+  color: white !important;
+}
+
+
+ul .dropdown-content
+{
+  background-color: #01579b;
+}
+
+.dropdown-content li:hover, .dropdown-content li.active
+{
+  background-color: rgba(0,0,0,0.1);
+}
 
    #log
    {

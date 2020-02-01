@@ -58,8 +58,8 @@ if ($do =='manage')
            echo "<td>". $row['Date'] ."</td>";
            echo "<td>";
            ?>
-           <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit"><i class="material-icons">edit</i></a>
-           <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#d32f2f;"><i class="material-icons">delete</i></a
+           <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
+           <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a
            <?php
            echo "</td>";
           echo "</tr>";

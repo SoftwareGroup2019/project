@@ -12,7 +12,7 @@
 
 
 
-<p>Hello</p>
+<h2 class="center">Admin Panel</h2>
 
 
 
