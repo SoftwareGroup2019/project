@@ -189,7 +189,7 @@ else
 
 } //end of else if ($do == 'Edit')
     elseif($do == 'Update')  {
-    echo   " <h1 class = 'text-center'> Update Member </h>";
+    echo   " <h4 class='center'> Update Member </h4>";
     echo "<div class='container'>";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
