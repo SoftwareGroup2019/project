@@ -19,6 +19,21 @@ padding:10px 80px;
 border:1px solid #ddd;
 border-radius:12px;
 }
+/*start Dashbord page */
+.Home-stats .stat{
+  background-color: #EEE;
+  border: 1px solid #CCC;
+  padding: 20px;
+  font-size: 15px;
+}
+.Home-stats .stat span{
+  display: block;
+  font-size: 50px;
+}
+.latest {
+  margin-top: 30px ;
+}
+/*end Dashbord page */
 
 .btn, .btn-large, .btn-small
 {
