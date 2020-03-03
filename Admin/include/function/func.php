@@ -38,4 +38,11 @@ function checkItem($select, $from , $value){
 
 
 }
- ?>
+
+ function countItems($item, $table) {
+   global $con;
+   $stmt2 = $con->prepare("SELECT COUNT($item) FROM $table");
+   $stmt2->execute();
+   return $stmt2->fetchColumn();
+ }
+?>

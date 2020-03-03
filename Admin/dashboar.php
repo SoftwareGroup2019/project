@@ -6,6 +6,9 @@
    include 'include/template/header.php';
    include 'include/template/navbar.php';
    include 'conect.php';
+   $stmt2 = $con->prepare("SELECT COUNT(UserID) FROM user");
+   $stmt2->execute();
+   echo $stmt2->fetchColumn();
 
 ?>
 <div class=" Home-stats">
@@ -15,7 +18,7 @@
 <div class="col-md-3">
       <div class="stat">
         total members
-        <span>200</span>
+        <span><?php echo countItems('UserID','user')?></span>
       </div>
     </div>
      <div class="col-md-3">
