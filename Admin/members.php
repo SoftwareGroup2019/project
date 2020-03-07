@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 $pageTitle = "Dashboard";
@@ -13,6 +14,11 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 
 if ($do =='manage')
 {
+  $query ='';
+  if (isset($_GET['page']) && $_GET['page'] == 'pending') {
+
+    $query ='AND RegStatus = 0';
+  }
   // $value = "Ayman";
   // $check = checkItem("Username", "user", $value);
   // if ($check == 1){
@@ -21,7 +27,7 @@ if ($do =='manage')
   // } aw coda loo awaya agaer user habu ba haman naw aw if tatbyq daby
   $stmt = $con->prepare("SELECT *
     FROM user
-     WHERE GrupID != 1");
+     WHERE GrupID != 1 $query");
 
      $stmt->execute();
 
@@ -54,13 +60,20 @@ if ($do =='manage')
           echo "<tr>";
            echo "<td>". $row["UserID"] ."</td>";
            echo "<td>". $row["Username"] ."</td>";
+           echo "<td>". $row["FullName"] ."</td>";
            echo "<td>". $row["Email"] ."</td>";
            echo "<td>". $row['Date'] ."</td>";
            echo "<td>";
-           ?>
+        ?>
            <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
-           <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a
-           <?php
+           <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a";
+              <?php
+              if($row['RegStatus'] == 0 ) {
+
+
+                echo <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">Activate</a>";
+
+              }
            echo "</td>";
           echo "</tr>";
         }
