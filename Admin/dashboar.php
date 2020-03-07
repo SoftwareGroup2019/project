@@ -16,25 +16,25 @@
   <h1>Dashboard</h1>
   <div class="row">
 <div class="col-md-3">
-      <div class="stat">
+      <div class="stat et-members">
         total members
-        <span><?php echo countItems('UserID','user')?></span>
+        <span><a href="members.php" <?php echo countItems('UserID','user')?></a></span>
       </div>
     </div>
      <div class="col-md-3">
-      <div class="stat">
+      <div class="stat st-pending">
         pending members
           <span>25</span>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="stat">
+      <div class="stat st-items">
         total items
           <span>1500</span>
       </div>
         </div>
         <div class="col-md-3">
-          <div class="stat">
+          <div class="stat st-comments">
             total comments
               <span>3500</span>
           </div>

@@ -354,8 +354,8 @@ elseif ($do =='add') {
 
 
 $stmt=$con ->prepare("INSERT INTO
-                     user(UserName ,password,email,FullName,Date)
-                     VALUES(:zuser,:zpass,:zmail,:zname,now())");
+                     user(UserName ,password,email,FullName,Registerd, Date)
+                     VALUES(:zuser,:zpass,:zmail,:zname,1,now())");
         //  echo $id . $user . $email . $name;
         // update zanyryakany usery la naw database dakay
 $stmt->execute(array(

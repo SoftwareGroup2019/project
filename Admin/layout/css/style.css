@@ -21,18 +21,42 @@ border-radius:12px;
 }
 /*start Dashbord page */
 .Home-stats .stat{
-  background-color: #EEE;
-  border: 1px solid #CCC;
   padding: 20px;
   font-size: 15px;
+  color: #FFF;
+  border-radius: 10px;
+}
+.Home-stats .stat a{
+  color: #FFF;
+}
+.Home-stats .stat a:hover{
+text-decoration: none;
 }
 .Home-stats .stat span{
   display: block;
-  font-size: 50px;
+  font-size:60px;
+}
+
+.Home-stats .st-members{
+  background-color:#55efc4;
+}
+.Home-stats .st-pending{
+  background-color:#81ecec;
+}
+.Home-stats .st-items{
+  background-color:#74b9ff;
+}
+.Home-stats .st-comments{
+  background-color:#a29bfe;
 }
 .latest {
   margin-top: 30px ;
 }
+
+
+
+
+
 /*end Dashbord page */
 
 .btn, .btn-large, .btn-small
