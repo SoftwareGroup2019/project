@@ -65,15 +65,21 @@ if ($do =='manage')
            echo "<td>". $row['Date'] ."</td>";
            echo "<td>";
         ?>
-           <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons"></i>edit<</a>
-           <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>";
+           <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
+           <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>
+           <?php
+
+             if($row['RegStatus'] == 0 ) {
+            ?>
+               <a href="?do=Activate&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped " data-position="right" data-tooltip="Delete" style="background-color:blue !important;"><i class="material-icons">delete</i></a>
+<?php
+
+             }
+          ?>
+
               <?php
-              if($row['RegStatus'] == 0 ) {
 
 
-                echo  <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">Activate</a>";
-
-              }
            echo "</td>";
           echo "</tr>";
         }
@@ -368,7 +374,7 @@ elseif ($do =='add') {
 
 $stmt=$con ->prepare("INSERT INTO
                      user(UserName ,password,email,FullName,RegStatus,Date)
-                     VALUES(:zuser,:zpass,:zmail,:zname,1,now())");
+                     VALUES(:zuser,:zpass,:zmail,:zname,0,now())");
         //  echo $id . $user . $email . $name;
         // update zanyryakany usery la naw database dakay
 $stmt->execute(array(
@@ -437,6 +443,44 @@ else {
   redirectHome($errormsg , 3);
 }
 
+
+
+  // code...
+}elseif ($do == 'Activate') {
+  $userid = $_GET['userid'];
+  //lerash userman bang krditawa.
+  //$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
+
+  $chek = checkItem('userid', 'user' , $userid);
+
+  //execute query
+
+    //  $stmt->execute(array($userid));
+  //id database rabt dakatn.
+  //fetch the data
+
+    //  $row=$stmt->fetch();
+
+  //the row count
+
+      //$count =$stmt->rowCount();
+
+  if  ($chek >0) {
+  //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
+    $stmt = $con->prepare("UPDATE user SET RegStatus =1 WHERE UserID = ? ");
+
+   $stmt->execute(array($userid));
+
+  $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Updated</div>';
+   redirectHome($theMsg);
+
+  }
+
+  else {
+   //agar hatw userid nabu pet ble aw usera nya.
+    $errormsg= "There is no user";
+    redirectHome($errormsg , 3);
+  }
   // code...
 }
 
