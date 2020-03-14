@@ -65,13 +65,13 @@ if ($do =='manage')
            echo "<td>". $row['Date'] ."</td>";
            echo "<td>";
         ?>
-           <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
-           <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a";
+           <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons"></i>edit<</a>
+           <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>";
               <?php
               if($row['RegStatus'] == 0 ) {
 
 
-                echo <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">Activate</a>";
+                echo  <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">Activate</a>";
 
               }
            echo "</td>";
@@ -367,7 +367,7 @@ elseif ($do =='add') {
 
 
 $stmt=$con ->prepare("INSERT INTO
-                     user(UserName ,password,email,FullName,Registerd, Date)
+                     user(UserName ,password,email,FullName,RegStatus,Date)
                      VALUES(:zuser,:zpass,:zmail,:zname,1,now())");
         //  echo $id . $user . $email . $name;
         // update zanyryakany usery la naw database dakay
