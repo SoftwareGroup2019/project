@@ -11,7 +11,7 @@
     <ul class="right hide-on-med-and-down">
       <li><a href="dashboar.php">Home</a></li>
         <li><a href="members.php">Members</a></li>
-      <li><a href="Categories.html">Categories</a></li>
+      <li><a href="Categoris.php">Categories</a></li>
       <!-- Dropdown Trigger -->
       <li><a class="dropdown-trigger" href="#" data-target="dropdown1"><?php echo $_SESSION['UserName']; ?><i class="material-icons right">expand_more</i></a></li>
     </ul>
@@ -20,5 +20,5 @@
 <ul class="sidenav" id="mobile-demo">
   <li><a href="Home.html">Home</a></li>
     <li><a href="Members.html">Members</a></li>
-  <li><a href="Categories.html">Categories</a></li>
+  <li><a href="Categoris.php">Categories</a></li>
 </ul>
