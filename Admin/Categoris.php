@@ -25,48 +25,50 @@ elseif ($do =='add')
   ?>
 
 
-   <div class="container">
+  
 
-   <h3>Add New Categoris</h3>
-
-   <div class="row">
-
-     <div class="input-field col s8">
-     <input id ="icon_prefix" type="text" class="validate" name="name">
-     <label > name </label>
-     </div>
+     <form action="Categoris.php?do=insert" method="post">
 
 
-     <div class="input-field col s8">
-     <input id ="icon_telephone" type="text" class="validate" name="Description">
-     <label> Description </label>
-     </div>
+       <h3>Add New Categoris</h3>
 
-     <div class="input-field col s8">
-     <input id ="icon_telephone" type="text" class="validate" name="Ordering">
-     <label> Ordering</label>
-     </div>
 
-     <div class="input-field col s12">
-     <t>Vsible</t>
-     <form action="#">
-       <p>
-         <label>
-           <input name="group1" type="radio" checked />
-           <span>Yes</span>
-         </label>
-       </p>
-       <p>
-         <label>
-           <input name="group1" type="radio" />
-           <span>no</span>
-         </label>
-       </p>
-     </div>
 
-     <div class="input-field col s12">
-         <t>Allow Comnenting</t>
-     <form action="#">
+         <div class="input-field col s8">
+         <input id ="icon_prefix" type="text" class="validate" name="name">
+         <label > name </label>
+         </div>
+
+
+         <div class="input-field col s8">
+         <input id ="icon_telephone" type="text" class="validate" name="Description">
+         <label> Description </label>
+         </div>
+
+         <div class="input-field col s8">
+         <input id ="icon_telephone" type="text" class="validate" name="Ordering">
+         <label> Ordering</label>
+         </div>
+
+         <div class="input-field col s12">
+         <t>Vsible</t>
+           <p>
+             <label>
+               <input name="group1" type="radio" checked />
+               <span>Yes</span>
+             </label>
+           </p>
+           <p>
+             <label>
+               <input name="group1" type="radio" />
+               <span>no</span>
+             </label>
+           </p>
+         </div>
+
+         <div class="input-field col s12">
+             <t>Allow Comnenting</t>
+
        <p>
          <label>
            <input name="group2" type="radio" checked />
@@ -83,7 +85,7 @@ elseif ($do =='add')
 
      <div class="input-field col s12">
          <t>Allow Ads</t>
-     <form action="#">
+
 
        <p>
        <label>
@@ -100,12 +102,15 @@ elseif ($do =='add')
        </p>
      </div>
    <div class="input-field col s12">
-   <a class="waves-effect waves-light btn">button</a>
+   <input type="submit" class="waves-effect waves-light btn">button</input>
    </div>
+
+ </form>
    <?php
 
 }
-elseif($do  ==  'Edit'){ //Edit page
+elseif($do  ==  'Edit')
+{ //Edit page
 
 
 } //end of else if ($do == 'Edit')
@@ -121,7 +126,7 @@ elseif($do  ==  'Edit'){ //Edit page
         echo   " <h4 class = 'center'> Insert Catrgory </h4>";
 
 
-        $name = $_POST['Name'];
+        $name = $_POST['name'];
         $desc = $_POST['Description'];
         $order = $_POST['Ordering'];
         $visible = $_POST['Vsible'];
@@ -165,8 +170,7 @@ $stmt->execute(array(
     } // end of post insert requst
 
     else{
-         $theMsg= '<div class="alert alert-danger">Sorry You Cant Brouse This Page Directly </div>';
-         redirectHome($theMsg);
+
       }
       echo "</div>";
   } // end of insert
