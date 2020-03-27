@@ -17,7 +17,7 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 if ($do =='manage')
 {
   ?>
-<a href=" categories.php? do = add">Add New categories</a>
+<a class="waves-effect waves-light btn" href=" Categoris.php?do=add">Add New categories</a>
 <?php
 }
 elseif ($do =='add')
