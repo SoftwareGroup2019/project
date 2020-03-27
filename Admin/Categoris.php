@@ -26,76 +26,85 @@ elseif ($do =='add')
 
 
 
-
-     <form action="Categoris.php?do=insert" method="post">
-
-
-       <h3>Add New Categoris</h3>
+    <div class="container">
 
 
+ <h4 class="center-align">Add New Categoris</h4>
 
-         <div class="input-field col s6">
+     <form class="card z-depth-2"action="Categoris.php?do=insert" method="post">
+
+
+
+
+         <div class="container">
+
+
+         <div class="row">
+         <div class="input-field col s12">
          <input id ="icon_prefix" type="text" class="validate" name="name">
          <label > name </label>
          </div>
+        </div>
 
-
-         <div class="input-field col s6">
+         <div class="input-field col s12">
          <input id ="icon_telephone" type="text" class="validate" name="Description">
          <label> Description </label>
          </div>
 
-         <div class="input-field col s6">
+         <div class="input-field col s12">
          <input id ="icon_telephone" type="text" class="validate" name="Ordering">
          <label> Ordering</label>
          </div>
 
-         <div class="form-group form-group-lg">
-           <label class="col-sm-2 control-label">visible</label>
-           <div class="col-sm-10 col-sm-6">
-             <div>
-               <input id="vis-Yes" type="radio" name="Visibility" value="0" checked />
-               <label for="vis-Yes">Yes</label>
-             </div>
-             <div>
-               <input id="vis-No" type="radio" name="Visibility" value="1" checked />
-               <label for="vis-No">No</label>
-             </div>
-           </div>
-         </div>
-         <div class="form-group form-group-lg">
-           <label class="col-sm-2 control-label">Allow Comnenting</label>
-           <div class="col-sm-10 col-sm-6">
-             <div>
-               <input id="com-Yes" type="radio" name="Comnenting" value="0" checked />
-               <label for="com-Yes">Yes</label>
-             </div>
-             <div>
-               <input id="com-No" type="radio" name="Comnenting" value="1"  />
-               <label for="com-No">No</label>
-             </div>
-           </div>
-         </div>
-         <div class="form-group form-group-lg">
-           <label class="col-sm-2 control-label">Allow Ads</label>
-           <div class="col-sm-10 col-sm-6">
-             <div>
-               <input id="Ads-Yes" type="radio" name="Ads" value="0" checked />
-               <label for="Ads-Yes">Yes</label>
-             </div>
-             <div>
-               <input id="Ads-No" type="radio" name="Ads" value="1"  />
-               <label for="Ads-NO">No</label>
-             </div>
-           </div>
-         </div>
+         Visibilty
+         <p>
+       <label>
+         <input name="Vsible" type="radio" value="0" checked />
+         <span>Yes</span>
+       </label>
+     </p>
+     <p>
+       <label>
+         <input name="Vsible" type="radio" value="1" />
+         <span>No</span>
+       </label>
+     </p>
 
+Allow Commenting
+     <p>
+       <label>
+         <input class="with-gap" name="Comnenting" type="radio" value="0" checked/>
+         <span>Yes</span>
+       </label>
+     </p>
+     <p>
+       <label>
+         <input class="with-gap" name="Comnenting" type="radio" value="1"  />
+         <span>No</span>
+       </label>
+     </p>
+
+Allow Ads
+     <p>
+       <label>
+         <input class="with-gap" name="Ads" type="radio" value="0" checked/>
+         <span>Yes</span>
+       </label>
+     </p>
+     <p>
+       <label>
+         <input class="with-gap" name="Ads" type="radio" value="1"  />
+         <span>No</span>
+       </label>
+     </p>
 
    <div class="input-field col s12">
-   <input type="submit" class="waves-effect waves-light btn">button</input>
+   <input type="submit" class=" waves-effect waves-light btn" value="ADD" style="color:white;">
    </div>
-
+</div>
  </form>
+
+   </div>
    <?php
 
 }
@@ -110,7 +119,8 @@ elseif($do  ==  'Edit')
 
 
 
-  elseif ($do == 'insert') {
+  elseif ($do == 'insert')
+   {
       if ($_SERVER['REQUEST_METHOD'] == 'POST')
       {
         echo   " <h4 class = 'center'> Insert Catrgory </h4>";
@@ -120,9 +130,11 @@ elseif($do  ==  'Edit')
         $desc = $_POST['Description'];
         $order = $_POST['Ordering'];
         $visible = $_POST['Vsible'];
-        $coment = $_POST['Allow Comnenting'];
-        $ads = $_POST['Allow Ads'];
+        $coment = $_POST['Comnenting'];
+        $ads = $_POST['Ads'];
 
+
+echo $name;
 
 
           $check = checkItem("name", "categories", $name);
@@ -164,12 +176,13 @@ $stmt->execute(array(
       }
       echo "</div>";
   } // end of insert
+elseif ($do =='Delete')
+{
 
-elseif ($do =='Delete') {
+} // end of delete
 
-}
      include 'include/template/footer.php';
-  }
+}
   else
   {
 
