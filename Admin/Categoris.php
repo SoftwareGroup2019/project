@@ -25,7 +25,7 @@ elseif ($do =='add')
   ?>
 
 
-  
+
 
      <form action="Categoris.php?do=insert" method="post">
 
@@ -34,73 +34,63 @@ elseif ($do =='add')
 
 
 
-         <div class="input-field col s8">
+         <div class="input-field col s6">
          <input id ="icon_prefix" type="text" class="validate" name="name">
          <label > name </label>
          </div>
 
 
-         <div class="input-field col s8">
+         <div class="input-field col s6">
          <input id ="icon_telephone" type="text" class="validate" name="Description">
          <label> Description </label>
          </div>
 
-         <div class="input-field col s8">
+         <div class="input-field col s6">
          <input id ="icon_telephone" type="text" class="validate" name="Ordering">
          <label> Ordering</label>
          </div>
 
-         <div class="input-field col s12">
-         <t>Vsible</t>
-           <p>
-             <label>
-               <input name="group1" type="radio" checked />
-               <span>Yes</span>
-             </label>
-           </p>
-           <p>
-             <label>
-               <input name="group1" type="radio" />
-               <span>no</span>
-             </label>
-           </p>
+         <div class="form-group form-group-lg">
+           <label class="col-sm-2 control-label">visible</label>
+           <div class="col-sm-10 col-sm-6">
+             <div>
+               <input id="vis-Yes" type="radio" name="Visibility" value="0" checked />
+               <label for="vis-Yes">Yes</label>
+             </div>
+             <div>
+               <input id="vis-No" type="radio" name="Visibility" value="1" checked />
+               <label for="vis-No">No</label>
+             </div>
+           </div>
+         </div>
+         <div class="form-group form-group-lg">
+           <label class="col-sm-2 control-label">Allow Comnenting</label>
+           <div class="col-sm-10 col-sm-6">
+             <div>
+               <input id="com-Yes" type="radio" name="Comnenting" value="0" checked />
+               <label for="com-Yes">Yes</label>
+             </div>
+             <div>
+               <input id="com-No" type="radio" name="Comnenting" value="1"  />
+               <label for="com-No">No</label>
+             </div>
+           </div>
+         </div>
+         <div class="form-group form-group-lg">
+           <label class="col-sm-2 control-label">Allow Ads</label>
+           <div class="col-sm-10 col-sm-6">
+             <div>
+               <input id="Ads-Yes" type="radio" name="Ads" value="0" checked />
+               <label for="Ads-Yes">Yes</label>
+             </div>
+             <div>
+               <input id="Ads-No" type="radio" name="Ads" value="1"  />
+               <label for="Ads-NO">No</label>
+             </div>
+           </div>
          </div>
 
-         <div class="input-field col s12">
-             <t>Allow Comnenting</t>
 
-       <p>
-         <label>
-           <input name="group2" type="radio" checked />
-           <span>Yes</span>
-         </label>
-       </p>
-       <p>
-         <label>
-           <input name="group2" type="radio" />
-           <span>No</span>
-         </label>
-       </p>
-     </div>
-
-     <div class="input-field col s12">
-         <t>Allow Ads</t>
-
-
-       <p>
-       <label>
-           <input name="group4" type="radio" checked />
-           <span>Yes</span>
-         </label>
-
-       </p>
-       <p>
-         <label>
-           <input name="group4" type="radio" />
-           <span>no</span>
-         </label>
-       </p>
-     </div>
    <div class="input-field col s12">
    <input type="submit" class="waves-effect waves-light btn">button</input>
    </div>
