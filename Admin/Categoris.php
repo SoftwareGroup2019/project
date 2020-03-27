@@ -8,87 +8,104 @@
 ?>
 
 
-<div class="container">
-
-<h3>Add New Categoris</h3>
-
-<div class="row">
-
-  <div class="input-field col s8">
-  <input id ="icon_prefix" type="text" class="validate" name="name">
-  <label > name </label>
-  </div>
-
-
-  <div class="input-field col s8">
-  <input id ="icon_telephone" type="text" class="validate" name="Description">
-  <label> Description </label>
-  </div>
-
-  <div class="input-field col s8">
-  <input id ="icon_telephone" type="text" class="validate" name="Ordering">
-  <label> Ordering</label>
-  </div>
-
-  <div class="input-field col s12">
-  <t>Vsible</t>
-  <form action="#">
-    <p>
-      <label>
-        <input name="group1" type="radio" checked />
-        <span>Yes</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input name="group1" type="radio" />
-        <span>no</span>
-      </label>
-    </p>
-  </div>
-
-  <div class="input-field col s12">
-      <t>Allow Comnenting</t>
-  <form action="#">
-    <p>
-      <label>
-        <input name="group2" type="radio" checked />
-        <span>Yes</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input name="group2" type="radio" />
-        <span>No</span>
-      </label>
-    </p>
-  </div>
-
-  <div class="input-field col s12">
-      <t>Allow Ads</t>
-  <form action="#">
-
-    <p>
-    <label>
-        <input name="group4" type="radio" checked />
-        <span>Yes</span>
-      </label>
-
-    </p>
-    <p>
-      <label>
-        <input name="group4" type="radio" />
-        <span>no</span>
-      </label>
-    </p>
-  </div>
-<div class="input-field col s12">
-<a class="waves-effect waves-light btn">button</a>
-</div>
 <?php
 
 
-if($do  ==  'Edit'){ //Edit page
+$do = isset($_GET['do'])? $_GET['do']: 'manage';
+
+
+if ($do =='manage')
+{
+  ?>
+<a href=" categories.php? do = add">Add New categories</a>
+<?php
+}
+elseif ($do =='add')
+{
+  ?>
+
+
+   <div class="container">
+
+   <h3>Add New Categoris</h3>
+
+   <div class="row">
+
+     <div class="input-field col s8">
+     <input id ="icon_prefix" type="text" class="validate" name="name">
+     <label > name </label>
+     </div>
+
+
+     <div class="input-field col s8">
+     <input id ="icon_telephone" type="text" class="validate" name="Description">
+     <label> Description </label>
+     </div>
+
+     <div class="input-field col s8">
+     <input id ="icon_telephone" type="text" class="validate" name="Ordering">
+     <label> Ordering</label>
+     </div>
+
+     <div class="input-field col s12">
+     <t>Vsible</t>
+     <form action="#">
+       <p>
+         <label>
+           <input name="group1" type="radio" checked />
+           <span>Yes</span>
+         </label>
+       </p>
+       <p>
+         <label>
+           <input name="group1" type="radio" />
+           <span>no</span>
+         </label>
+       </p>
+     </div>
+
+     <div class="input-field col s12">
+         <t>Allow Comnenting</t>
+     <form action="#">
+       <p>
+         <label>
+           <input name="group2" type="radio" checked />
+           <span>Yes</span>
+         </label>
+       </p>
+       <p>
+         <label>
+           <input name="group2" type="radio" />
+           <span>No</span>
+         </label>
+       </p>
+     </div>
+
+     <div class="input-field col s12">
+         <t>Allow Ads</t>
+     <form action="#">
+
+       <p>
+       <label>
+           <input name="group4" type="radio" checked />
+           <span>Yes</span>
+         </label>
+
+       </p>
+       <p>
+         <label>
+           <input name="group4" type="radio" />
+           <span>no</span>
+         </label>
+       </p>
+     </div>
+   <div class="input-field col s12">
+   <a class="waves-effect waves-light btn">button</a>
+   </div>
+   <?php
+
+}
+elseif($do  ==  'Edit'){ //Edit page
 
 
 } //end of else if ($do == 'Edit')
