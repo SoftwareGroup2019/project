@@ -17,8 +17,29 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 
 if ($do =='manage')
 {
-  ?>
-<a class="waves-effect waves-light btn" href=" Categoris.php?do=add">Add New categories</a>
+  $stmt2 =$con->prepare("SELECT * FROM categories");
+  $stmt2->execute();
+  $cats = $stmt2->fetchAll();  ?>
+  <h2 class="text-center">Manage Categories </h2>
+  <div class="container">
+    <div class="panel panel-defult">
+      <div class="panel-heading">Manage Categories</div>
+      <div class="panel-body">
+        <?php
+        foreach ($cats as $cat) {
+          echo $cat['Name'] . '<br />';
+          echo $cat['Description'] . '<br />';
+          echo ' Ordering Is ' . $cat['Ordering'] . '<br />';
+          echo ' Visibility Is ' . $cat['Visibility'] . '<br />';
+          echo ' Allow Comment Is ' . $cat['Allow_Comment'] . '<br />';
+          echo ' Allow Ads Is ' . $cat['Allow_Ads'] . '<br />';
+
+        }
+        ?>
+        </div>
+      </div>
+      </div>
+
 <?php
 }
 elseif ($do =='add')
@@ -133,10 +154,6 @@ elseif($do  ==  'Edit')
         $visible = $_POST['Vsible'];
         $coment = $_POST['Comnenting'];
         $ads = $_POST['Ads'];
-
-
-echo $name;
-
 
           $check = checkItem("Name", "categories", $name);
           if ($check == 1)
