@@ -5,6 +5,7 @@
   {
    include 'include/template/header.php';
    include 'include/template/navbar.php';
+ include 'conect.php';
 ?>
 
 
@@ -137,15 +138,17 @@ elseif($do  ==  'Edit')
 echo $name;
 
 
-          $check = checkItem("name", "categories", $name);
-          if ($check == 1){
+          $check = checkItem("Name", "categories", $name);
+          if ($check == 1)
+          {
             echo '<div class = "alert alert-dnger">Sorry this Categories is Exist</div>';
             redirectHome($theMsg, 'back');
-          } else {
+          }
+          else {
 
 
-$stmt=$con ->prepare("INSERT INTO
-                     categories(Name ,Description,Ordering,Visibility,Allow_Comment,Allow_Ads)
+$stmt=$con->prepare("INSERT INTO
+                     categories(Name,Description,Ordering,Visibility,Allow_Comment,Allow_Ads)
                      VALUES(:zname,:zdesc,:zorder,:zvisible,:zcoment,:zads)");
         //  echo $id . $user . $email . $name;
         // update zanyryakany usery la naw database dakay
