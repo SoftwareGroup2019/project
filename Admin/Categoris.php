@@ -7,10 +7,13 @@
    include 'include/template/navbar.php';
  include 'conect.php';
 ?>
+<div class="container">
 
+ <form class="card z-depth-2"action="Categoris.php?do=insert" method="post">
+
+     <div class="container">
 
 <?php
-
 
 $do = isset($_GET['do'])? $_GET['do']: 'manage';
 
@@ -21,26 +24,33 @@ if ($do =='manage')
   $stmt2->execute();
   $cats = $stmt2->fetchAll();  ?>
   <h2 class="text-center">Manage Categories </h2>
-  <div class="container">
+  <div class="container .Categories">
     <div class="panel panel-defult">
       <div class="panel-heading">Manage Categories</div>
       <div class="panel-body">
+
         <?php
         foreach ($cats as $cat) {
-          echo $cat['Name'] . '<br />';
-          echo $cat['Description'] . '<br />';
-          echo ' Ordering Is ' . $cat['Ordering'] . '<br />';
-          echo ' Visibility Is ' . $cat['Visibility'] . '<br />';
-          echo ' Allow Comment Is ' . $cat['Allow_Comment'] . '<br />';
-          echo ' Allow Ads Is ' . $cat['Allow_Ads'] . '<br />';
+
+          echo "<div class='cat'";
+          echo "<h3>" . $cat['Name'] . '</h3>';
+          echo "<p>" ; if( $cat['Description'] == '') {echo 'This category has no Description ';} else {  echo $cat['Description'];  }  echo"</p>";
+          if($cat['Visibility'] == 1 ) { echo '<span class=" Visibility ">   Hidden  </span>';}
+          if($cat['Allow_Comment'] == 1 ) { echo '<span class="Allow_Comment"> comment Disables </span>';}
+          if($cat['Allow_Ads'] == 1 ) { echo '<span class="advertises"> Ads Disables </span>';}
+          echo "</div>";
+          echo "<hr>";
 
         }
+
         ?>
         </div>
       </div>
       </div>
 
+  <a class="waves-effect waves-light btn" href=" Categoris.php?do=add">Add New categories</a>
 <?php
+
 }
 elseif ($do =='add')
 {
