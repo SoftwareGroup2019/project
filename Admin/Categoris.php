@@ -8,9 +8,10 @@
  include 'conect.php';
 ?>
 <div class="container">
+  <h2 class="text-center">Manage Categories </h2></div>
+<div class="container">
 
  <form class="card z-depth-2"action="Categoris.php?do=insert" method="post">
-
      <div class="container">
 
 <?php
@@ -23,7 +24,6 @@ if ($do =='manage')
   $stmt2 =$con->prepare("SELECT * FROM categories");
   $stmt2->execute();
   $cats = $stmt2->fetchAll();  ?>
-  <h2 class="text-center">Manage Categories </h2>
   <div class="container .Categories">
     <div class="panel panel-defult">
       <div class="panel-heading">Manage Categories</div>
@@ -33,6 +33,10 @@ if ($do =='manage')
         foreach ($cats as $cat) {
 
           echo "<div class='cat'";
+          echo "<div class='Hidden-buttons'>";
+          echo"<a href='#' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i>Edit</a>";
+          echo"<a href='#' class='btn btn-xs btn-danger'><i class='fa fa-close'></i>Delete</a>";
+          echo "</div>";
           echo "<h3>" . $cat['Name'] . '</h3>';
           echo "<p>" ; if( $cat['Description'] == '') {echo 'This category has no Description ';} else {  echo $cat['Description'];  }  echo"</p>";
           if($cat['Visibility'] == 1 ) { echo '<span class=" Visibility ">   Hidden  </span>';}
@@ -47,8 +51,6 @@ if ($do =='manage')
         </div>
       </div>
       </div>
-
-  <a class="waves-effect waves-light btn" href=" Categoris.php?do=add">Add New categories</a>
 <?php
 
 }
