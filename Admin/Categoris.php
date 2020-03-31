@@ -281,6 +281,38 @@ elseif($do  ==  'Edit')
 } //end of else if ($do == 'Edit')
     elseif($do == 'Update')  {
 
+
+      echo   " <h4 class='center'> Update Categories </h4>";
+      echo "<div class='container'>";
+
+      if ($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+        $id         = $_POST['catid'];
+        $name       = $_POST['name'];
+        $desc       = $_POST['Description'];
+        $order      = $_POST['ordering'];
+        $visible    = $_POST['Visibilty'];
+        $coment     = $_POST['commenting'];
+        $ads        = $_POST['ads'];
+
+      
+
+        //  echo $id . $user . $email . $name;
+        // update zanyryakany usery la naw database dakay
+
+        echo "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Inserted</div>';
+        redirectHome($theMsg, 'back');
+
+      }
+    }
+    else{
+        $theMsg ='<div calss="alert alert-danger">Sorry You Cant Brouse This Page Directly</div>';
+        redirectHome($theMsg);
+
+      }
+
+    } //end of post update requst
+
   } // end of update
 
 
