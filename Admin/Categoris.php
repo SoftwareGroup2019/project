@@ -21,6 +21,7 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 
 if ($do =='manage')
 {
+
   $sort = 'ASC';
 
   $soty_array = array('ASC' , 'DESC');
@@ -32,9 +33,11 @@ if ($do =='manage')
 
   $stmt2->execute();
 
-  $cats = $stmt2->fetchAll();  ?>
+  $cats = $stmt2->fetchAll();
 
-  <div class="container .Categories">
+  ?>
+
+  <div class="container categories">
     <div class="panel panel-defult">
       <div class="panel-heading">
         Manage Categories
