@@ -21,12 +21,29 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 
 if ($do =='manage')
 {
-  $stmt2 =$con->prepare("SELECT * FROM categories");
+  $sort = 'ASC';
+
+  $soty_array = array('ASC' , 'DESC');
+
+  if (isset($_GET['sort']) && in_array($_GET['sort'], $sort_array)) {
+    $sort = $_GET['sort'];
+  }
+  $stmt2 =$con->prepare("SELECT * FROM categories ORDER BY Ordering $sort");
+
   $stmt2->execute();
+
   $cats = $stmt2->fetchAll();  ?>
+
   <div class="container .Categories">
     <div class="panel panel-defult">
-      <div class="panel-heading">Manage Categories</div>
+      <div class="panel-heading">
+        Manage Categories
+<div class="Ordering pull-right">
+          Ordering:
+          <a class="<?php if ($sort == 'ASC'){ echo 'active';}?>" href="?sort=ASC">ASC</a>
+          <a class="<?php if ($sort == 'DESC'){ echo 'active';}?>" href="?sort=DESC">DESC</a>
+
+      </div>
       <div class="panel-body">
 
         <?php

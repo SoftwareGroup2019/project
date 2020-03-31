@@ -56,6 +56,12 @@ text-decoration: none;
 .categories .panal-body{
 padding: 0;
 }
+.categories .ordering .Activate{
+color: #888;
+text-decoration: none;
+font-weight: bold;
+}
+
 .categories hr{
   margin-top: 5px;
   margin-bottom: 5px;
