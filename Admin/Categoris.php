@@ -54,7 +54,7 @@ if ($do =='manage')
 
           echo "<div class='cat'";
           echo "<div class='Hidden-buttons'>";
-          echo"<a href='#' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i>Edit</a>";
+          echo"<a href='Categoris.php?do=Edit&catid=" . $cat['ID'] ."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i>Edit</a>";
           echo"<a href='#' class='btn btn-xs btn-danger'><i class='fa fa-close'></i>Delete</a>";
           echo "</div>";
           echo "<h3>" . $cat['Name'] . '</h3>';
@@ -164,6 +164,118 @@ Allow Ads
 }
 elseif($do  ==  'Edit')
 { //Edit page
+
+  $catid = isset($_GET['catid']) && is_numeric($_GET['catid']) ? intval($_GET['catid']) : 0;
+
+
+
+  $stmt = $con->prepare("SELECT * FROM categories WHERE ID = ? ");
+
+  //execute query
+
+      $stmt->execute(array($catid));
+
+  //fetch the data
+
+      $cat=$stmt->fetch();
+
+  //the row count
+
+      $count =$stmt->rowCount();
+
+  //if ther is such id show the form
+
+      if ($count > 0)
+      {  ?>
+
+            <div class="container">
+
+
+         <h4 class="center-align">Edit Categoris</h4>
+
+             <form class="card z-depth-2"action="Categoris.php?do=Update" method="post">
+                <input type="hidden" name="catid" value="<?php echo $catid ?>" />
+
+                 <div class="container">
+
+
+                 <div class="row">
+                 <div class="input-field col s12">
+                 <input id ="icon_prefix" type="text" class="validate" name="name" value="<?php echo $cat['Name']?>">
+                 <label > name </label>
+                 </div>
+                </div>
+
+                 <div class="input-field col s12">
+                 <input id ="icon_telephone" type="text" class="validate" name="Description" value="<?php echo $cat['Description']?>">
+                 <label> Description </label>
+                 </div>
+
+                 <div class="input-field col s12">
+                 <input id ="icon_telephone" type="text" class="validate" name="Ordering" value="<?php echo $cat['Ordering']?>">
+                 <label> Ordering</label>
+                 </div>
+
+                 Visibilty
+                 <p>
+               <label>
+                 <input name="Visibility" type="radio" value="0" <?php if($cat['Visibility'] == 0){echo 'checked'}  ?>/>
+                 <span>Yes</span>
+               </label>
+             </p>
+             <p>
+               <label>
+                 <input name="Visibility" type="radio" value="1" <?php if($cat['Visibility'] == 1){echo 'checked'}  ?>/>
+                 <span>No</span>
+               </label>
+             </p>
+
+        Allow Commenting
+             <p>
+               <label>
+                 <input class="with-gap" name="Comnenting" type="radio" value="0" <?php if($cat['Allow_Comment'] == 0){echo 'checked'}  ?>/>
+                 <span>Yes</span>
+               </label>
+             </p>
+             <p>
+               <label>
+                 <input class="with-gap" name="Comnenting" type="radio" value="1" <?php if($cat['Allow_Comment'] == 1){echo 'checked'}  ?> />
+                 <span>No</span>
+               </label>
+             </p>
+
+        Allow Ads
+             <p>
+               <label>
+                 <input class="with-gap" name="Ads" type="radio" value="0" <?php if($cat['Allow_Ads'] == 0){echo 'checked'}  ?>/>
+                 <span>Yes</span>
+               </label>
+             </p>
+             <p>
+               <label>
+                 <input class="with-gap" name="Ads" type="radio" value="1"  <?php if($cat['Allow_Ads'] == 1){echo 'checked'}  ?>/>
+                 <span>No</span>
+               </label>
+             </p>
+
+           <div class="input-field col s12">
+           <input type="submit" class=" waves-effect waves-light btn" value="SAVE" style="color:white;">
+           </div>
+        </div>
+         </form>
+
+           </div>
+
+
+  <?php
+  }
+  else
+  {
+    echo "<div calass='container'>";
+    $theMsg = '<div class="alert alert-danger">theres no such ID</div>';
+    redirectHome($theMsg);
+    echo "</div>";
+  }
 
 
 } //end of else if ($do == 'Edit')
