@@ -55,7 +55,7 @@ if ($do =='manage')
           echo "<div class='cat'";
           echo "<div class='Hidden-buttons'>";
           echo"<a href='Categoris.php?do=Edit&catid=" . $cat['ID'] ."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i>Edit</a>";
-          echo"<a href='#' class='btn btn-xs btn-danger'><i class='fa fa-close'></i>Delete</a>";
+          echo"<a href='Categoris.php?do=Delete&catid=" . $cat['ID'] ."' class='confirm btn btn-xs btn-danger'><i class='fa fa-close'></i>Delete</a>";
           echo "</div>";
           echo "<h3>" . $cat['Name'] . '</h3>';
           echo "<p>" ; if( $cat['Description'] == '') {echo 'This category has no Description ';} else {  echo $cat['Description'];  }  echo"</p>";
@@ -70,6 +70,7 @@ if ($do =='manage')
         ?>
         </div>
       </div>
+      <a class=" add-category btn btn-primary" href="categories.php?do=Add">< i class="fa fa-plus" </i> Add New category</a>
       </div>
 <?php
 
@@ -219,13 +220,13 @@ elseif($do  ==  'Edit')
                  Visibilty
                  <p>
                <label>
-                 <input name="Visibility" type="radio" value="0" <?php if($cat['Visibility'] == 0){echo 'checked'}  ?>/>
+                 <input name="Visibility" type="radio" value="0" <?php if($cat['Visibility'] == 0){echo 'checked' ; }  ?> />
                  <span>Yes</span>
                </label>
              </p>
              <p>
                <label>
-                 <input name="Visibility" type="radio" value="1" <?php if($cat['Visibility'] == 1){echo 'checked'}  ?>/>
+                 <input name="Visibility" type="radio" value="1" <?php if($cat['Visibility'] == 1){echo 'checked' ; }  ?> />
                  <span>No</span>
                </label>
              </p>
@@ -233,13 +234,13 @@ elseif($do  ==  'Edit')
         Allow Commenting
              <p>
                <label>
-                 <input class="with-gap" name="Comnenting" type="radio" value="0" <?php if($cat['Allow_Comment'] == 0){echo 'checked'}  ?>/>
+                 <input class="with-gap" name="Comnenting" type="radio" value="0" <?php if($cat['Allow_Comment'] == 0){echo 'checked' ; }  ?> />
                  <span>Yes</span>
                </label>
              </p>
              <p>
                <label>
-                 <input class="with-gap" name="Comnenting" type="radio" value="1" <?php if($cat['Allow_Comment'] == 1){echo 'checked'}  ?> />
+                 <input class="with-gap" name="Comnenting" type="radio" value="1" <?php if($cat['Allow_Comment'] == 1){echo 'checked' ; }  ?> />
                  <span>No</span>
                </label>
              </p>
@@ -247,13 +248,13 @@ elseif($do  ==  'Edit')
         Allow Ads
              <p>
                <label>
-                 <input class="with-gap" name="Ads" type="radio" value="0" <?php if($cat['Allow_Ads'] == 0){echo 'checked'}  ?>/>
+                 <input class="with-gap" name="Ads" type="radio" value="0" <?php if($cat['Allow_Ads'] == 0){echo 'checked' ; }  ?> />
                  <span>Yes</span>
                </label>
              </p>
              <p>
                <label>
-                 <input class="with-gap" name="Ads" type="radio" value="1"  <?php if($cat['Allow_Ads'] == 1){echo 'checked'}  ?>/>
+                 <input class="with-gap" name="Ads" type="radio" value="1"  <?php if($cat['Allow_Ads'] == 1){echo 'checked' ; }  ?> />
                  <span>No</span>
                </label>
              </p>
@@ -295,7 +296,7 @@ elseif($do  ==  'Edit')
         $coment     = $_POST['commenting'];
         $ads        = $_POST['ads'];
 
-      
+
 
         //  echo $id . $user . $email . $name;
         // update zanyryakany usery la naw database dakay
