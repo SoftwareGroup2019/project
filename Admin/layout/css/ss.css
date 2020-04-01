@@ -23,10 +23,14 @@ nav .nav-wrapper
     position: relative;
   } */
 
-a
-{
-color: white !important;
-}
+  .dropdown-content li > a, .dropdown-content li > span {
+      font-size: 16px;
+      color:white !important;
+      display: block;
+      line-height: 22px;
+      padding: 14px 16px;
+  }
+
 
 
 ul .dropdown-content
@@ -101,70 +105,7 @@ text-decoration: none;
     margin-left: 5px;
 }
 
-/*Start Categories page */
-.categories .panal-body{
-padding: 0;
+.colo
+{
+  color: none;
 }
-.categories .ordering .Activate{
-color: #888;
-text-decoration: none;
-font-weight: bold;
-}
-
-.categories hr{
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-.categories .cat {
-padding: 15px;
-position: relative;
-overflow: hidden;
-}
-.categories .cat:hover{
-  background-color: #74b9ff;
-}
-.categories .cat:hover .Hidden-buttons{
-  right: 10px;
-}
-.categories .cat .Hidden-buttons {
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
-position: absolute;
-top: 15px;
-right: -120px;
-}
-.categories .cat .Hidden-buttons a{
-  margin-right: 5px;
-}
-.categories .cat h3{
-  margin: 0 0 10px;
-}
-
-.categories .cat: last-of-type ~ hr{
-  display: none;
-}
-.categories .cat .Visibility {
-  color: #ff7675;
-  padding: 4px 6px;
-  margin-right: 6px;
-  border-radius: 6px;
-}
-.categories .cat .commenting{
-  background-color: #0984e3;
-  color: #FFF;
-  padding: 4px 6px;
-  margin-right: 6px;
-  border-radius: 6px;
-}
-.categories .cat .advertises{
-  background-color: #74b9ff;
-  color: #FFF;
-  padding: 4px 6px;
-  margin-right: 6px;
-  border-radius: 6px;
-}
-
-
-
-/*nd Categories page */

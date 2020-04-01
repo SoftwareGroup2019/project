@@ -6,15 +6,7 @@
    include 'include/template/header.php';
    include 'include/template/navbar.php';
  include 'conect.php';
-?>
-<div class="container">
-  <h2 class="text-center">Manage Categories </h2></div>
-<div class="container">
 
- <form class="card z-depth-2"action="Categoris.php?do=insert" method="post">
-     <div class="container">
-
-<?php
 
 $do = isset($_GET['do'])? $_GET['do']: 'manage';
 
@@ -35,43 +27,49 @@ if ($do =='manage')
 
   $cats = $stmt2->fetchAll();
 
-  ?>
+?>
 
-  <div class="container categories">
-    <div class="panel panel-defult">
-      <div class="panel-heading">
-        Manage Categories
-<div class="Ordering pull-right">
-          Ordering:
-          <a class="<?php if ($sort == 'ASC'){ echo 'active';}?>" href="?sort=ASC">ASC</a>
-          <a class="<?php if ($sort == 'DESC'){ echo 'active';}?>" href="?sort=DESC">DESC</a>
+<div class="container">
 
-      </div>
-      <div class="panel-body">
+  <ul class="collection with-header">
+         <li class="collection-header"><h4>Manage Categories</h4></li>
+<?php
 
-        <?php
-        foreach ($cats as $cat) {
+foreach ($cats as $cat)
+{
+?>
+<li class="collection-item">
+  <div><?php echo $cat['Name']; ?>
 
-          echo "<div class='cat'";
-          echo "<div class='Hidden-buttons'>";
-          echo"<a href='Categoris.php?do=Edit&catid=" . $cat['ID'] ."' class='btn btn-xs btn-primary'><i class='fa fa-edit'></i>Edit</a>";
-          echo"<a href='Categoris.php?do=Delete&catid=" . $cat['ID'] ."' class='confirm btn btn-xs btn-danger'><i class='fa fa-close'></i>Delete</a>";
-          echo "</div>";
-          echo "<h3>" . $cat['Name'] . '</h3>';
-          echo "<p>" ; if( $cat['Description'] == '') {echo 'This category has no Description ';} else {  echo $cat['Description'];  }  echo"</p>";
-          if($cat['Visibility'] == 1 ) { echo '<span class=" Visibility ">   Hidden  </span>';}
-          if($cat['Allow_Comment'] == 1 ) { echo '<span class="Allow_Comment"> comment Disables </span>';}
-          if($cat['Allow_Ads'] == 1 ) { echo '<span class="advertises"> Ads Disables </span>';}
-          echo "</div>";
-          echo "<hr>";
+    <?php
+echo "<a href='Categoris.php?do=Edit&catid=" . $cat['ID'] ."' class='secondary-content' >
+  <i class='material-icons'>edit</i>
+</a>";
+     ?>
 
-        }
+<?php
+echo "<a href='Categoris.php?do=Delete&catid=" . $cat['ID'] ."' class='secondary-content'>
+    <i class='material-icons'>delete</i>
+  </a>";
+ ?>
 
-        ?>
-        </div>
-      </div>
-      <a class=" add-category btn btn-primary" href="categories.php?do=Add">< i class="fa fa-plus" </i> Add New category</a>
-      </div>
+
+  </div>
+</li>
+
+
+
+<?php
+
+}
+
+?>
+
+ </ul>
+</div>
+
+
+
 <?php
 
 }
@@ -154,7 +152,7 @@ Allow Ads
      </p>
 
    <div class="input-field col s12">
-   <input type="submit" class=" waves-effect waves-light btn" value="ADD" style="color:white;">
+   <input type="submit" value="ADD">
    </div>
 </div>
  </form>
@@ -260,11 +258,10 @@ elseif($do  ==  'Edit')
              </p>
 
            <div class="input-field col s12">
-           <input type="submit" class=" waves-effect waves-light btn" value="SAVE" style="color:white;">
+           <input type="submit" class=" value="SAVE">
            </div>
         </div>
          </form>
-
            </div>
 
 
@@ -291,10 +288,10 @@ elseif($do  ==  'Edit')
         $id         = $_POST['catid'];
         $name       = $_POST['name'];
         $desc       = $_POST['Description'];
-        $order      = $_POST['ordering'];
-        $visible    = $_POST['Visibilty'];
-        $coment     = $_POST['commenting'];
-        $ads        = $_POST['ads'];
+        $order      = $_POST['Ordering'];
+        $visible    = $_POST['Visibility'];
+        $coment     = $_POST['Comnenting'];
+        $ads        = $_POST['Ads'];
 
 
 
@@ -305,7 +302,7 @@ elseif($do  ==  'Edit')
         redirectHome($theMsg, 'back');
 
       }
-    }
+
     else{
         $theMsg ='<div calss="alert alert-danger">Sorry You Cant Brouse This Page Directly</div>';
         redirectHome($theMsg);
@@ -314,7 +311,7 @@ elseif($do  ==  'Edit')
 
     } //end of post update requst
 
-  } // end of update
+   // end of update
 
 
 
@@ -376,10 +373,13 @@ $stmt->execute(array(
 elseif ($do =='Delete')
 {
 
+
+
 } // end of delete
 
      include 'include/template/footer.php';
 }
+//end of session
   else
   {
 
