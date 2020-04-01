@@ -277,6 +277,50 @@ elseif($do  ==  'Edit')
 
 
 } //end of else if ($do == 'Edit')
+elseif($do == 'Delete')  {
+  echo "<h1 class= 'text-center'> Delete Categoris </h1>";
+  echo "<div class = 'container'>";
+
+  $catid = isset( $_GET['catid'] ) && is_numeric($_GET['catid']) ? intval($_GET['catid']) : 0;
+  //lerash userman bang krditawa.
+  //$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
+
+  $check = checkItem('ID', 'categories' , $catid);
+
+  //execute query
+
+    //  $stmt->execute(array($userid));
+  //id database rabt dakatn.
+  //fetch the data
+
+    //  $row=$stmt->fetch();
+
+  //the row count
+
+      //$count =$stmt->rowCount();
+
+  if  ($chek >0) {
+  //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
+    $stmt = $con->prepare("DELETE FROM categories WHERE ID=:zid");
+
+   $stmt->bindparam(':zid',$catid);
+
+   $stmt->execute();
+
+  $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Deleted</div>';
+   redirectHome($theMsg, 'back');
+
+  }
+
+  else {
+   //agar hatw userid nabu pet ble aw usera nya.
+    $errormsg= "There is no user";
+    redirectHome($errormsg , 3);
+  }
+
+
+
+} //end of else if ($do == 'Delete')
     elseif($do == 'Update')  {
 
 
