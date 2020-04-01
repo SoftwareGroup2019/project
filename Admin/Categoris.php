@@ -297,6 +297,24 @@ elseif($do  ==  'Edit')
 
         //  echo $id . $user . $email . $name;
         // update zanyryakany usery la naw database dakay
+        $stmt=$con ->prepare("UPDATE
+                             categories
+                              SET
+                               Name = ?
+                                ,Description = ?
+                                ,Ordering = ?
+                                ,Visibility = ?
+                                ,Allow_Comment = ?
+                                ,Allow_Ads = ?
+                              WHERE ID = ?");
+        $stmt->execute(array(
+
+                              $name,
+                              $desc,
+                              $order,
+                              $visible,
+                              $coment,
+                              $ads, $id  ));
 
         echo "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Inserted</div>';
         redirectHome($theMsg, 'back');
