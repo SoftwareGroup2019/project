@@ -360,7 +360,7 @@ elseif($do == 'Delete')  {
                               $coment,
                               $ads, $id  ));
 
-        echo "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Inserted</div>';
+     $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Updated</div>';
         redirectHome($theMsg, 'back');
 
       }
