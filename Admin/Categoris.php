@@ -299,7 +299,7 @@ elseif($do == 'Delete')  {
 
       //$count =$stmt->rowCount();
 
-  if  ($chek >0) {
+  if  ($check >0) {
   //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
     $stmt = $con->prepare("DELETE FROM categories WHERE ID=:zid");
 
@@ -432,12 +432,7 @@ $stmt->execute(array(
       }
       echo "</div>";
   } // end of insert
-elseif ($do =='Delete')
-{
 
-
-
-} // end of delete
 
      include 'include/template/footer.php';
 }
