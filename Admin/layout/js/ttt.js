@@ -7,6 +7,8 @@ $('.sidenav').sidenav();
 
  $('.tooltipped').tooltip();
 
+  $('select').formSelect();
+
   });
 
 

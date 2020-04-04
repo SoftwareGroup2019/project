@@ -12,6 +12,7 @@
       <li><a href="dashboar.php">Home</a></li>
         <li><a href="members.php">Members</a></li>
       <li><a href="Categoris.php">Categories</a></li>
+      <li><a href="item.php">item</a></li>
       <!-- Dropdown Trigger -->
       <li><a class="dropdown-trigger" href="#" data-target="dropdown1"><?php echo $_SESSION['UserName']; ?><i class="material-icons right">expand_more</i></a></li>
     </ul>
