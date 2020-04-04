@@ -125,7 +125,76 @@ elseif ($do =='add') {
 ///////////////////////////////////////////////////////////
 elseif ($do == 'insert')
 {//start of insert
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    echo   " <h4 class = 'center'> Insert item </h4>";
 
+
+    $name        = $_POST['name'];
+    $desc        = $_POST['descriptior'];
+    $price       = $_POST['price'];
+    $country     = $_POST['country'];
+    $status     = $_POST['status'];
+
+
+    // agar inputakan ba bataly baje bely away xware tatbyq dabi
+    $formErrors = array();
+    // agar username zyatr by la20 error dada away xware lo awaya
+    if (empty( $name )){
+      $formErrors[] = 'Name can\'t be <strong> empty</strong>';
+    }
+  if(empty($desc)){
+        $formErrors[] = 'Desc can\'t be <strong> empty</strong>';
+    }
+    if(empty($price)){
+      $formErrors[] = 'Price can\'t be <strong> empty</strong>';
+    }
+    if(empty($country )){
+      $formErrors[] = 'Country can\'t be <strong> empty</strong>';
+    }
+    if ( $status == 0)){
+      $formErrors[] ='You Must choose the <strong> empty</strong>';
+    }
+    // loop labo away bzany error hayay
+    foreach($formErrors as $error){
+      echo ' <div class="alert alert-danger" ' .  $error .'</div>';
+
+    }
+    if (empty($formErrors)){
+
+
+
+$stmt=$con ->prepare("INSERT INTO
+                items(Name ,Description,Price,country_Made,Status,Add_Date)
+                 VALUES(:zname,:zdesc,:zprice,:zcountry,zstatus,now())");
+    //  echo $id . $user . $email . $name;
+    // update zanyryakany usery la naw database dakay
+$stmt->execute(array(
+
+'zname'      =>$name,
+'zdesc'      =>$desc,
+'zprice'     =>$price,
+'zcountry'    =>$country,
+'zstatus'    =>$status
+
+// zanyary user nuwe daxl dakay baw array dachta naw database
+
+));
+   echo "User Added successfully";
+  redirectHome(" ");
+
+} }// end of empty error
+
+
+
+ // end of post insert requst
+
+else{
+     $theMsg= '<div class="alert alert-danger">Sorry You Cant Brouse This Page Directly </div>';
+     redirectHome($theMsg);
+  }
+  echo "</div>";
+} // end of insert
 
 
 
