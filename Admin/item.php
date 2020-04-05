@@ -50,7 +50,7 @@ elseif ($do =='add') {
             <!-- name -->
            <div class="input-field col s12">
              <i class="material-icons prefix">local_grocery_store</i>
-             <input id="icon_prefix" type="text" name="user" class="validate" required="required">
+             <input id="icon_prefix" type="text" name="name" class="validate" >
              <label for="icon_prefix">Item Name</label>
            </div>
            <!-- ////////////////// -->
@@ -58,7 +58,7 @@ elseif ($do =='add') {
             <!-- Description -->
            <div class="input-field col s12">
              <i class="material-icons prefix">receipt</i>
-             <input id="icon_prefix" type="text" name="full" required="required">
+             <input id="icon_prefix" type="text" name="descriptior" >
              <label for="icon_prefix">Description</label>
            </div>
            <!-- ////////////////// -->
@@ -67,7 +67,7 @@ elseif ($do =='add') {
           <!-- Price -->
            <div class="input-field col s12">
              <i class="material-icons prefix">account_balance</i>
-             <input id="icon_prefix" type="text" name="email" class="validate" required="required">
+             <input id="icon_prefix" type="text" name="price" class="validate" >
              <label for="icon_prefix">Price</label>
            </div>
            <!-- ////////////////// -->
@@ -75,7 +75,7 @@ elseif ($do =='add') {
            <!-- Country -->
            <div class="input-field col s12">
              <i class="material-icons prefix">add_location</i>
-          <input id="password" type="text" name="newpassword" class="validate">
+          <input id="password" type="text" name="country" class="validate">
           <label for="password">Country</label>
           </div>
         <!-- ////////////////// -->
@@ -97,7 +97,7 @@ elseif ($do =='add') {
 
 
           <!-- Buttton -->
-        <button class="btn waves-effect waves-light" type="submit" name="action">Add
+        <button class="btn waves-effect waves-light" type="submit" name="status">Add
           <i class="material-icons right"></i>
         </button>
           <!-- ////////////////// -->
@@ -164,7 +164,7 @@ elseif ($do == 'insert')
 
 
 
-$stmt = $con->prepare("INSERT INTO
+$stmt = $con ->prepare("INSERT INTO
                 items(Name ,Description,Price,Country_Made,Status,Add_Date)
                  VALUES(:zname,:zdesc,:zprice,:zcountry,zstatus,now())");
     //  echo $id . $user . $email . $name;
