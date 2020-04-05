@@ -152,7 +152,7 @@ elseif ($do == 'insert')
     if(empty($country )){
       $formErrors[] = 'Country can\'t be <strong> empty</strong>';
     }
-    if ( $status == 0)){
+    if ( $status == 0){
       $formErrors[] ='You Must choose the <strong> empty</strong>';
     }
     // loop labo away bzany error hayay
@@ -164,8 +164,8 @@ elseif ($do == 'insert')
 
 
 
-$stmt=$con ->prepare("INSERT INTO
-                items(Name ,Description,Price,country_Made,Status,Add_Date)
+$stmt = $con->prepare("INSERT INTO
+                items(Name ,Description,Price,Country_Made,Status,Add_Date)
                  VALUES(:zname,:zdesc,:zprice,:zcountry,zstatus,now())");
     //  echo $id . $user . $email . $name;
     // update zanyryakany usery la naw database dakay
@@ -181,7 +181,7 @@ $stmt->execute(array(
 
 ));
    echo "User Added successfully";
-  redirectHome(" ");
+  redirectHome($theMsg);
 
 } }// end of empty error
 
@@ -198,7 +198,7 @@ else{
 
 
 
-} // end of insert
+
 //////////////////////////////////////////////////////////////
 
 
