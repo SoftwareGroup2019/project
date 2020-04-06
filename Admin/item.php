@@ -93,10 +93,43 @@ elseif ($do =='add') {
           <label>Status</label>
         </div>
         <!-- end of status -->
+        <!-- start Member field -->
+        <div class="input-field col s12">
+           <i class="material-icons prefix">face</i>
+          <select>
+            <option value="0" disabled selected>...</option>
+          <?php
+          $stmt =$con ->prepare("select * FROM user");
+          $stmt ->execute();
+          $user =$stmt ->fetchAll();
+          foreach ($user as  $user) {
+            echo "<option value='". $user['UserID'] ."'>". $user['Username'] ."</option>";
+
+          }
+           ?>
+          </select>
+          <label>Member</label>
+        </div>
 
 
+        <!-- end Member Field -->
+        <div class="input-field col s12">
+           <i class="material-icons prefix">shopping_basket</i>
+          <select>
+            <option value="0" disabled selected>...</option>
+          <?php
+          $stmt2 =$con ->prepare("select * FROM  categories");
+          $stmt2 ->execute();
+          $cats =$stmt2 ->fetchAll();
+          foreach ($cats as  $cat) {
+            echo "<option value='". $cat['Id'] ."'>". $cat['Name'] ."</option>";
 
-          <!-- Buttton -->
+          }
+           ?>
+          </select>
+          <label>Category</label>
+        </div>
+              <!-- Buttton -->
         <button class="btn waves-effect waves-light" type="submit" name="status">Add
           <i class="material-icons right"></i>
         </button>
