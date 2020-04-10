@@ -372,7 +372,7 @@ elseif ($do =='add') {
           } else {
 
 
-$stmt=$con ->prepare("INSERT INTO
+$stmt=$con->prepare("INSERT INTO
                      user(UserName ,password,email,FullName,RegStatus,Date)
                      VALUES(:zuser,:zpass,:zmail,:zname,0,now())");
         //  echo $id . $user . $email . $name;

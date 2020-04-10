@@ -16,8 +16,70 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 if ($do =='manage')
 { // start of Manage
 
+
+
+  // $value = "Ayman";
+  // $check = checkItem("Username", "user", $value);
+  // if ($check == 1){
+  //
+  //   echo 'hahaha';
+  // } aw coda loo awaya agaer user habu ba haman naw aw if tatbyq daby
+  $stmt = $con->prepare("SELECT *
+    FROM items");
+
+     $stmt->execute();
+
+     $rows=$stmt->fetchAll();
+
 ?>
+
+
+<h4 class="center">Manage Users</h4>
+
 <div class="container">
+  <table class="responsive-table striped centered card">
+         <thead>
+           <tr>
+               <th>ID</th>
+               <th>Name</th>
+               <th>Description</th>
+               <th>Price</th>
+               <th>Date</th>
+                <th>Action</th>
+           </tr>
+         </thead>
+
+         <tbody>
+
+        <?php
+
+        foreach ($rows as $row ) {
+          echo "<tr>";
+           echo "<td>". $row["item_ID"] ."</td>";
+           echo "<td>". $row["Name"] ."</td>";
+           echo "<td>". $row["Description"] ."</td>";
+           echo "<td>". $row["Price"] ."</td>";
+           echo "<td>". $row['Add_Date'] ."</td>";
+           echo "<td>";
+        ?>
+           <a href="#" class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
+           <a href="#" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>
+
+
+              <?php
+
+
+           echo "</td>";
+          echo "</tr>";
+        }
+
+         ?>
+
+
+
+         </tbody>
+       </table>
+
   <br>
 <a href="item.php?do=add" class="waves-effect waves-light btn">
   <i class="material-icons right">add</i>
@@ -83,7 +145,7 @@ elseif ($do =='add') {
         <!-- start of status -->
         <div class="input-field col s12">
            <i class="material-icons prefix">info</i>
-          <select>
+          <select name="status">
             <option value="0" disabled selected>...</option>
             <option value="1">New</option>
             <option value="2">Like New</option>
@@ -169,54 +231,26 @@ elseif ($do == 'insert')
     $country     = $_POST['country'];
     $status     = $_POST['status'];
 
+    $stmt=$con->prepare("INSERT INTO
+                         items(Name,Description,Price,Country_Made,Status,Add_Date)
+                         VALUES(:zname,:zdesc,:zprice,:zcountry,:zstatus,now())");
 
-    // agar inputakan ba bataly baje bely away xware tatbyq dabi
-    $formErrors = array();
-    // agar username zyatr by la20 error dada away xware lo awaya
-    if (empty( $name )){
-      $formErrors[] = 'Name can\'t be <strong> empty</strong>';
-    }
-  if(empty($desc)){
-        $formErrors[] = 'Desc can\'t be <strong> empty</strong>';
-    }
-    if(empty($price)){
-      $formErrors[] = 'Price can\'t be <strong> empty</strong>';
-    }
-    if(empty($country )){
-      $formErrors[] = 'Country can\'t be <strong> empty</strong>';
-    }
-    if ( $status == 0){
-      $formErrors[] ='You Must choose the <strong> empty</strong>';
-    }
-    // loop labo away bzany error hayay
-    foreach($formErrors as $error){
-      echo ' <div class="alert alert-danger" ' .  $error .'</div>';
+ $stmt->execute(array(
 
-    }
-    if (empty($formErrors)){
-
-
-
-$stmt = $con ->prepare("INSERT INTO
-                items(Name ,Description,Price,Country_Made,Status,Add_Date)
-                 VALUES(:zname,:zdesc,:zprice,:zcountry,zstatus,now())");
-    //  echo $id . $user . $email . $name;
-    // update zanyryakany usery la naw database dakay
-$stmt->execute(array(
-
-'zname'      =>$name,
-'zdesc'      =>$desc,
-'zprice'     =>$price,
-'zcountry'    =>$country,
-'zstatus'    =>$status
-
-// zanyary user nuwe daxl dakay baw array dachta naw database
+ 'zname'=>$name ,
+'zdesc'=>$desc,
+'zprice'=>$price,
+'zcountry'=>$country,
+'zstatus'=>$status
 
 ));
-   echo "User Added successfully";
-  redirectHome($theMsg);
 
-} }// end of empty error
+
+   echo "item Added successfully";
+
+
+
+}// end of empty error
 
 
 
