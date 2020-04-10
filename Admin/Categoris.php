@@ -66,7 +66,15 @@ echo "<a href='Categoris.php?do=Delete&catid=" . $cat['ID'] ."' class='secondary
 ?>
 
  </ul>
+
+ <a href="Categoris.php?do=add" class="waves-effect waves-light btn">
+   <i class="material-icons right">add</i>
+   add Category
+ </a>
+
 </div>
+
+
 
 
 
