@@ -1,0 +1,178 @@
+body{
+  height: 2000px;
+}
+
+/* navbar style */
+nav .brand-long{
+  padding-left: 10px;
+}
+/* slider style  */
+#hero .slider{
+  height: 650px !important;
+}
+#hero .slider .slides{
+  height: 100% !important;
+}
+#hero .silder .indicatros{
+  bottom: 60px;
+  z-index: 2;
+}
+#hero .silder .indicatros-item.active{
+  background: #1565c0;
+}
+/* Service Style*/
+#Service h2{
+  margin-bottom: 60px;
+}
+#Service .item .icon {
+  width: 120px;
+  height: 120px;
+  background: #ccc;
+  margin:  0 auto;
+  border-radius: 50%;
+  transition: all .5s ease-in-out;
+}
+#Service .item #web{
+  padding-top: 30px;
+}
+#Service .item #mobaile{
+  padding-top: 30px;
+}
+#Service .item #desk{
+  padding-top: 30px;
+}
+#Service .item #web:hover{
+  background: #e74c3c;
+  color: #fff;
+}
+#Service .item #desk:hover{
+  background: #16a085;
+  color: #fff;
+}
+#Service .item #mobaile:hover{
+  background: #2980b9;
+  color: #fff;
+}
+#Service .item h3{
+  font-size: 30px;
+}
+#Service .item p{
+  font-weight: 300;
+}
+/* Work section Style*/
+#Work .btn-type div{
+  width: 100%;
+  margin-bottom: 5px;
+}
+#Work .item .item{
+  width: 33%;
+  height: auto;
+  float: left;
+  margin-right: 3px;
+}
+#Work .item .item img{
+  width: 100%;
+  height: 250px;
+}
+#Work .item .item p{
+  margin-top: 0;
+}
+/* Team section*/
+#team{
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+#team h2{
+  margin-bottom: 30px;
+}
+#team h3{
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+#team span{
+  font-weight: 300;
+  font-size: 16px;
+}
+#team .parallax-container{
+  height: auto;
+  padding: 50px 0;
+}
+/* Testimonial section style*/
+#Testimonial .item img{
+  width: 60px;
+  height: 60px;
+}
+#Testimonial .item h5{
+  font-size: 18px;
+}
+#Testimonial .item .row{
+margin-bottom: 0;
+}
+/* Contact section style*/
+#Contact h2{
+  margin-bottom: 50px;
+}
+
+/*Footer Style*/
+footer .page-footer{
+  margin-top: 0;
+  padding: 35px;
+}
+
+
+/* Start Loadding Screen Style*/
+.loadding-screen {
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+width: 100%;
+height: 100%;
+background: #424242;
+z-index: 10000;
+}
+.loadding-screen .preloader-wrapper{
+  left: 45%;
+  top: 40%;
+}
+/* End Loadding Screen Style*/
+
+/* Mobaile Fix Bugs And Media Queries */
+#sidenav-overlay {
+  z-index: 1;
+}
+@media (max-width:992px) {
+  #Work .item .item{
+    width: 49%;
+  }
+}
+@media (max-width:600px) {
+  #Work .item .item{
+    width: 100%;
+  }
+  #Service .item {
+    margin-bottom: 20px;
+  }
+  #team .row .col {
+    margin-bottom: 20px;
+  }
+  #team h3 {
+    margin-top: 0;
+  }
+}
+
+/* General Style*/
+.section{
+  padding: 35px 0;
+}
+ .container{
+   width: 80%;
+ }
+h2 {
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+p {
+  font-weight: 300;
+}
