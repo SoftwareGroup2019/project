@@ -158,7 +158,7 @@ elseif ($do =='add') {
         <!-- start Member field -->
         <div class="input-field col s12">
            <i class="material-icons prefix">face</i>
-          <select>
+          <select name="member">
             <option value="0" disabled selected>...</option>
           <?php
           $stmt =$con ->prepare("select * FROM user");
@@ -177,7 +177,7 @@ elseif ($do =='add') {
         <!-- end Member Field -->
         <div class="input-field col s12">
            <i class="material-icons prefix">shopping_basket</i>
-          <select>
+          <select name="categories">
             <option value="0" disabled selected>...</option>
           <?php
           $stmt2 =$con ->prepare("select * FROM  categories");
@@ -229,32 +229,59 @@ elseif ($do == 'insert')
     $desc        = $_POST['descriptior'];
     $price       = $_POST['price'];
     $country     = $_POST['country'];
-    $status     = $_POST['status'];
+    $status      = $_POST['status'];
+    $member      = $_POST['member'];
+    $cat         = $_POST['categories'];
+
+//Valdate the form
+$formError=array();
+if (empty($name)){
+  $formError[]='Name Can\'t be <strong>Empty</strong>';
+}if (empty(  $desc )){
+  $formError[]='descriptior Can\'t be <strong>Empty</strong>';
+}if (empty($price)){
+  $formError[]='price Can\'t be <strong>Empty</strong>';
+}if (empty($country)){
+  $formError[]='country Can\'t be <strong>Empty</strong>';
+}
+//Loop Into Errors Array And Echo It
+if ($status == 0){
+    $formError[]='You Must Choose the <strong>Ststus</strong>';
+}
+if ($member == 0){
+    $formError[]='You Must Choose the <strong>member</strong>';
+}
+if ($cat == 0){
+    $formError[]='You Must Choose the <strong>Category</strong>';
+}
+//Loop Into Errors Array Echo It
+foreach ($formError as  $errormsg) {
+  echo '<div class="alert alert-danger">' . $errormsg .'</div>';
+}
+//check If There's No Error
+if(empty($formError)){
+  //Insert is userinfo in database
+
 
     $stmt=$con->prepare("INSERT INTO
-                         items(Name,Description,Price,Country_Made,Status,Add_Date)
-                         VALUES(:zname,:zdesc,:zprice,:zcountry,:zstatus,now())");
+                         items(Name,Description,Price,Country_Made,Status,Add_Date,Cat_ID,Member_ID)
+                         VALUES(:zname,:zdesc,:zprice,:zcountry,:zstatus,now(), :zcat, :zmember)");
 
  $stmt->execute(array(
 
- 'zname'=>$name ,
-'zdesc'=>$desc,
-'zprice'=>$price,
-'zcountry'=>$country,
-'zstatus'=>$status
+ 'zname'   =>$name ,
+'zdesc'    =>$desc,
+'zprice'   =>$price,
+'zcountry' =>$country,
+'zstatus'  =>$status,
+'zcat'     => $cat ,
+'zmember'  => $member
 
 ));
 
-
-   echo "item Added successfully";
-
-
-
 }// end of empty error
 
-
-
- // end of post insert requst
+} // end of post insert requst
 
 else{
      $theMsg= '<div class="alert alert-danger">Sorry You Cant Brouse This Page Directly </div>';
