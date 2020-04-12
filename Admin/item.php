@@ -15,17 +15,24 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 /////////////////////////////////////////////////////////
 if ($do =='manage')
 { // start of Manage
-
-
-
   // $value = "Ayman";
   // $check = checkItem("Username", "user", $value);
   // if ($check == 1){
-  //
   //   echo 'hahaha';
   // } aw coda loo awaya agaer user habu ba haman naw aw if tatbyq daby
-  $stmt = $con->prepare("SELECT *
-    FROM items");
+  $stmt = $con->prepare("SELECT items.*
+    ,categories.Name AS categories_name,
+     user.Username
+      FROM
+       items
+INNER JOIN
+ categories
+ ON
+  categories.ID =items.Cat_ID
+INNER JOIN
+user
+ON
+user.UserID =items.Member_ID");
 
      $stmt->execute();
 
@@ -45,6 +52,8 @@ if ($do =='manage')
                <th>Description</th>
                <th>Price</th>
                <th>Date</th>
+               <th>Categories_name</th>
+               <th>User_name</th>
                 <th>Action</th>
            </tr>
          </thead>
@@ -60,6 +69,8 @@ if ($do =='manage')
            echo "<td>". $row["Description"] ."</td>";
            echo "<td>". $row["Price"] ."</td>";
            echo "<td>". $row['Add_Date'] ."</td>";
+           echo "<td>". $row['categories_name'] ."</td>";
+           echo "<td>". $row['Username'] ."</td>";
            echo "<td>";
         ?>
            <a href="#" class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
@@ -184,7 +195,7 @@ elseif ($do =='add') {
           $stmt2 ->execute();
           $cats =$stmt2 ->fetchAll();
           foreach ($cats as  $cat) {
-            echo "<option value='". $cat['Id'] ."'>". $cat['Name'] ."</option>";
+            echo "<option value='". $cat['ID'] ."'>". $cat['Name'] ."</option>";
 
           }
            ?>
@@ -220,6 +231,7 @@ elseif ($do =='add') {
 ///////////////////////////////////////////////////////////
 elseif ($do == 'insert')
 {//start of insert
+
   if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
     echo   " <h4 class = 'center'> Insert item </h4>";
@@ -233,34 +245,8 @@ elseif ($do == 'insert')
     $member      = $_POST['member'];
     $cat         = $_POST['categories'];
 
-//Valdate the form
-$formError=array();
-if (empty($name)){
-  $formError[]='Name Can\'t be <strong>Empty</strong>';
-}if (empty(  $desc )){
-  $formError[]='descriptior Can\'t be <strong>Empty</strong>';
-}if (empty($price)){
-  $formError[]='price Can\'t be <strong>Empty</strong>';
-}if (empty($country)){
-  $formError[]='country Can\'t be <strong>Empty</strong>';
-}
-//Loop Into Errors Array And Echo It
-if ($status == 0){
-    $formError[]='You Must Choose the <strong>Ststus</strong>';
-}
-if ($member == 0){
-    $formError[]='You Must Choose the <strong>member</strong>';
-}
-if ($cat == 0){
-    $formError[]='You Must Choose the <strong>Category</strong>';
-}
-//Loop Into Errors Array Echo It
-foreach ($formError as  $errormsg) {
-  echo '<div class="alert alert-danger">' . $errormsg .'</div>';
-}
-//check If There's No Error
-if(empty($formError)){
-  //Insert is userinfo in database
+
+
 
 
     $stmt=$con->prepare("INSERT INTO
@@ -279,7 +265,6 @@ if(empty($formError)){
 
 ));
 
-}// end of empty error
 
 } // end of post insert requst
 
