@@ -53,7 +53,7 @@ user.UserID =items.Member_ID");
                <th>Price</th>
                <th>Date</th>
                <th>Categories_name</th>
-               <th>User_name</th>
+               <th>User_name </th>
                 <th>Action</th>
            </tr>
          </thead>
