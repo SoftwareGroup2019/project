@@ -73,7 +73,7 @@ user.UserID =items.Member_ID");
            echo "<td>". $row['Username'] ."</td>";
            echo "<td>";
         ?>
-           <a href="#" class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
+           <a href="?do=Edit&itemid=<?php echo $row["item_ID"];?>" class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
            <a href="#" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>
 
 
@@ -156,12 +156,12 @@ elseif ($do =='add') {
         <!-- start of status -->
         <div class="input-field col s12">
            <i class="material-icons prefix">info</i>
-          <select name="status">
-            <option value="0" disabled selected>...</option>
+          <select name="esh">
+            <option value="0">...</option>
             <option value="1">New</option>
             <option value="2">Like New</option>
-            <option value="3">Used</option>
-            <option value="3">Very Old</option>
+            <option value="4">Used</option>
+            <option value="5">Very Old</option>
           </select>
           <label>Status</label>
         </div>
@@ -241,10 +241,9 @@ elseif ($do == 'insert')
     $desc        = $_POST['descriptior'];
     $price       = $_POST['price'];
     $country     = $_POST['country'];
-    $status      = $_POST['status'];
+    $status         = $_POST['esh'];
     $member      = $_POST['member'];
     $cat         = $_POST['categories'];
-
 
 
 
@@ -288,6 +287,137 @@ elseif($do=='Edit')
 { //Edit page
 
 
+$item_id = $_GET['itemid'];
+
+
+$stmt = $con->prepare("SELECT * FROM items WHERE item_ID = ? LIMIT 1");
+
+//execute query
+
+    $stmt->execute(array($item_id));
+
+//fetch the data
+
+    $row=$stmt->fetch();
+
+//the row count
+
+    $count =$stmt->rowCount();
+
+
+?>
+  <div class="container">
+
+<h4 class="center">Edit item</h4>
+
+   <!-- start of form -->
+   <form class="col s12" action="?do=Update" method="POST">
+
+
+     <!-- start of row -->
+     <div class="row">
+
+        <!-- name -->
+       <div class="input-field col s12">
+         <i class="material-icons prefix">local_grocery_store</i>
+         <input id="icon_prefix" type="text" name="name" class="validate" value="<?php echo $row['Name'];?>">
+         <label for="icon_prefix">Item Name</label>
+       </div>
+       <!-- ////////////////// -->
+
+        <!-- Description -->
+       <div class="input-field col s12">
+         <i class="material-icons prefix">receipt</i>
+         <input id="icon_prefix" type="text" name="descriptior" value="<?php echo $row['Description'];?>">
+         <label for="icon_prefix">Description</label>
+       </div>
+       <!-- ////////////////// -->
+
+
+      <!-- Price -->
+       <div class="input-field col s12">
+         <i class="material-icons prefix">account_balance</i>
+         <input id="icon_prefix" type="text" name="price" class="validate" value="<?php echo $row['Price'];?>">
+         <label for="icon_prefix">Price</label>
+       </div>
+       <!-- ////////////////// -->
+
+       <!-- Country -->
+       <div class="input-field col s12">
+         <i class="material-icons prefix">add_location</i>
+      <input id="password" type="text" name="country" class="validate" value="<?php echo $row['Country_Made'];?>">
+      <label for="password">Country</label>
+      </div>
+    <!-- ////////////////// -->
+
+    <!-- start of status -->
+    <div class="input-field col s12">
+       <i class="material-icons prefix">info</i>
+      <select name="esh">
+        <option value="0" disabled selected>...</option>
+        <option value="1" <?php if($row['Status'] == 1){echo "selected";} ?>>New</option>
+        <option value="2" <?php if($row['Status'] == 2){echo "selected";} ?>>Like New</option>
+        <option value="3" <?php if($row['Status'] == 3){echo "selected";} ?>>Used</option>
+        <option value="4" <?php if($row['Status'] == 4){echo "selected";} ?>>Very Old</option>
+      </select>
+      <label>Status</label>
+    </div>
+    <!-- end of status -->
+    <!-- start Member field -->
+    <div class="input-field col s12">
+       <i class="material-icons prefix">face</i>
+      <select name="member">
+        <option value="0" disabled selected>...</option>
+      <?php
+      $stmt =$con ->prepare("select * FROM user");
+      $stmt ->execute();
+      $user =$stmt ->fetchAll();
+      foreach ($user as  $user) {
+        echo "<option value='". $user['UserID'] ."'";
+        if($row['Member_ID'] == $user['UserID']){echo 'selected';}
+        echo ">". $user['Username'] ."</option>";
+
+      }
+       ?>
+      </select>
+      <label>Member</label>
+    </div>
+
+
+    <!-- end Member Field -->
+    <div class="input-field col s12">
+       <i class="material-icons prefix">shopping_basket</i>
+      <select name="categories">
+        <option value="0" disabled selected>...</option>
+      <?php
+      $stmt2 =$con ->prepare("select * FROM  categories");
+      $stmt2 ->execute();
+      $cats =$stmt2 ->fetchAll();
+      foreach ($cats as  $cat) {
+        echo "<option value='". $cat['ID'] ."'";
+        if($row['Cat_ID'] == $cat['ID']){echo 'selected';}
+        echo ">". $cat['Name'] ."</option>";
+
+      }
+       ?>
+      </select>
+      <label>Category</label>
+    </div>
+          <!-- Buttton -->
+    <button class="btn waves-effect waves-light" type="submit" name="status">Add
+      <i class="material-icons right"></i>
+    </button>
+      <!-- ////////////////// -->
+
+  </div>
+  <!-- end of row -->
+
+  </form>
+  <!-- end of form  -->
+   </div>
+   <!-- end of container -->
+
+<?php
 
 } //end of else if ($do == 'Edit')
 /////////////////////////////////////////////////////////
