@@ -311,8 +311,8 @@ $stmt = $con->prepare("SELECT * FROM items WHERE item_ID = ? LIMIT 1");
 <h4 class="center">Edit item</h4>
 
    <!-- start of form -->
-   <form class="col s12" action="?do=Update" method="POST">
-
+   <form class="col s12" action="?do=Update&itemid=<?php echo $row['item_ID']; ?>" method="POST">
+    <input type="hidden" name="item_id" value="<php echo $item_id ?>" />
 
      <!-- start of row -->
      <div class="row">
@@ -428,7 +428,51 @@ $stmt = $con->prepare("SELECT * FROM items WHERE item_ID = ? LIMIT 1");
 /////////////////////////////////////////////////////////
 elseif($do == 'Update')
 {//start of update
+  echo   " <h4 class='center'> Update item </h4>";
+  echo "<div class='container'>";
 
+  if ($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
+    $itemid = $_GET['itemid'];
+
+
+    $name = $_POST['name'];
+    $desc = $_POST['descriptior'];
+    $price = $_POST['price'];
+    $country = $_POST['country'];
+    $status = $_POST['status'];
+    $cat = $_POST['categories'];
+    $member = $_POST['member'];
+
+
+    $stmt=$con ->prepare("UPDATE
+                         items
+                          SET
+                           Name = ?
+                            ,Description = ?
+                            ,Price = ?
+                            ,Country_Made = ?
+                            ,Status = ?
+                            ,Cat_ID = ?
+                            ,Member_ID = ?
+                          WHERE item_ID = ?");
+    $stmt->execute(array(
+
+                          $name,
+                          $desc,
+                          $price,
+                          $country,
+                          $status,
+                          $cat,
+                          $member,
+                          $itemid  ));
+
+
+
+echo "the items updated successfully";
+
+
+  } //end of post update requst
 
 
 
@@ -444,15 +488,102 @@ elseif($do == 'Update')
 elseif ($do =='Delete')
 { // start of delete
 
+  $userid = $_GET['userid'];
+  //lerash userman bang krditawa.
+  //$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
+
+  $chek = checkItem('item_ID', 'items' , $itemid);
+
+  //execute query
+
+    //  $stmt->execute(array($userid));
+  //id database rabt dakatn.
+  //fetch the data
+
+    //  $row=$stmt->fetch();
+
+  //the row count
+
+      //$count =$stmt->rowCount();
+
+  if  ($chek >0) {
+  //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
+    $stmt = $con->prepare("DELETE FROM items WHERE item_ID =:zid");
+
+   $stmt->bindparam(':zid', $itemid);
+
+   $stmt->execute();
+
+  $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Deleted</div>';
+   redirectHome($theMsg,'back');
+
+  }
+
+  else {
+   //agar hatw userid nabu pet ble aw usera nya.
+    $errormsg= "There is no user";
+    redirectHome($errormsg , 3);
+  }
+
+
+
+    // code...
+  }elseif ($do == 'Activate') {
+    $userid = $_GET['userid'];
+    //lerash userman bang krditawa.
+    //$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
+
+    $chek = checkItem('userid', 'user' , $userid);
+
+    //execute query
+
+      //  $stmt->execute(array($userid));
+    //id database rabt dakatn.
+    //fetch the data
+
+      //  $row=$stmt->fetch();
+
+    //the row count
+
+        //$count =$stmt->rowCount();
+
+    if  ($chek >0) {
+    //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
+      $stmt = $con->prepare("UPDATE user SET RegStatus =1 WHERE UserID = ? ");
+
+     $stmt->execute(array($userid));
+
+    $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Updated</div>';
+     redirectHome($theMsg);
+
+    }
+
+    else {
+     //agar hatw userid nabu pet ble aw usera nya.
+      $errormsg= "There is no user";
+      redirectHome($errormsg , 3);
+    }
+    // code...
+  }
+
+
+
+      include 'include/template/footer.php';
+    } /// end of session
+
+  else
+  {
+    header('location: index.php');
+    exit();
+  }
 
 
 
 
 
-} // end of delete
-//////////////////////////////////////////////////////////////
+{
 
-
+//////////////
 //////////////////////////////////////////////////////////////
 elseif ($do == 'Activate')
 { // start of activate
