@@ -487,30 +487,26 @@ echo "the items updated successfully";
 //////////////////////////////////////////////////////////////
 elseif ($do =='Delete')
 { // start of delete
-
-  $userid = $_GET['userid'];
+  echo   " <h4 class='center'> Delete item </h4>";
+  echo "<div class='container'>";
+  $itemid = $_GET['itemid'];
   //lerash userman bang krditawa.
   //$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
 
   $chek = checkItem('item_ID', 'items' , $itemid);
-
   //execute query
-
     //  $stmt->execute(array($userid));
   //id database rabt dakatn.
   //fetch the data
-
     //  $row=$stmt->fetch();
-
   //the row count
-
       //$count =$stmt->rowCount();
 
-  if  ($chek >0) {
+  if  ($chek > 0) {
   //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
-    $stmt = $con->prepare("DELETE FROM items WHERE item_ID =:zid");
+    $stmt = $con->prepare("DELETE FROM items WHERE item_ID = :zid");
 
-   $stmt->bindparam(':zid', $itemid);
+   $stmt->bindParam('zid', $itemid);
 
    $stmt->execute();
 
@@ -522,48 +518,17 @@ elseif ($do =='Delete')
   else {
    //agar hatw userid nabu pet ble aw usera nya.
     $errormsg= "There is no user";
-    redirectHome($errormsg , 3);
+    redirectHome($theMsg);
   }
 
+}
+
+  elseif ($do == 'Activate')
+  { // start of activate
 
 
-    // code...
-  }elseif ($do == 'Activate') {
-    $userid = $_GET['userid'];
-    //lerash userman bang krditawa.
-    //$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
 
-    $chek = checkItem('userid', 'user' , $userid);
-
-    //execute query
-
-      //  $stmt->execute(array($userid));
-    //id database rabt dakatn.
-    //fetch the data
-
-      //  $row=$stmt->fetch();
-
-    //the row count
-
-        //$count =$stmt->rowCount();
-
-    if  ($chek >0) {
-    //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
-      $stmt = $con->prepare("UPDATE user SET RegStatus =1 WHERE UserID = ? ");
-
-     $stmt->execute(array($userid));
-
-    $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Updated</div>';
-     redirectHome($theMsg);
-
-    }
-
-    else {
-     //agar hatw userid nabu pet ble aw usera nya.
-      $errormsg= "There is no user";
-      redirectHome($errormsg , 3);
-    }
-  }
+  } // end of activate
     include 'include/template/footer.php';
   } /// end of session
 else
