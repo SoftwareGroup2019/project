@@ -41,7 +41,7 @@ user.UserID =items.Member_ID");
 ?>
 
 
-<h4 class="center">Manage Users</h4>
+<h4 class="center">Manage Item</h4>
 
 <div class="container">
   <table class="responsive-table striped centered card">
@@ -74,7 +74,7 @@ user.UserID =items.Member_ID");
            echo "<td>";
         ?>
            <a href="?do=Edit&itemid=<?php echo $row["item_ID"];?>" class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
-           <a href="#" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>
+           <a href="?do=Delete&itemid=<?php echo $row["item_ID"];?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>
 
 
               <?php
@@ -489,7 +489,7 @@ elseif ($do =='Delete')
 { // start of delete
   echo   " <h4 class='center'> Delete item </h4>";
   echo "<div class='container'>";
-  $itemid = $_GET['itemid'];
+    $itemid = isset( $_GET['itemid'] ) && is_numeric($_GET['itemid']) ? intval($_GET['itemid']) : 0;
   //lerash userman bang krditawa.
   //$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
 
@@ -517,7 +517,7 @@ elseif ($do =='Delete')
 
   else {
    //agar hatw userid nabu pet ble aw usera nya.
-    $errormsg= "There is no user";
+    $theMsg= "There is no Delete";
     redirectHome($theMsg);
   }
 
