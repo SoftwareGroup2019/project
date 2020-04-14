@@ -75,7 +75,14 @@ user.UserID =items.Member_ID");
         ?>
            <a href="?do=Edit&itemid=<?php echo $row["item_ID"];?>" class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
            <a href="?do=Delete&itemid=<?php echo $row["item_ID"];?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>
-
+           <?php
+             if($row['Approve'] == 0 ) {
+            ?>
+               <a href="?do=Approve&itemid=<?php echo $row["item_ID"]; ?>"
+                  class="waves-effect waves-light btn-small tooltipped "
+                   data-position="right" data-tooltip="Approve" style="background-color:blue !important;">
+                  <i class="material-icons">Approve</i></a>
+           <?php  }  ?>
 
               <?php
 
@@ -523,9 +530,40 @@ elseif ($do =='Delete')
 
 }
 
-  elseif ($do == 'Activate')
+  elseif ($do == 'Approve')
   { // start of activate
+    echo   " <h4 class='center'> Approve item </h4>";
+    echo "<div class='container'>";
+      $itemid = isset( $_GET['itemid'] ) && is_numeric($_GET['itemid']) ? intval($_GET['itemid']) : 0;
 
+    //lerash userman bang krditawa.
+    //$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
+
+    $chek = checkItem('item_ID', 'items' , $itemid);
+    //execute query
+      //  $stmt->execute(array($userid));
+    //id database rabt dakatn.
+    //fetch the data
+      //  $row=$stmt->fetch();
+    //the row count
+        //$count =$stmt->rowCount();
+    if  ($chek > 0) {
+    //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
+      $stmt = $con->prepare("UPDATE items SET Approve = 1 WHERE item_ID = ? ");
+
+     $stmt->execute(array($itemid));
+
+    $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Updated</div>';
+     redirectHome($theMsg,'back');
+
+    }
+
+    else {
+     //agar hatw userid nabu pet ble aw usera nya.
+      $errormsg= "There is no user";
+      redirectHome($errormsg , 3);
+    }
+    // code...
 
 
   } // end of activate
