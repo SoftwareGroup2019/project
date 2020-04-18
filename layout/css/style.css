@@ -1,0 +1,125 @@
+
+
+.login-div{
+  margin-top: 20px;
+background-color: #e1f5fe;
+max-width:430px;
+padding:10px 80px;
+border:1px solid #ddd;
+border-radius:12px;
+}
+/*start Dashbord page */
+.Home-stats .stat{
+  padding: 20px;
+  font-size: 15px;
+  color: #FFF;
+  border-radius: 10px;
+}
+.Home-stats .stat a{
+  color: #FFF;
+}
+.Home-stats .stat a:hover{
+text-decoration: none;
+}
+.Home-stats .stat span{
+  display: block;
+  font-size:60px;
+}
+
+.Home-stats .st-members{
+  background-color:#55efc4;
+}
+.Home-stats .st-pending{
+  background-color:#81ecec;
+}
+.Home-stats .st-items{
+  background-color:#74b9ff;
+}
+.Home-stats .st-comments{
+  background-color:#a29bfe;
+}
+.latest {
+  margin-top: 30px ;
+}
+
+/*end Dashbord page */
+
+.btn, .btn-large, .btn-small
+{
+  background-color: #0d47a1 !important;
+}
+.Activate{
+    margin-left: 5px;
+}
+
+/*Start Categories page */
+.categories .panal-body{
+padding: 0;
+}
+.categories .ordering .Activate{
+color: #888;
+text-decoration: none;
+font-weight: bold;
+}
+
+.categories hr{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.categories .cat {
+padding: 15px;
+position: relative;
+overflow: hidden;
+}
+.categories .cat:hover{
+  background-color: #74b9ff;
+}
+.categories .cat:hover .Hidden-buttons{
+  right: 10px;
+}
+.categories .cat .Hidden-buttons {
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+position: absolute;
+top: 15px;
+right: -120px;
+}
+.categories .cat .Hidden-buttons a{
+  margin-right: 5px;
+}
+.categories .cat h3{
+  margin: 0 0 10px;
+}
+
+.categories .cat: last-of-type ~ hr{
+  display: none;
+}
+.categories .cat .Visibility {
+  color: #ff7675;
+  padding: 4px 6px;
+  margin-right: 6px;
+  border-radius: 6px;
+}
+.categories .cat .commenting{
+  background-color: #0984e3;
+  color: #FFF;
+  padding: 4px 6px;
+  margin-right: 6px;
+  border-radius: 6px;
+}
+
+.categories .cat .advertises{
+  background-color: #74b9ff;
+  color: #FFF;
+  padding: 4px 6px;
+  margin-right: 6px;
+  border-radius: 6px;
+}
+.categories . add-category {
+  margin-bottom: -10px;
+  margin-bottom: 30px;
+}
+
+
+/*nd Categories page */
