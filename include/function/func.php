@@ -1,4 +1,26 @@
 <?php
+
+
+function getCat() {
+
+  global $con;
+
+  $getCat =$con->prepare("SELECT * FROM categories ORDER BY ID DESC");
+
+  $getCat->execute();
+
+  $cats = $getCat->fetchALL();
+
+  return $cats;
+
+}
+
+
+
+
+
+
+
 function getTitl(){
 global $pageTitle;
 if ( isset ($pageTitle)){

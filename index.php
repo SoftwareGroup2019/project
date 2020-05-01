@@ -3,13 +3,16 @@
 <?php include 'include/template/navbar.php';?>
 <?php  include 'conect.php'; ?>
 
+<?php
 
+include 'init.php';
 
-<div class="container">
-<h1>Hello this is user side</h1>
-</div>
+foreach (getCat()as $cat){
 
+echo $cat['Name'];
 
-
+}
+include $tpl . 'footer.php';
 
 <?php include 'include/template/footer.php' ?>
+?>

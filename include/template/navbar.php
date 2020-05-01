@@ -16,6 +16,7 @@
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <div class="dropdown show">
+        <li><a href="../index.php"<Visit Shop</a></li>
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Name
         </a>
@@ -24,6 +25,15 @@
           <a class="dropdown-item" href="#">Edit</a>
           <a class="dropdown-item" href="#">Profile</a>
           <a class="dropdown-item" href="#">Logout</a>
+<?php
+  foreach (getCat()as $cat){
+
+    echo '<li><a href="categories.php?pageid=' . $cat['ID'] . '">'. $cat['Name'] . '</a><li>';
+
+}
+
+?>
+
         </div>
       </div>
     </form>
