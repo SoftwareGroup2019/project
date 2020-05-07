@@ -5,7 +5,7 @@ function getCat() {
 
   global $con;
 
-  $getCat =$con->prepare("SELECT * FROM categories ORDER BY ID DESC");
+  $getCat = $con->prepare("SELECT * FROM categories ORDER BY ID DESC");
 
   $getCat->execute();
 
