@@ -6,11 +6,7 @@
 
 <?php
 
-foreach (getCat() as $cat){
 
-echo $cat['Name'];
-
-}
 
 ?>
 

@@ -1,6 +1,7 @@
 <ul id="dropdown1" class="dropdown-content">
   <li><a href="members.php?do=Edit&userid=<?php echo $_SESSION['ID']; ?>">Edit</a></li>
   <li><a href="#!">Settings</a></li>
+    <li><a href="../index.php">Visit Shop</a></li>
   <li class="divider"></li>
   <li><a href="logout.php">Logout</a></li>
 </ul>
@@ -18,6 +19,7 @@
     </ul>
   </div>
 </nav>
+
 <ul class="sidenav" id="mobile-demo">
   <li><a href="Home.html">Home</a></li>
     <li><a href="Members.html">Members</a></li>

@@ -17,10 +17,6 @@ function getCat() {
 
 
 
-
-
-
-
 function getTitl(){
 global $pageTitle;
 if ( isset ($pageTitle)){
@@ -67,4 +63,19 @@ function checkItem($select, $from , $value){
    $stmt2->execute();
    return $stmt2->fetchColumn();
  }
+
+/*GET ITEMS FUNCTION*/
+ function getitems($CatID) {
+
+    global $con;
+
+    $getitems= $con->prepare("SELECT * FROM items WHERE Cat_ID = ? ORDER BY item_ID DESC");
+
+    $getitems->execute(array($CatID));
+
+    $items= $getitems->fetchALL();
+
+    return $items;
+ }
+
 ?>

@@ -1,7 +1,7 @@
 <div class="upper-bar">
 Upper Bar
 </div>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #74b9ff;">
   <a class="navbar-brand" href="#">ShipShop</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -29,11 +29,17 @@ Upper Bar
 
            }
         ?>
+
+        <li>
+          <a class="nav-link" href="Admin/index.php">Admin</a>
+        </li>
     </ul>
+
+
 
     <!-- kaka era dast kary nakretn, bvaya bv bv -->
     <!-- ####################################### -->
-    <form class="form-inline my-2 my-lg-0">
+    <!-- <form class="form-inline my-2 my-lg-0">
       <div class="dropdown show">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Name
@@ -44,7 +50,7 @@ Upper Bar
           <a class="dropdown-item" href="#">Logout</a>
         </div>
       </div>
-    </form>
+    </form> -->
     <!-- ################################################## -->
     <!-- dast kari maka please era lo tamasha krdna bas bvya -->
   </div>
