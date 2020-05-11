@@ -9,7 +9,21 @@ $('.sidenav').sidenav();
 
   $('select').formSelect();
 
+
+  //   xatw hawar lera kodakant bnwsa
+
+
+
+
+
+
+  /////////////////
+
   });
+
+
+
+
 
 
   $('.conf').click(function()
