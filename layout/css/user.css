@@ -14,6 +14,22 @@
   color: grey;
   font-size: 22px;
 }
-
-
 /* end of item box */
+
+/*start header*/
+.upper-bar{
+  padding: 10px;
+  background-color: #FFF;
+}
+/*end headar */
+
+/*start Login page*/
+.login-page form {
+  max-width: 380px;
+  margin: auto;
+}
+.login-page form input{
+  margin-bottom: 10px;
+}
+
+/* end Login page*/
