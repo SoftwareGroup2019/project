@@ -25,11 +25,11 @@
 /*end headar */
 
 /*start Login page*/
-.login-page form {
+.Login-page form {
   max-width: 380px;
   margin: auto;
 }
-.login-page form input{
+.Login-page form input{
   margin-bottom: 10px;
 }
 .input-control{
@@ -44,7 +44,7 @@
 .Login-page h1 span{
   cursor: pointer;
 }
-.login-page .signup{
+.Login-page .signup{
   display: none;
 }
 /* end Login page*/
