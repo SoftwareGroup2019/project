@@ -1,6 +1,7 @@
 /* start of item box */
 
 
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
@@ -31,5 +32,19 @@
 .login-page form input{
   margin-bottom: 10px;
 }
-
+.input-control{
+  position: relative;
+}
+.Login-page .selected{
+  color:#d63031;
+}
+.Login-page h1{
+  color:#ff7675;
+}
+.Login-page h1 span{
+  cursor: pointer;
+}
+.login-page .signup{
+  display: none;
+}
 /* end Login page*/

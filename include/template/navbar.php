@@ -1,6 +1,6 @@
 <div class="upper-bar">
   <div class="container">
-    <a href="logout.php"> <span class="pull-right">Login/signup</span>
+    <a href="login.php"> <span class="pull-right">Login/signup</span>
       </a>
     </div>
 
