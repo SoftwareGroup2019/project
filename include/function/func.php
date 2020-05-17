@@ -77,5 +77,24 @@ function checkItem($select, $from , $value){
 
     return $items;
  }
+ /*check if User is not active
+ RagStatus of the user
+ */
+ function checkUserStatus($user){
+
+   global $con;
+   $stmtx = $con->prepare("SELECT
+ UserName, RegStatus
+     FROM
+     user
+      WHERE
+       Username = ?
+       AND
+       RegStatus = 0 ");
+   $stmtx->execute(array($user));
+   $status =$stmtx->rowCount();
+   return $status;
+
+ }
 
 ?>
