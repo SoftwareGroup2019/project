@@ -3,8 +3,8 @@
     <?php
       if(isset($_SESSION['user'])){
         echo ' Welcome ' .$_SESSION['user'];
-         checkUserStatus($_SESSION['user']);
-         if($status == 1){
+       $userStatus =   checkUserStatus($_SESSION['user']);
+         if( $userStatus == 1){
            echo 'Your Membership Need TO Activiate By Admin';
          }
       }
