@@ -35,11 +35,14 @@
 .input-control{
   position: relative;
 }
-.Login-page .selected{
-  color:#d63031;
+.Login-page [data-class="login"].selected{
+  color:#337AB7;
+}
+.Login-page [data-class="signup"].selected{
+  color:#5cb85c;
 }
 .Login-page h1{
-  color:#ff7675;
+  color:#C0C0C0;
 }
 .Login-page h1 span{
   cursor: pointer;

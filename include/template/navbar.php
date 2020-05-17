@@ -1,11 +1,19 @@
 <div class="upper-bar">
   <div class="container">
-    <a href="login.php"> <span class="pull-right">Login/signup</span>
-      </a>
-    </div>
+    <?php
+      if(isset($_SESSION['user'])){
+        echo ' Welcome ' .$_SESSION['user'];
+      }
+      else {
 
+      ?>
+    <a href="login.php">
+       <span class="pull-right">Login/signup</span>
+       <br>
+     </a>
+   <?php } ?>
+    </div>
 </div>
-<br>
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #74b9ff;">
   <a class="navbar-brand" href="#">ShipShop</a>
