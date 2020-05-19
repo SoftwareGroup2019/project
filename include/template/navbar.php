@@ -3,9 +3,11 @@
     <?php
       if(isset($_SESSION['user'])){
         echo ' Welcome ' .$_SESSION['user'];
+        echo '  <a href="Profile.php">My Profile</a>';
+        echo ' - <a href="logout.php">Logout</a>';
        $userStatus =   checkUserStatus($_SESSION['user']);
          if( $userStatus == 1){
-           echo 'Your Membership Need TO Activiate By Admin';
+        //User is Not Activ
          }
       }
       else {
