@@ -7,6 +7,7 @@
 <h1 class="text-center">
 <?php
 echo str_replace('-','',$_GET['pagename'])
+
 ?>
 </h1>
 <br>
