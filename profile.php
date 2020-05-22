@@ -34,7 +34,26 @@ $info =$getUser->fetch();
     <div class="panel panel-primary">
       <div class="panel-heading">My ads</div>
       <div class="panel-body">
-        test:ads
+        <div class="row">
+
+        <?php
+         foreach (getitems('Member_ID',$info['UserID']) as $item)
+        {
+
+        echo '<div class="col-sm-6 col-md-4 col-lg-3">';
+        echo '<div class="card">';
+        echo '<img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">';
+        echo '<h1>'.$item['Name'].'</h1>';
+        echo '<p class="price">'.$item['Price'].'</p>';
+        echo '<a href="#" class="btn btn-primary" type="button">
+        ';
+        echo 'Read More...';
+        echo '</a>';
+        echo '</div>';
+        echo '</div>';
+
+        }
+        ?>
       </div>
     </div>
   </div>
@@ -45,7 +64,22 @@ $info =$getUser->fetch();
     <div class="panel panel-primary">
       <div class="panel-heading">Latest Comments</div>
       <div class="panel-body">
-        test:Comments
+        <?php
+        $stmt = $con->prepare("SELECT  comment  FROM  comments   WHERE user_id=?");
+           $stmt->execute(array($info['UserID']));
+
+           $rows=$stmt->fetchAll();
+
+           if (! empty($comments)){
+             foreach ($comments as  $comment) {
+
+               echo '<p>'.$comment['comment'] .'</p>';
+             }
+           }
+           else{
+             echo'There\'s No Comments to Show';
+           }
+      ?>
       </div>
     </div>
   </div>

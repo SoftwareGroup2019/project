@@ -13,14 +13,8 @@ echo str_replace('-','',$_GET['pagename'])
 <br>
 <div class="row">
 
-
-
-
-
-
-
 <?php
- foreach (getitems($_GET['pageid']) as $item)
+ foreach (getitems('Cat_ID',$_GET['pageid']) as $item)
 {
 
 echo '<div class="col-sm-12 col-md-4 col-lg-3">';

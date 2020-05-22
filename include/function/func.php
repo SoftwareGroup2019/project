@@ -65,13 +65,13 @@ function checkItem($select, $from , $value){
  }
 
 /*GET ITEMS FUNCTION*/
- function getitems($CatID) {
+ function getitems($where ,$value) {
 
     global $con;
 
-    $getitems= $con->prepare("SELECT * FROM items WHERE Cat_ID = ? ORDER BY item_ID DESC");
+    $getitems= $con->prepare("SELECT * FROM items WHERE $where = ? ORDER BY item_ID DESC");
 
-    $getitems->execute(array($CatID));
+    $getitems->execute(array($value));
 
     $items= $getitems->fetchALL();
 
