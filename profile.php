@@ -65,6 +65,7 @@ $info =$getUser->fetch();
       <div class="panel-heading">Latest Comments</div>
       <div class="panel-body">
         <?php
+        //ERA CHEK BKAENAWA bzanen ba tawawe esh daka
         $stmt = $con->prepare("SELECT  comment  FROM  comments   WHERE user_id=?");
            $stmt->execute(array($info['UserID']));
 

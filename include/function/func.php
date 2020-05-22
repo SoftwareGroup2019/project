@@ -12,9 +12,7 @@ function getCat() {
   $cats = $getCat->fetchALL();
 
   return $cats;
-
 }
-
 
 
 function getTitl(){

@@ -1,3 +1,4 @@
+
 <?php  include 'conect.php'; ?>
 <?php include 'include/template/header.php';?>
 <?php include 'include/template/navbar.php';?>
@@ -7,9 +8,9 @@
 
 <?php
 
-//Error reporting
-ini_set('display_errors','on');
-error_reporting(E_All);
+// //Error reporting
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 
 $sessionUser = '';
 if(isset($_SESSION['user'])){

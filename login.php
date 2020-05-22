@@ -36,8 +36,26 @@ $pageTitle = "Login";
          header('Location: index.php'); // lo chuna naw dashbord page
         exit();
        }
-
+}
+else{
+  $fromErrors=array();
+  if(isset($_POST['Username'])){
+    $filterUser = filter_var($_POST['Username'], FILTER_SANITIZE_STRING);
+    if(strlen($filterUser)<4){
+      $formErrors[]= 'Username Must Be Larger Than 4 Character ';
     }
+  }
+    if(isset($_POST['password']) && isset($_POST['password2'])){
+$pass1 shar1($_POST['password'] );
+$pass2 shar1($_POST['password2'] );
+if($pass1 !== $pass2){
+  $formErrors[] ='Sorry password Is Not Match';
+}
+
+      }
+    }
+
+
 
    ?>
 
@@ -65,7 +83,7 @@ required />
     name="password"
      autocmplete="new-password"
      placeholder="Type your password"
-required
+
       />
   </div>
     <div class="input-container">
@@ -73,7 +91,6 @@ required
   class="btn btn-primary btn-block"
   type="submit"
   value="Login"
-required
   />
 <!--End Login Form -->
 <!--start signup Form -->
@@ -87,7 +104,6 @@ required
   name="Username"
   autocmplete="off"
  placeholder="Type your user name"
-required
   />
    </div>
  <div class="input-container">
@@ -97,7 +113,7 @@ required
     name="password"
      autocmplete="new-password"
      placeholder="Type Complex password"
-     required />
+   />
   </div>
      <div class="input-container">
      <input
@@ -106,7 +122,7 @@ required
        name="password2"
         autocmplete="new-password"
         placeholder="Type a password again"
-        required />
+         />
   </div>
         <div class="input-container">
      <input
@@ -114,21 +130,25 @@ required
       type="emali"
        name="emali"
         placeholder="Type a valid email"
-        required/>
+        />
   </div>
         <div class="input-container">
   <input
   class="btn btn-success btn-block"
+  name ="signup"
   type="submit"
   value="signup"
-  required/>
-    </div>
+  />
   </form>
+  <div class="the-errors text-center">
+    <?php
+if( !empty($fromErrors)){
+foreach ($fromErrors as $error) {
+  echo $erroe . '<br>';
+}
+}   ?>
+    </div>
   <!--End signup Form -->
   </div>
-
-
-
-
 
 <?php include 'include/template/footer.php' ?>
