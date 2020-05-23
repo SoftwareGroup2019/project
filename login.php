@@ -5,16 +5,32 @@
   session_start();
 $pageTitle = "Login";
 
-  if(isset($_SESSION['User'])){
+  if(isset($_SESSION['Username'])){
     header('Location: index.php'); // lo chuna naw index page
   }
   ?>
 
   <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $user = $_POST['Username'];
       $pass = $_POST['password'];
       $hashedPass =sha1($pass);
+
+     ///////// Login Error Check/////////////////////////////////
+     ///////////////////////////////////////////////////////////
+      $formErrors=array();
+      if(strlen($user)<4){
+        $formErrors[]= 'Username Must Be Larger Than 4 Character ';
+      }
+      if(empty($user)){
+        $formErrors[]= 'Username Must Not Be Empty ';
+      }
+      if(empty($pass)){
+        $formErrors[]= 'Password Must Not Be Empty ';
+      }
+      //////////////////////////////////////////////////////
+    //////// Login Error Check//////////////////////////////
+
     //  echo $hashedPass; lo away bzanyn passwordakaman tawawa
     // sha1() bakar det lo tek dany passwordakaman
       $stmt = $con->prepare("SELECT
@@ -37,27 +53,28 @@ $pageTitle = "Login";
         exit();
        }
 }
+
 else{
-  $fromErrors=array();
-  if(isset($_POST['Username'])){
-    $filterUser = filter_var($_POST['Username'], FILTER_SANITIZE_STRING);
-    if(strlen($filterUser)<4){
-      $formErrors[]= 'Username Must Be Larger Than 4 Character ';
-    }
-  }
-    if(isset($_POST['password']) && isset($_POST['password2'])){
-$pass1 shar1($_POST['password'] );
-$pass2 shar1($_POST['password2'] );
-if($pass1 !== $pass2){
-  $formErrors[] ='Sorry password Is Not Match';
+
+////// Signup Error Check///////////////////////////////////////////
+// echo "test";
+// if(isset($_POST['password1']) && isset($_POST['password2'])){
+// $pass1 =  sha1($_POST['password'] );
+// $pass2 =  sha1($_POST['password2'] );
+// if($pass1 !== $pass2){
+//   $formErrors[] ='Sorry password Is Not Match';
+// }
+//
+// }
+/////////// Signup Error Check//////////////////////////////////////
+
+
 }
-
-      }
-    }
-
 
 
    ?>
+
+
 
 <div class="container Login-page">
   <h1 class="text-center">
@@ -74,7 +91,7 @@ if($pass1 !== $pass2){
   name="Username"
   autocmplete="off"
  placeholder="Type your user name"
-required />
+ />
   </div>
  <div class="input-container">
   <input
@@ -86,16 +103,20 @@ required />
 
       />
   </div>
+
     <div class="input-container">
-  <input
-  class="btn btn-primary btn-block"
-  type="submit"
-  value="Login"
-  />
+      <input
+      class="btn btn-primary btn-block"
+      type="submit"
+      value="Login"
+      />
+</div>
+
+</form>
 <!--End Login Form -->
+
+
 <!--start signup Form -->
-  </form>
-  </div>
   <form class="signup">
 <div class="input-container">
   <input
@@ -110,7 +131,7 @@ required />
   <input
    class="form-control"
    type="password"
-    name="password"
+    name="password1"
      autocmplete="new-password"
      placeholder="Type Complex password"
    />
@@ -132,23 +153,26 @@ required />
         placeholder="Type a valid email"
         />
   </div>
-        <div class="input-container">
-  <input
-  class="btn btn-success btn-block"
-  name ="signup"
-  type="submit"
-  value="signup"
-  />
+<div class="input-container">
+      <input
+      class="btn btn-success btn-block"
+      name ="signup"
+      type="submit"
+      value="signup"
+      />
+</div>
   </form>
+  <!-- end pf signup Form -->
+
   <div class="the-errors text-center">
     <?php
-if( !empty($fromErrors)){
-foreach ($fromErrors as $error) {
-  echo $erroe . '<br>';
-}
-}   ?>
+      if(!empty($formErrors)){
+      foreach ($formErrors as $error) {
+        echo $error . '<br>';
+      }
+      }   ?>
     </div>
-  <!--End signup Form -->
+
   </div>
 
 <?php include 'include/template/footer.php' ?>
