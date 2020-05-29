@@ -81,8 +81,8 @@ else{
 }
 if(isset($_POST['email'])){
   $filterdEmail =filter_var($_POST['email'],FLTER_SANIER_SANITZE);
-  if(filter_var($filterdEmail,FILTER_VALIDATE_EMATL)i=True){
-    $formErrors[]='This Email Is Not Valid'
+  if(filter_var($filterdEmail,FILTER_VALIDATE_EMATL)!=True){
+    $formErrors[]='This Email Is Not Valid';
   }
 }
 
