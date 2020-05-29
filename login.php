@@ -17,6 +17,7 @@ $pageTitle = "Login";
       $hashedPass =sha1($pass);
 
      ///////// Login Error Check/////////////////////////////////
+
      ///////////////////////////////////////////////////////////
       $formErrors=array();
       if(strlen($user)<4){
@@ -59,6 +60,12 @@ else{
 ////// Signup Error Check///////////////////////////////////////////
 // echo "test";
 // if(isset($_POST['password1']) && isset($_POST['password2'])){
+
+// if(empty($_POST$pass1 !== $pass2)){
+//   $formErrors[] ='Sorry password Cant Be Empty';
+
+
+
 // $pass1 =  sha1($_POST['password'] );
 // $pass2 =  sha1($_POST['password2'] );
 // if($pass1 !== $pass2){
@@ -67,10 +74,17 @@ else{
 //
 // }
 /////////// Signup Error Check//////////////////////////////////////
+// if(empty$pass1 !== $pass2){
+//   $formErrors[] ='Sorry password Cant Be EMpty';
 
 
 }
-
+if(isset($_POST['email'])){
+  $filterdEmail =filter_var($_POST['email'],FLTER_SANIER_SANITZE);
+  if(filter_var($filterdEmail,FILTER_VALIDATE_EMATL)i=True){
+    $formErrors[]='This Email Is Not Valid'
+  }
+}
 
    ?>
 
@@ -86,21 +100,25 @@ else{
   <form class="login" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 <div class="input-container">
   <input
+  pattern =".{4,}"
+  title="Username Must Be Between 4  Chars"
    class="form-control"
    type="text"
   name="Username"
   autocmplete="off"
  placeholder="Type your user name"
+ required
  />
   </div>
  <div class="input-container">
   <input
+  minlength="4"
    class="form-control"
    type="password"
     name="password"
      autocmplete="new-password"
      placeholder="Type your password"
-
+ required
       />
   </div>
 
