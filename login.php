@@ -29,6 +29,7 @@ $pageTitle = "Login";
       if(empty($pass)){
         $formErrors[]= 'Password Must Not Be Empty ';
       }
+      
       //////////////////////////////////////////////////////
     //////// Login Error Check//////////////////////////////
 
