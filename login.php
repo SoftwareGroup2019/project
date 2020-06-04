@@ -8,84 +8,172 @@ $pageTitle = "Login";
   if(isset($_SESSION['Username'])){
     header('Location: index.php'); // lo chuna naw index page
   }
+
+
+  $do = isset($_GET['do'])? $_GET['do']: 'manage';
   ?>
 
   <?php
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-      $user = $_POST['Username'];
-      $pass = $_POST['password'];
-      $hashedPass =sha1($pass);
 
-     ///////// Login Error Check/////////////////////////////////
 
-     ///////////////////////////////////////////////////////////
-      $formErrors=array();
-      if(strlen($user)<4){
-        $formErrors[]= 'Username Must Be Larger Than 4 Character ';
-      }
-      if(empty($user)){
-        $formErrors[]= 'Username Must Not Be Empty ';
-      }
-      if(empty($pass)){
-        $formErrors[]= 'Password Must Not Be Empty ';
-      }
-      
-      //////////////////////////////////////////////////////
-    //////// Login Error Check//////////////////////////////
+  if($do == 'log') {
 
-    //  echo $hashedPass; lo away bzanyn passwordakaman tawawa
-    // sha1() bakar det lo tek dany passwordakaman
-      $stmt = $con->prepare("SELECT
-   UserName, Password
-        FROM
-        user
-         WHERE
-          Username = ?
-          AND
-           password = ? ");
-      $stmt->execute(array($user,$hashedPass));
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-      $count =$stmt->rowCount();
-      //echo $count; agar count =1 mabasty awaya aw usera daxl kraya
-      // la database
-       if($count > 0){
-         $_SESSION['user'] = $user;
+  echo "test login";
 
-         header('Location: index.php'); // lo chuna naw dashbord page
-        exit();
-       }
+       //
+       //    $user = $_POST['Username'];
+       //    $pass = $_POST['password'];
+       //    $hashedPass =sha1($pass);
+       //
+       //
+       //   ///////// Login Error Check /////////////////////////////////
+       //
+       //   ///////////////////////////////////////////////////////////
+       //   $formErrors=array();
+       //    $username = $_POST['Username'];
+       //    $password = $_POST['password'];
+       //    $email = $_POST['email'];
+       //     if(strlen($user)<4){
+       //       $formErrors[]= 'Username Must Be Larger Than 4 Character ';
+       //     }
+       //     if(empty($user)){
+       //       $formErrors[]= 'Username Must Not Be Empty ';
+       //     }
+       //     if(empty($pass)){
+       //       $formErrors[]= 'Password Must Not Be Empty ';
+       //     }////////////////////////////////////////////////////
+       //  //////// Login Error Check//////////////////////////////
+       //
+       //  //  echo $hashedPass; lo away bzanyn passwordakaman tawawa
+       //  // sha1() bakar det lo tek dany passwordakaman
+       //    $stmt = $con->prepare("SELECT
+       // UserName, Password
+       //      FROM
+       //      user
+       //       WHERE
+       //        Username = ?
+       //        AND
+       //         password = ? ");
+       //    $stmt->execute(array($user,$hashedPass));
+       //
+       //    $count =$stmt->rowCount();
+       //    //echo $count; agar count =1 mabasty awaya aw usera daxl kraya
+       //    // la database
+       //     if($count > 0){
+       //       $_SESSION['user'] = $user;
+       //
+       //       header('Location: index.php'); // lo chuna naw dashbord page
+       //      exit();
+       //     }
+    }
+
+  }
+
+
+else if ($do == 'signup') {
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+
+    {
+
+  $user = $_POST['Username'];
+  $pass = $_POST['password1'];
+  $hashedPass =sha1($pass);
+  $email = $_POST['email'];
+
+
+  $stmt=$con->prepare("INSERT INTO
+               user(Username,Password,Email)
+               VALUES(:zuser,:zpass,:zemail)");
+  //  echo $id . $user . $email . $name;
+  // update zanyryakany usery la naw database dakay
+
+  $stmt->execute(array(
+
+
+    'zuser'=>$user,
+    'zpass'=>sha1($pass),
+    'zemail'=>$email
+
+
+  // zanyary user nuwe daxl dakay baw array dachta naw database
+
+  ));
+  echo "User Added successfully";
+
 }
 
-else{
+}
 
-////// Signup Error Check///////////////////////////////////////////
-// echo "test";
-// if(isset($_POST['password1']) && isset($_POST['password2'])){
-
-// if(empty($_POST$pass1 !== $pass2)){
-//   $formErrors[] ='Sorry password Cant Be Empty';
-
-
-
-// $pass1 =  sha1($_POST['password'] );
-// $pass2 =  sha1($_POST['password2'] );
-// if($pass1 !== $pass2){
-//   $formErrors[] ='Sorry password Is Not Match';
-// }
+//
+// else{
+//
+// ////// Signup Error Check///////////////////////////////////////////
+// // echo "test";
+// // if(isset($_POST['password1']) && isset($_POST['password2'])){
+//
+// // if(empty($_POST$pass1 !== $pass2)){
+// //   $formErrors[] ='Sorry password Cant Be Empty';
+//
+//
+//
+// // $pass1 =  sha1($_POST['password'] );
+// // $pass2 =  sha1($_POST['password2'] );
+// // if($pass1 !== $pass2){
+// //   $formErrors[] ='Sorry password Is Not Match';
+// // }
+// //
+// // }
+// /////////// Signup Error Check//////////////////////////////////////
+// // if(empty$pass1 !== $pass2){
+// //   $formErrors[] ='Sorry password Cant Be EMpty';
+//
 //
 // }
-/////////// Signup Error Check//////////////////////////////////////
-// if(empty$pass1 !== $pass2){
-//   $formErrors[] ='Sorry password Cant Be EMpty';
 
-
-}
-if(isset($_POST['email'])){
-  $filterdEmail =filter_var($_POST['email'],FLTER_SANIER_SANITZE);
-  if(filter_var($filterdEmail,FILTER_VALIDATE_EMATL)!=True){
-    $formErrors[]='This Email Is Not Valid';
-  }
-}
+// if(isset($email)){
+//   $filterdEmail =filter_var($_POST['email'],FLTER_SANIER_SANITZE);
+//   if(filter_var($filterdEmail,FILTER_VALIDATE_EMATL)!=True){
+//     $formErrors[]='This Email Is Not Valid';
+//   }
+// }
+//
+// if (empty($formErrors)){
+//
+//   $check = checkItem("Username","user", $user);
+//   if ($check == 1){
+//   echo $user;
+//   }
+//
+//   else {
+//
+//
+// $stmt=$con->prepare("INSERT INTO
+//              user(Username ,Password,RegStatus,Date)
+//              VALUES(:zuser,:zpass,0,now())");
+// //  echo $id . $user . $email . $name;
+// // update zanyryakany usery la naw database dakay
+// $stmt->execute(array(
+//
+//
+//   'zuser'=>$user,
+//   'zpass'=>sha1($pass),
+//   // 'zmail'=>$email
+//
+//
+// // zanyary user nuwe daxl dakay baw array dachta naw database
+//
+// ));
+// echo "User Added successfully";
+//
+//
+//  }// end of empty error
+//
+//
+//
+// } // end of post insert requst
 
    ?>
 
@@ -98,7 +186,7 @@ if(isset($_POST['email'])){
   </h1>
   <!--start Login Form -->
 
-  <form class="login" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+  <form class="login" action="login.php?do=log" method="post">
 <div class="input-container">
   <input
   pattern =".{4,}"
@@ -136,7 +224,7 @@ if(isset($_POST['email'])){
 
 
 <!--start signup Form -->
-  <form class="signup">
+  <form class="signup" action="login.php?do=signup" method="post">
 <div class="input-container">
   <input
    class="form-control"
@@ -167,8 +255,8 @@ if(isset($_POST['email'])){
         <div class="input-container">
      <input
       class="form-control"
-      type="emali"
-       name="emali"
+      type="email"
+       name="email"
         placeholder="Type a valid email"
         />
   </div>
