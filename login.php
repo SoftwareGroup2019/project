@@ -16,57 +16,57 @@ $pageTitle = "Login";
   <?php
 
 
-  if($do == 'log') {
+  if($do == 'manage') {
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-  echo "test login";
 
-       //
-       //    $user = $_POST['Username'];
-       //    $pass = $_POST['password'];
-       //    $hashedPass =sha1($pass);
-       //
-       //
-       //   ///////// Login Error Check /////////////////////////////////
-       //
-       //   ///////////////////////////////////////////////////////////
-       //   $formErrors=array();
-       //    $username = $_POST['Username'];
-       //    $password = $_POST['password'];
-       //    $email = $_POST['email'];
-       //     if(strlen($user)<4){
-       //       $formErrors[]= 'Username Must Be Larger Than 4 Character ';
-       //     }
-       //     if(empty($user)){
-       //       $formErrors[]= 'Username Must Not Be Empty ';
-       //     }
-       //     if(empty($pass)){
-       //       $formErrors[]= 'Password Must Not Be Empty ';
-       //     }////////////////////////////////////////////////////
-       //  //////// Login Error Check//////////////////////////////
-       //
-       //  //  echo $hashedPass; lo away bzanyn passwordakaman tawawa
-       //  // sha1() bakar det lo tek dany passwordakaman
-       //    $stmt = $con->prepare("SELECT
-       // UserName, Password
-       //      FROM
-       //      user
-       //       WHERE
-       //        Username = ?
-       //        AND
-       //         password = ? ");
-       //    $stmt->execute(array($user,$hashedPass));
-       //
-       //    $count =$stmt->rowCount();
-       //    //echo $count; agar count =1 mabasty awaya aw usera daxl kraya
-       //    // la database
-       //     if($count > 0){
-       //       $_SESSION['user'] = $user;
-       //
-       //       header('Location: index.php'); // lo chuna naw dashbord page
-       //      exit();
-       //     }
+
+
+          $user = $_POST['Username'];
+          $pass = $_POST['password'];
+          $hashedPass =sha1($pass);
+
+
+         ///////// Login Error Check /////////////////////////////////
+
+         ///////////////////////////////////////////////////////////
+         $formErrors=array();
+          $username = $_POST['Username'];
+          $password = $_POST['password'];
+
+           if(strlen($user)<4){
+             $formErrors[]= 'Username Must Be Larger Than 4 Character ';
+           }
+           if(empty($user)){
+             $formErrors[]= 'Username Must Not Be Empty ';
+           }
+           if(empty($pass)){
+             $formErrors[]= 'Password Must Not Be Empty ';
+           }////////////////////////////////////////////////////
+        //////// Login Error Check//////////////////////////////
+
+        //  echo $hashedPass; lo away bzanyn passwordakaman tawawa
+        // sha1() bakar det lo tek dany passwordakaman
+          $stmt = $con->prepare("SELECT
+       UserName, Password
+            FROM
+            user
+             WHERE
+              Username = ?
+              AND
+               password = ? ");
+          $stmt->execute(array($user,$hashedPass));
+
+          $count =$stmt->rowCount();
+          //echo $count; agar count =1 mabasty awaya aw usera daxl kraya
+          // la database
+           if($count > 0){
+             $_SESSION['user'] = $user;
+
+             header('Location: index.php'); // lo chuna naw dashbord page
+            exit();
+           }
     }
 
   }
@@ -77,6 +77,8 @@ else if ($do == 'signup') {
     if($_SERVER['REQUEST_METHOD'] == 'POST')
 
     {
+
+
 
   $user = $_POST['Username'];
   $pass = $_POST['password1'];
@@ -101,7 +103,8 @@ else if ($do == 'signup') {
   // zanyary user nuwe daxl dakay baw array dachta naw database
 
   ));
-  echo "User Added successfully";
+  $mssgbox = "User Added successfully";
+
 
 }
 
@@ -186,7 +189,7 @@ else if ($do == 'signup') {
   </h1>
   <!--start Login Form -->
 
-  <form class="login" action="login.php?do=log" method="post">
+  <form class="login" action="login.php" method="post">
 <div class="input-container">
   <input
   pattern =".{4,}"
@@ -270,6 +273,20 @@ else if ($do == 'signup') {
 </div>
   </form>
   <!-- end pf signup Form -->
+<?php
+
+if (isset($mssgbox)) {
+
+?>
+  <div class="alert success">
+    <span class="closebtn">&times;</span>
+    <strong>Success!</strong><?php echo $mssgbox; ?>
+  </div>
+
+<?php
+}
+  ?>
+
 
   <div class="the-errors text-center">
     <?php
@@ -277,9 +294,12 @@ else if ($do == 'signup') {
       foreach ($formErrors as $error) {
         echo $error . '<br>';
       }
-      }   ?>
+      }
+?>
+
     </div>
 
   </div>
+
 
 <?php include 'include/template/footer.php' ?>

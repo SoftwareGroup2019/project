@@ -20,13 +20,33 @@ $info =$getUser->fetch();
       My information
     </div>
     <div class="card-body">
+     <ul class="list-unstyled">
 
-      name:<?php echo $info['Username']?><br/>
-        Email:<?php echo $info['Email']?><br/>
-    FullName:<?php echo $info['FullName']?><br/>
-        Register Date:<?php echo $info['Date']?><br/>
-          fevourite category:
+    <li
+     <i class="fa fa-unock-alt fa-fw"></i>
+      <span>login name</span>:<?php echo $info['Username']?>
+    </li>
 
+    <li>
+        <i class="fa fa-envelope-o fa-fw"></i>
+      <span> Email</span>:<?php echo $info['Email']?>
+    </li>
+
+
+  <li>
+      <i class="fa fa-user fa-fw"></i>
+    <span>FullName</span>:<?php echo $info['FullName']?>
+  </li>
+
+      <li>
+          <i class="fa fa-colendar fa-fw"></i>
+        <span>Register Date</span>:<?php echo $info['Date']?>
+      </li>
+        <li>
+            <i class="fa fa-tegs fa-fw"></i>
+          <span> fevourite category</span>:
+        </li>
+        </ul>
     </div>
   </div>
 </div>
@@ -38,9 +58,11 @@ $info =$getUser->fetch();
       My ADS
     </div>
     <div class="card-body">
-      <div class="row">
+
 
       <?php
+      if (!empty(getitems('Member_ID',$info['UserID']) )){
+        echo'<div class="row"';
        foreach (getitems('Member_ID',$info['UserID']) as $item)
       {
 
@@ -57,9 +79,13 @@ $info =$getUser->fetch();
       echo '</div>';
 
       }
-      ?>
-    </div>
+      echo'</div>';
+    } else{
+      echo 'Sorry There\'  No Ads To Show';
 
+    }
+      ?>
+  
     </div>
   </div>
 </div>
