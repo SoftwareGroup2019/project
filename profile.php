@@ -22,8 +22,8 @@ $info =$getUser->fetch();
     <div class="card-body">
      <ul class="list-unstyled">
 
-    <li
-     <i class="fa fa-unock-alt fa-fw"></i>
+    <li>
+     <i class="fa fa-unlock-alt fa-fw">  </i>
       <span>login name</span>:<?php echo $info['Username']?>
     </li>
 
@@ -39,11 +39,11 @@ $info =$getUser->fetch();
   </li>
 
       <li>
-          <i class="fa fa-colendar fa-fw"></i>
+          <i class="fa fa-calendar fa-fw"></i>
         <span>Register Date</span>:<?php echo $info['Date']?>
       </li>
         <li>
-            <i class="fa fa-tegs fa-fw"></i>
+            <i class="fa fa-tags fa-fw"></i>
           <span> fevourite category</span>:
         </li>
         </ul>
@@ -85,7 +85,7 @@ $info =$getUser->fetch();
 
     }
       ?>
-  
+
     </div>
   </div>
 </div>
