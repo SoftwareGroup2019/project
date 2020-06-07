@@ -81,7 +81,7 @@ $info =$getUser->fetch();
       }
       echo'</div>';
     } else{
-      echo 'Sorry There\'  No Ads To Show';
+      echo 'Sorry There\'  No Ads To Show, crete <a href="newad.php">New Ad</a>';
 
     }
       ?>
