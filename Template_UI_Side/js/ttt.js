@@ -9,8 +9,22 @@ $(document).ready(function(){
     $('.slider').slider();
   });
   });
+// start new Ad
+$('.live-name').keyup(function (){
 
+  $('live-preview .caption h3').text($(this).val());
+});
+$('.live-desc').keyup(function (){
+
+  $('live-preview .caption h3').text($(this).val());
+});
+$('.live-price').keyup(function (){
+
+  $('live-preview .price-tag').text('$' + $(this).val());
+});
   // our work section
+
+
   $("#btn-all").click(function() {
     $(".item .item").slideDown();
   });
