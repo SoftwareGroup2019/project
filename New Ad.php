@@ -9,105 +9,103 @@ $pageTitle='Crete New Ad';?>
 if(isset($_SESSION['user'])){
 ?>
 <h1 class="text-center">Crete New Ad</h1>
-<div class ="create-ad block">
+<div class="create-ad block">
   <div class="container">
-    <div class="panel panel-primary">
-      <div class="panel-headding">Create New Ad</div>
-      <div class="panel-body">
+    <div class="card">
+      <div class="card-header text-white bg-primary">Create New Ad</div>
+      <div class="card-body">
         <div class="row">
           <div class="col-md-8">
             <!-- start of form -->
-            <form class="col s12" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
 
-              <!-- start of row -->
-              <div class="row">
 
                  <!-- name -->
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">local_grocery_store</i>
-                  <input id="icon_prefix" type="text" name="name" class="live-name" >
-                  <label for="icon_prefix">Item Name</label>
-                </div>
+                 <div class="form-group">
+                   <label for="exampleFormControlInput1">Item Name</label>
+                   <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name of the item" name="name">
+                 </div>
                 <!-- ////////////////// -->
 
                  <!-- Description -->
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">receipt</i>
-                  <input id="icon_prefix" type="text" name="descriptior" class="live-desc" >
-                  <label for="icon_prefix">Description</label>
-                </div>
+                 <div class="form-group">
+                   <label for="exampleFormControlInput2">Description</label>
+                   <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Write short Description" name="descriptior">
+                 </div>
                 <!-- ////////////////// -->
 
 
                <!-- Price -->
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">account_balance</i>
-                  <input id="icon_prefix" type="text" name="price" class="live-price" >
-                  <label for="icon_prefix">Price</label>
-                </div>
+               <div class="form-group">
+                 <label for="exampleFormControlInput3">Price</label>
+                 <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Write short Description" name="price">
+               </div>
                 <!-- ////////////////// -->
 
                 <!-- Country -->
-                <div class="input-field col s12">
-                  <i class="material-icons prefix">add_location</i>
-               <input id="password" type="text" name="country" class="validate">
-               <label for="password">Country</label>
-               </div>
+                <div class="form-group">
+                  <label for="exampleFormControlInput4">Country</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="Made in ....." name="country">
+                </div>
              <!-- ////////////////// -->
 
              <!-- start of status -->
-             <div class="input-field col s12">
-                <i class="material-icons prefix">info</i>
-               <select name="esh">
-                 <option value="0">...</option>
-                 <option value="1">New</option>
-                 <option value="2">Like New</option>
-                 <option value="4">Used</option>
-                 <option value="5">Very Old</option>
-               </select>
-               <label>Status</label>
-             </div>
+
+             <div class="form-group">
+              <label for="exampleFormControlSelect5">Status</label>
+              <select class="form-control" id="exampleFormControlSelect5" name="esh">
+                <option value="0">...</option>
+                <option value="1">New</option>
+                <option value="2">Like New</option>
+                <option value="4">Used</option>
+                <option value="5">Very Old</option>
+              </select>
+            </div>
              <!-- end of status -->
 
-             <div class="input-field col s12">
-                <i class="material-icons prefix">shopping_basket</i>
-               <select name="categories">
-                 <option value="0" disabled selected>...</option>
-               <?php
-               $stmt2 =$con ->prepare("select * FROM  categories");
-               $stmt2 ->execute();
-               $cats =$stmt2 ->fetchAll();
-               foreach ($cats as  $cat) {
-                 echo "<option value='". $cat['ID'] ."'>". $cat['Name'] ."</option>";
+             <div class="form-group">
+              <label for="exampleFormControlSelect6">Category</label>
+              <select class="form-control" id="exampleFormControlSelect6" name="categories">
+                <option value="0" disabled selected>...</option>
+              <?php
+              $stmt2 =$con ->prepare("select * FROM  categories");
+              $stmt2 ->execute();
+              $cats =$stmt2 ->fetchAll();
+              foreach ($cats as  $cat) {
+                echo "<option value='". $cat['ID'] ."'>". $cat['Name'] ."</option>";
 
-               }
-                ?>
-               </select>
-               <label>Category</label>
-             </div>
+              }
+               ?>
+              </select>
+            </div>
                    <!-- Buttton -->
-             <button class="btn waves-effect waves-light" type="submit" name="status">Add
-               <i class="material-icons right"></i>
-             </button>
+           <button type="submit" class="btn btn-primary">Submit</button>
                <!-- ////////////////// -->
-
-           </div>
-           <!-- end of row -->
 
            </form>
            <!-- end of form  -->
           </div>
           <div class="col-md-4">
-<div class="thumbnail item-box live-preview">
-  <span class="price-tag">$0</span>
-  <img class="img-responsive" src="haha.png" alt="" </>
-  <div class="caption">
-    <h3>Title</h3>
-    <p>Description</p>
-  </div>
 
-</div>
+            <div class="card">
+            <img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">
+            <h1></h1>
+            <h5 class="text-center">Title</h5>
+            <p class="text-center">0$</p>
+            <!-- <a href="#" class="btn btn-primary disabled" type="button">
+              Read More...
+             </a> -->
+            </div>
+              <!-- <div class="thumbnail item-box live-preview">
+                <span class="price-tag">$0</span>
+                <img class="img-responsive" src="haha.png" alt="" </>
+                <div class="caption">
+                  <h3>Title</h3>
+                  <p>Description</p>
+                </div> -->
+
+              </div>
           </div>
           </div>
           </div>
