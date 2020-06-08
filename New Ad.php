@@ -1,18 +1,53 @@
 <?php
 ob_start();
  session_start();
-$pageTitle='Crete New Ad';?>
+$pageTitle='Create New Item';?>
 <?php include 'conect.php'; ?>
 <?php include 'include/template/header.php';?>
 <?php include 'include/template/navbar.php';?>
 <?php
 if(isset($_SESSION['user'])){
+  if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+  $formErrors = array();
+$name          = filter_var($_POST['name']/*,FILER_SANITZE_STING*/);
+$desc          = filter_var($_POST['descriptior']/*,FILER_SANITZE_STING*/);
+$price         = filter_var($_POST['price']/*,FILER_SANITZE_NUMBER_INT*/);
+$country       = filter_var($_POST['country']/*,FILER_SANITZE_NUMBER_INT*/);
+$status        = filter_var($_POST['esh']/*,FILER_SANITZE_STING*/);
+$category      = filter_var($_POST['categories']/*,FILER_SANITZE_NUMBER_INT*/);
+
+if (strlen($name) < 4){
+  $formErrors[] = 'Item Title Must Be At Least 4 Characters';
+
+}
+if (strlen($desc) < 10){
+  $formErrors[] = 'Item Description Must Be At Least 10 Characters';
+
+}
+if (strlen($country) < 2){
+  $formErrors[] = 'Item country Must Be At Least 2 Characters';
+
+}
+if (empty($price) ){
+  $formErrors[] = 'Item Price Must Be Not Empty';
+
+}
+if (empty($status) ){
+  $formErrors[] = 'Item Status Must Be Not Empty';
+
+}
+if (empty($category) ){
+  $formErrors[] = 'Item categories Must Be Not Empty';
+
+}
+  }
 ?>
-<h1 class="text-center">Crete New Ad</h1>
+<h1 class="text-center">Create New Item</h1>
 <div class="create-ad block">
   <div class="container">
     <div class="card">
-      <div class="card-header text-white bg-primary">Create New Ad</div>
+      <div class="card-header text-white bg-primary">Crete New Item</div>
       <div class="card-body">
         <div class="row">
           <div class="col-md-8">
@@ -111,6 +146,18 @@ if(isset($_SESSION['user'])){
               </div>
           </div>
           </div>
+          <!-- Start Looping Through Errors -->
+          <?php
+if(! empty($formErrors)){
+  foreach ($formErrors as $error) {
+    echo '<div class="alert alert-danger ">'. $error .'</div>';
+
+  }
+}
+           ?>
+
+          <!-- End Looping Through Errors -->
+
           </div>
           </div>
           </div>
