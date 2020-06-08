@@ -49,7 +49,7 @@ $pageTitle = "Login";
         //  echo $hashedPass; lo away bzanyn passwordakaman tawawa
         // sha1() bakar det lo tek dany passwordakaman
           $stmt = $con->prepare("SELECT
-       UserName, Password
+       UserID, UserName, Password
             FROM
             user
              WHERE
@@ -57,12 +57,14 @@ $pageTitle = "Login";
               AND
                password = ? ");
           $stmt->execute(array($user,$hashedPass));
+          $get = $stmt->fetch();
 
           $count =$stmt->rowCount();
           //echo $count; agar count =1 mabasty awaya aw usera daxl kraya
           // la database
            if($count > 0){
              $_SESSION['user'] = $user;
+             $_SESSION['uid'] = $get['UserID'];
 
              header('Location: index.php'); // lo chuna naw dashbord page
             exit();
