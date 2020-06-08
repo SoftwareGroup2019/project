@@ -39,7 +39,7 @@ if(isset($_SESSION['user'])){
                <!-- Price -->
                <div class="form-group">
                  <label for="exampleFormControlInput3">Price</label>
-                 <input type="text" class="form-control live-price" id="exampleFormControlInput3" placeholder="Write short Description" name="price">
+                 <input type="text" class="form-control live-price" id="exampleFormControlInput3" placeholder="Put Price" name="price">
                </div>
                 <!-- ////////////////// -->
 
@@ -92,10 +92,9 @@ if(isset($_SESSION['user'])){
             <img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">
             <h1></h1>
             <div class="caption">
-
-
+            <h4 class="text-center">0$</h4>
             <h5 class="text-center">Title</h5>
-            <p class="text-center">0$</p>
+            <h6 class="text-center">Description</h6>
             </div>
             <!-- <a href="#" class="btn btn-primary disabled" type="button">
               Read More...

@@ -15,6 +15,27 @@ $(document).ready(function(){
 
   });
 
+  // start new Ad
+  $('.live-name').keyup(function (){
+
+    $('.live-preview .caption h5').text($(this).val());
+  });
+  $('.live-price').keyup(function (){
+
+    $('.live-preview .caption h4').text('$'+$(this).val());
+  });
+
+  $('.live-desc').keyup(function (){
+
+    $('.live-preview .caption h6').text($(this).val());
+  });
+
+  // $('.live-price').keyup(function (){
+  //
+  //
+  //   $('live-preview .price-tag').text('$' + $(this).val());
+  // });
+    // our work section
 
   var close = document.getElementsByClassName("closebtn");
   var i;
