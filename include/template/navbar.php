@@ -5,6 +5,7 @@
         echo ' Welcome ' .$_SESSION['user'] . ' ';
         echo '  <a href="Profile.php"> My Profile</a>';
         echo ' - <a href="logout.php">Logout</a>';
+        echo ' - <a href="New Ad.php">New Ad</a>';
        $userStatus =   checkUserStatus($_SESSION['user']);
          if( $userStatus == 1){
         //User is Not Activ

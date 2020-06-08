@@ -91,8 +91,12 @@ if(isset($_SESSION['user'])){
             <div class="card live-preview">
             <img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">
             <h1></h1>
+            <div class="caption">
+
+
             <h5 class="text-center">Title</h5>
             <p class="text-center">0$</p>
+            </div>
             <!-- <a href="#" class="btn btn-primary disabled" type="button">
               Read More...
              </a> -->
