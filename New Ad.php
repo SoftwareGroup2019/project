@@ -24,14 +24,14 @@ if(isset($_SESSION['user'])){
                  <!-- name -->
                  <div class="form-group">
                    <label for="exampleFormControlInput1">Item Name</label>
-                   <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name of the item" name="name">
+                   <input type="text" class="form-control live-name" id="exampleFormControlInput1" placeholder="Name of the item" name="name">
                  </div>
                 <!-- ////////////////// -->
 
                  <!-- Description -->
                  <div class="form-group">
                    <label for="exampleFormControlInput2">Description</label>
-                   <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Write short Description" name="descriptior">
+                   <input type="text" class="form-control live-desc" id="exampleFormControlInput2" placeholder="Write short Description" name="descriptior">
                  </div>
                 <!-- ////////////////// -->
 
@@ -39,7 +39,7 @@ if(isset($_SESSION['user'])){
                <!-- Price -->
                <div class="form-group">
                  <label for="exampleFormControlInput3">Price</label>
-                 <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Write short Description" name="price">
+                 <input type="text" class="form-control live-price" id="exampleFormControlInput3" placeholder="Write short Description" name="price">
                </div>
                 <!-- ////////////////// -->
 
@@ -88,7 +88,7 @@ if(isset($_SESSION['user'])){
           </div>
           <div class="col-md-4">
 
-            <div class="card">
+            <div class="card live-preview">
             <img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">
             <h1></h1>
             <h5 class="text-center">Title</h5>
