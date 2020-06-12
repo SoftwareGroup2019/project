@@ -40,18 +40,46 @@ if($count >0){
     <div class="col-md-3">
       <img class="img-responsive img-thumbnail center-block" src= "layout/img/ptrol.jpg"  alt""/>
     </div>
-    <div class ="col-md-9">
+    <div class ="col-md-9 ">
       <h2>Name: <?php echo $item ['Name']?></h2>
       <p>Description: <?php echo $item ['Description']?></p>
-      <span>Added at: <?php echo $item ['Add_Date']?></span>
-      <div>Price: $<?php echo $item ['Price']?></div>
-      <div>Made in: <?php echo $item ['Country_Made']?></div>
-      <div>Category: <?php echo $item ['category_name']?></div>
-      <div>Added By: <?php echo $item ['UserName']?></div> 
+      <ul class= list-unstyled>
 
+      <li>
+        <i class="fa fa-calendar fa-fw"></i>
+        <span>Added Date</span>: <?php echo $item ['Add_Date']?>
+      </li>
+      <li>
+          <i class="fa fa-money fa-fw"></i>
+        <span>Price</span>: $<?php echo $item ['Price']?>
+      </li>
+      <li>
+          <i class="fa fa-building fa-fw"></i>
+      </li>
+      <li>
+          <i class="fa fa-tags fa-fw"></i>
+        <span>Category</span>:<a href="categories.php?pageid=<?php echo $item['Cat_ID']?>" </a><?php echo $item ['category_name']?>
+
+
+      </li>
+      <li>
+        <i class="fa fa-user fa-fw"></i>
+      
+        <span>Added By</span>:<a href= "#"</a><?php echo $item ['UserName']?>
+      </li>
+</ul>
       </div>
-  </div>
-  </div>
+      <hr>
+      <div class="row">
+
+          <div class="col-md-3">
+                UserImage
+            </div>
+            </div>
+            <div class="col-md-9">
+                  Usercomment
+       </div>
+    </div>
 <?php
 
 } else {
