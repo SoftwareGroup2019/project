@@ -1,21 +1,63 @@
 <?php session_start();
-$pageTitle='Show Items';?>
+$pageTitle='Show Items';
+?>
 <?php include 'conect.php'; ?>
 <?php include 'include/template/header.php';?>
 <?php include 'include/template/navbar.php';?>
 <?php
+
 $item_id = $_GET['itemid'];
-$stmt = $con->prepare("SELECT * FROM items WHERE item_ID = ? LIMIT 1");
+
+// $item_id = 5;
+
+$stmt = $con->prepare("SELECT items.*,
+  categories.Name AS category_name,
+  user.UserName
+   FROM
+    items
+   INNER JOIN
+   categories
+  ON
+categories.ID =items.Cat_ID
+ INNER JOIN
+ user
+ ON
+ user.UserID = items.Member_ID
+    WHERE
+    item_ID = ? LIMIT 1");
 
 //execute query
     $stmt->execute(array($item_id));
 
+$count =$stmt->rowCount();
+if($count >0){
 //fetch the data
-    $row=$stmt->fetch();
+    $item=$stmt->fetch();
 ?>
-<h1 class="text-center"><?php echo $item['Name'] ?></h1>
+<h1 class="text-center"><?php echo $item['Name']; ?></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <img class="img-responsive img-thumbnail center-block" src= "layout/img/ptrol.jpg"  alt""/>
+    </div>
+    <div class ="col-md-9">
+      <h2>Name: <?php echo $item ['Name']?></h2>
+      <p>Description: <?php echo $item ['Description']?></p>
+      <span>Added at: <?php echo $item ['Add_Date']?></span>
+      <div>Price: $<?php echo $item ['Price']?></div>
+      <div>Made in: <?php echo $item ['Country_Made']?></div>
+      <div>Category: <?php echo $item ['category_name']?></div>
+      <div>Added By: <?php echo $item ['UserName']?></div> 
+
+      </div>
+  </div>
+  </div>
 <?php
 
+} else {
 
+  echo'There\'s no such ID';
+}
 
- include 'include/template/footer.php' ?>
+ include 'include/template/footer.php'
+  ?>

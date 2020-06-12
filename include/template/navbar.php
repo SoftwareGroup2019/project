@@ -6,6 +6,7 @@
         echo '  <a href="Profile.php"> My Profile</a>';
         echo ' - <a href="logout.php">Logout</a>';
         echo ' - <a href="New Ad.php">New Ad</a>';
+        echo ' - <a href="items.php?itemid=2">Patrol</a>';
        $userStatus =   checkUserStatus($_SESSION['user']);
          if( $userStatus == 1){
         //User is Not Activ

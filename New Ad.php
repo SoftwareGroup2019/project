@@ -48,7 +48,7 @@ if (empty($category) ){
     $country     = $_POST['country'];
     $status         = $_POST['esh'];
     $cat         = $_POST['categories'];
-    $member      = $_POST['member'];
+    
 
 
 
