@@ -5,10 +5,7 @@
 
 <div class="container">
 <h1 class="text-center">
-<?php
-echo str_replace('-','',$_GET['pagename'])
-
-?>
+Show Category
 </h1>
 <br>
 <div class="row">

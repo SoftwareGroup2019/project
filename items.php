@@ -55,21 +55,26 @@ if($count >0){
       </li>
       <li>
           <i class="fa fa-building fa-fw"></i>
+          <span>Made in </span>:<?php echo $item ['Country_Made']?>
       </li>
       <li>
           <i class="fa fa-tags fa-fw"></i>
-        <span>Category</span>:<a href="categories.php?pageid=<?php echo $item['Cat_ID']?>" </a><?php echo $item ['category_name']?>
+        <span>Category</span>:<a href="categories.php?pageid=<?php echo $item['Cat_ID']?>&pagename=<?php echo $item['category_name']; ?>">
+
+          <?php echo $item['category_name']?>
+
+        </a>
 
 
       </li>
       <li>
         <i class="fa fa-user fa-fw"></i>
-      
-        <span>Added By</span>:<a href= "#"</a><?php echo $item ['UserName']?>
+
+        <span>Added By</span>:  <a href= "#"><?php echo $item ['UserName']?></a>
       </li>
 </ul>
       </div>
-      <hr>
+      <hr class= "custom-hr">
       <div class="row">
 
           <div class="col-md-3">
