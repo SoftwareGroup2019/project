@@ -89,8 +89,9 @@ if($count >0){
 if($_SERVER['REQUEST_METHOD']== 'POST'){
 
 $comment   =filter_var($_POST['comment'],FILTER_SANITIZE_STRING);
-$itemid    =$item['Item_ID'];
-$userid    =$item['Memben_ID'];
+$userid    =$item['Member_ID'];
+$itemid    =$item['item_ID'];
+
 
 
 if (! empty($comment)){
@@ -112,7 +113,7 @@ if (! empty($comment)){
              echo'<div class="alert alert-success">CommentAdded</div>';
           }
 
-         
+
 }
 }
 
