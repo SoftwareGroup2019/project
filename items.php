@@ -50,7 +50,7 @@ if($count >0){
         <span>Added Date</span>: <?php echo $item ['Add_Date']?>
       </li>
       <li>
-          <i class="fa fa-money fa-fw"></i> 
+          <i class="fa fa-money fa-fw"></i>
         <span>Price</span>: $<?php echo $item ['Price']?>
       </li>
       <li>
@@ -88,7 +88,32 @@ if($count >0){
 <?php
 if($_SERVER['REQUEST_METHOD']== 'POST'){
 
-  echo $_POST['comment'];
+$comment   =filter_var($_POST['comment'],FILTER_SANITIZE_STRING);
+$itemid    =$item['Item_ID'];
+$userid    =$item['Memben_ID'];
+
+
+if (! empty($comment)){
+
+
+       $stmt= $con->prepare("INSERT INTO
+          comments(comment,status, comment_date,item_id , user_id)
+          VALUES(:zcomment,0,NOW(),:zitemid,:zuserid)");
+
+          $stmt->execute(array(
+
+             'zcomment'=> $comment,
+              'zitemid'=> $itemid,
+              'zuserid'=> $userid
+
+          ));
+          if($stmt){
+
+             echo'<div class="alert alert-success">CommentAdded</div>';
+          }
+
+         
+}
 }
 
 
