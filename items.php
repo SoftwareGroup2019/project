@@ -50,7 +50,7 @@ if($count >0){
         <span>Added Date</span>: <?php echo $item ['Add_Date']?>
       </li>
       <li>
-          <i class="fa fa-money fa-fw"></i>
+          <i class="fa fa-money fa-fw"></i> 
         <span>Price</span>: $<?php echo $item ['Price']?>
       </li>
       <li>
@@ -75,6 +75,33 @@ if($count >0){
 </ul>
       </div>
       <hr class= "custom-hr">
+      <?php if (isset($_SESSION['user'])){ ?>
+      <!--IStat Add Comment-->
+<div class="row">
+          <div class="col-md-offset-3">
+            <div class="add-comment">
+<h3> Add your Comment</h3>
+<form action="<?php echo $_SERVER['PHP_SELF'] .'?itemid='.$item['item_ID'] ?> " method="POST">
+<textarea name ="comment"></textarea>
+<input class= "btn btn-primary" type="Submit" value="Add comment">
+</form>
+<?php
+if($_SERVER['REQUEST_METHOD']== 'POST'){
+
+  echo $_POST['comment'];
+}
+
+
+ ?>
+
+             </div>
+             </div>
+     </div>
+<!--End Add Comment-->
+<?php } else {
+  echo '<a href="login.php">Login </a> or <a href="login.php"> Register </a>To Add Comment';
+}?>
+        <hr class= "custom-hr">
       <div class="row">
 
           <div class="col-md-3">
