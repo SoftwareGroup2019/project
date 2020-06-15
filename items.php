@@ -90,13 +90,9 @@ if($_SERVER['REQUEST_METHOD']== 'POST'){
 
 $comment   =filter_var($_POST['comment'],FILTER_SANITIZE_STRING);
 $userid    =$item['Member_ID'];
-$itemid    =$item['item_ID'];
-
-
+$itemid    =$_SESSION['uid'];
 
 if (! empty($comment)){
-
-
        $stmt= $con->prepare("INSERT INTO
           comments(comment,status, comment_date,item_id , user_id)
           VALUES(:zcomment,0,NOW(),:zitemid,:zuserid)");
@@ -106,18 +102,13 @@ if (! empty($comment)){
              'zcomment'=> $comment,
               'zitemid'=> $itemid,
               'zuserid'=> $userid
-
           ));
           if($stmt){
 
              echo'<div class="alert alert-success">CommentAdded</div>';
           }
-
-
 }
 }
-
-
  ?>
 
              </div>
@@ -128,19 +119,48 @@ if (! empty($comment)){
   echo '<a href="login.php">Login </a> or <a href="login.php"> Register </a>To Add Comment';
 }?>
         <hr class= "custom-hr">
-      <div class="row">
+        <?php
+        $stmt = $con->prepare("SELECT
+                                      comments.*,  user.Username As Member
+                              FROM
+                                      comments
+                              INNER join
 
-          <div class="col-md-3">
-                UserImage
-            </div>
-            </div>
-            <div class="col-md-9">
-                  Usercomment
-       </div>
-    </div>
+                                      user
+                              ON
+                                      user.UserID = comments.user_id
+                                      WHERE
+                                       item_id= ?
+                                    AND
+                                    status = 1
+                                      ORDER BY
+                                      c_id DESC");
+
+           $stmt->execute(array($item['item_ID']));
+
+           $comments = $stmt->fetchAll();
+
+
+         ?>
+
+<?php
+foreach ($comments as $comment ){
+  echo '<div class="row">'. $comment['Member'] .'</div>';
+    echo '<div class= "col-md-3">';
+       echo'<div class= "col-md-9">'. $comment['comment'].'</div>';
+
+
+  echo'  </div>';
+}
+
+
+
+      ?>
+
 <?php
 
-} else {
+}
+ else {
 
   echo'There\'s no such ID';
 }

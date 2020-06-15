@@ -35,7 +35,9 @@ if ($do =='manage')
                         INNER join
                                 Users
                         ON
-                                users.UserID = comments.user_id");
+                                users.UserID = comments.user_id
+                                ORDER BY
+                                c_id DESC");
 
      $stmt->execute();
 
