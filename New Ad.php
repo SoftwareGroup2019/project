@@ -48,7 +48,7 @@ if (empty($category) ){
     $country     = $_POST['country'];
     $status         = $_POST['esh'];
     $cat         = $_POST['categories'];
-    
+
 
 
 
@@ -73,7 +73,7 @@ if (empty($category) ){
 
 } // end of post insert requst
 
-    if ($stmt){
+    if ($_SESSION['user']){
      echo 'Item Added';
   }
   }

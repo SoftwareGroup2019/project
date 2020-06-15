@@ -63,11 +63,12 @@ $info =$getUser->fetch();
       <?php
       if (!empty(getitems('Member_ID',$info['UserID']) )){
         echo'<div class="row"';
-       foreach (getitems('Member_ID',$info['UserID']) as $item)
+       foreach (getitems('Member_ID',$info['UserID'],1) as $item)
       {
 
       echo '<div class="col-sm-6 col-md-4 col-lg-3">';
       echo '<div class="card">';
+      if ($item['Approve']==0){echo 'Not Approved';}
       echo '<img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">';
       echo '<h1><a href="items.php">'.$item['Name'].'</a></h1>';//?itemid='. $itemid['item_ID'] .'
       echo '<p class="price">'.$item['Price'].'</p>';

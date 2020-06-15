@@ -24,7 +24,9 @@ categories.ID =items.Cat_ID
  ON
  user.UserID = items.Member_ID
     WHERE
-    item_ID = ? LIMIT 1");
+    item_ID = ?
+    AND
+    Approve = 1");
 
 //execute query
     $stmt->execute(array($item_id));
@@ -134,7 +136,8 @@ if (! empty($comment)){
                                     AND
                                     status = 1
                                       ORDER BY
-                                      c_id DESC");
+                                      c_id DESC
+                                      ");
 
            $stmt->execute(array($item['item_ID']));
 
@@ -168,7 +171,7 @@ foreach ($comments as $comment ){ ?>
 
 } else {
 
-  echo'There\'s no such ID';
+  echo'There\'s no such ID Or this item is waiting Approval ';
 }
 
  include 'include/template/footer.php'

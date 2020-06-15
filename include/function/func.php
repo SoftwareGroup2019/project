@@ -63,11 +63,13 @@ function checkItem($select, $from , $value){
  }
 
 /*GET ITEMS FUNCTION*/
- function getitems($where ,$value) {
+ function getitems($where ,$value , $approve=Null) {
 
     global $con;
 
-    $getitems= $con->prepare("SELECT * FROM items WHERE $where = ? ORDER BY item_ID DESC");
+    $sql = $approve ==NULL ?'AND Approve = 1 ' :'';
+
+    $getitems= $con->prepare("SELECT * FROM items WHERE $where = ?  $sql ORDER BY item_ID DESC");
 
     $getitems->execute(array($value));
 
