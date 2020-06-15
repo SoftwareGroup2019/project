@@ -88,16 +88,17 @@ if($count >0){
 <input class= "btn btn-primary" type="Submit" value="Add comment">
 </form>
 <?php
-if($_SERVER['REQUEST_METHOD']== 'POST'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 $comment   =filter_var($_POST['comment'],FILTER_SANITIZE_STRING);
-$userid    =$item['Member_ID'];
-$itemid    =$_SESSION['uid'];
+$userid    =$_SESSION['uid'];
+$itemid    =$_GET['itemid'];
 
-if (! empty($comment)){
+
+if (!empty($comment)){
        $stmt= $con->prepare("INSERT INTO
-          comments(comment,status, comment_date,item_id , user_id)
-          VALUES(:zcomment,0,NOW(),:zitemid,:zuserid)");
+          comments(comment,status,comment_date,item_id,user_id)
+          VALUES(:zcomment,1,NOW(),:zitemid,:zuserid)");
 
           $stmt->execute(array(
 
@@ -152,7 +153,7 @@ foreach ($comments as $comment ){ ?>
   <div class="comment-box">
   <div class="row">
   <div class= "col-sm-2 text-center">
-  <?php   echo '<img src="layout/img/haha.png img-thumbnai1 img-circle" alt="Denim Jeans" style="width:100%">';  ?>
+  <?php   echo '<img src="layout/img/haha.png" class="rounded-circle" style="width:100%">';  ?>
     <?php echo $comment['Member']?></div>
       <div class= "col-sm-10"></div>
 <p class="lead"><?php echo $comment['comment']?></p>
