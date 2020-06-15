@@ -144,23 +144,29 @@ if (! empty($comment)){
          ?>
 
 <?php
-foreach ($comments as $comment ){
-  echo '<div class="row">'. $comment['Member'] .'</div>';
-    echo '<div class= "col-md-3">';
-       echo'<div class= "col-md-9">'. $comment['comment'].'</div>';
 
-
-  echo'  </div>';
+foreach ($comments as $comment ){ ?>
+  <div class="comment-box">
+  <div class="row">
+  <div class= "col-sm-2 text-center">
+  <?php   echo '<img src="layout/img/haha.png img-thumbnai1 img-circle" alt="Denim Jeans" style="width:100%">';  ?>
+    <?php echo $comment['Member']?></div>
+      <div class= "col-sm-10"></div>
+<p class="lead"><?php echo $comment['comment']?></p>
+  </div>
+  </div>
+  <hr class="custom-hr">
+ <?php
 }
 
+?>
 
 
-      ?>
+
 
 <?php
 
-}
- else {
+} else {
 
   echo'There\'s no such ID';
 }

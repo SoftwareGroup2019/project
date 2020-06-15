@@ -111,6 +111,13 @@ text-decoration: none;
 .Activate{
     margin-left: 5px;
 }
+    item-info ul li:nth-chil(odd){
+    background-color: #e8e8e8;
+    }
+
+.item-info ul li span{
+  margin:0 0 10px;
+}
 
 .colo
 {
@@ -125,4 +132,16 @@ text-decoration: none;
   margin-bottom:10px;
   width:500px;
   height: 120px;
+}
+.comment-box{
+  margin-bottom:20px;
+}
+.comment-box img{
+
+  max-width: 100px;
+  display:block;
+  margin: auto;
+}
+.custom-hr{
+  border-top :1px solid #c9c9c9;
 }
