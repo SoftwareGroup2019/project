@@ -94,14 +94,24 @@ if (empty($category) ){
                  <!-- name -->
                  <div class="form-group">
                    <label for="exampleFormControlInput1">Item Name</label>
-                   <input type="text" class="form-control live-name" id="exampleFormControlInput1" placeholder="Name of the item" name="name">
+                   <input pattern=".{4,}"
+                   title="This Field Require At Least 4 Characters "
+                    type="text"
+                     class="form-control live-name"
+                     id="exampleFormControlInput1"
+                      placeholder="Name of the item"
+                      name="name"
+                      required>
                  </div>
                 <!-- ////////////////// -->
 
                  <!-- Description -->
                  <div class="form-group">
                    <label for="exampleFormControlInput2">Description</label>
-                   <input type="text" class="form-control live-desc" id="exampleFormControlInput2" placeholder="Write short Description" name="descriptior">
+                   <input type="text" input pattern=".{10,}"
+                   title="This Field Require At Least 4 Characters "
+                   class="form-control live-desc" id="exampleFormControlInput2" placeholder="Write short Description" name="descriptior"
+                   required>
                  </div>
                 <!-- ////////////////// -->
 
@@ -109,14 +119,15 @@ if (empty($category) ){
                <!-- Price -->
                <div class="form-group">
                  <label for="exampleFormControlInput3">Price</label>
-                 <input type="text" class="form-control live-price" id="exampleFormControlInput3" placeholder="Put Price" name="price">
+                 <input type="text"
+                  class="form-control live-price" id="exampleFormControlInput3" placeholder="Put Price" name="price">
                </div>
                 <!-- ////////////////// -->
 
                 <!-- Country -->
                 <div class="form-group">
                   <label for="exampleFormControlInput4">Country</label>
-                  <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="Made in ....." name="country">
+                  <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="Made in ....." name="country" required>
                 </div>
              <!-- ////////////////// -->
 
@@ -124,7 +135,7 @@ if (empty($category) ){
 
              <div class="form-group">
               <label for="exampleFormControlSelect5">Status</label>
-              <select class="form-control" id="exampleFormControlSelect5" name="esh">
+              <select class="form-control" id="exampleFormControlSelect5" name="esh"required >
                 <option value="0">...</option>
                 <option value="1">New</option>
                 <option value="2">Like New</option>
@@ -136,7 +147,7 @@ if (empty($category) ){
 
              <div class="form-group">
               <label for="exampleFormControlSelect6">Category</label>
-              <select class="form-control" id="exampleFormControlSelect6" name="categories">
+              <select class="form-control" id="exampleFormControlSelect6" name="categories" required>
                 <option value="0" disabled selected>...</option>
               <?php
               $stmt2 =$con ->prepare("select * FROM  categories");

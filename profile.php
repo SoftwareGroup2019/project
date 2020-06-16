@@ -51,11 +51,11 @@ $info =$getUser->fetch();
   </div>
 </div>
 
-
+<div id="my-ads" class="my-ads block">
 <div class="container">
   <div class="card">
     <div class="card-header text-white bg-primary">
-      My ADS
+      My items
     </div>
     <div class="card-body">
 

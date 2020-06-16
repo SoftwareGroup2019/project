@@ -19,6 +19,7 @@ echo '<div class="card">';
 echo '<img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">';
 echo '<h1>'.$item['Name'].'</h1>';
 echo '<p class="price">'.$item['Price'].'</p>';
+echo '<div class="data">'.$item['Add_Date'].'</div>';
 echo '<a href="#" class="btn btn-primary" type="button">
 ';
 echo 'Read More...';

@@ -84,7 +84,7 @@ if($count >0){
             <div class="add-comment">
 <h3> Add your Comment</h3>
 <form action="<?php echo $_SERVER['PHP_SELF'] .'?itemid='.$item['item_ID'] ?> " method="POST">
-<textarea name ="comment"></textarea>
+<textarea name ="comment" required=" not" > </textarea>
 <input class= "btn btn-primary" type="Submit" value="Add comment">
 </form>
 <?php

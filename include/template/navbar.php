@@ -1,16 +1,24 @@
 <div class="upper-bar">
   <div class="container">
     <?php
-      if(isset($_SESSION['user'])){
-        echo ' Welcome ' .$_SESSION['user'] . ' ';
-        echo '  <a href="Profile.php"> My Profile</a>';
-        echo ' - <a href="logout.php">Logout</a>';
-        echo ' - <a href="New Ad.php">New Item</a>';
-        echo ' - <a href="items.php?itemid=2">Patrol</a>';
-       $userStatus =   checkUserStatus($_SESSION['user']);
-         if( $userStatus == 1){
-        //User is Not Activ
-         }
+      if(isset($_SESSION['user'])){?>
+        <img src=" layout/img/haha.png" class="rounded-circle ">
+        <div class="btn-group my-info ">
+          <span class="btn dropdown-toggle" data-toggle="dropdown">
+          <?php  echo $_SESSION['user']?>
+          <span class="caret"></span>
+          </span>
+          <ul class="dropdown-menu">
+            <li ><a href="Profile.php"> My Profile</a></li>
+            <li ><a href="logout.php">Logout</a></li>
+            <li ><a href="Profile.php">My item</a></li>
+            <li ><a href="New Ad.php #my-ads">New Item</a></li>
+            <li ><a href="items.php?itemid=2">Patrol</a></li>
+
+          </ul>
+        </div>
+
+        <?php
       }
       else {
 

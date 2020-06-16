@@ -145,3 +145,8 @@ text-decoration: none;
 .custom-hr{
   border-top :1px solid #c9c9c9;
 }
+.upper-bar .my-info rounded-circle{
+  width: 32px;
+  height: 32px;
+
+}
