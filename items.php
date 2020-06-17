@@ -84,18 +84,21 @@ if($count >0){
             <div class="add-comment">
 <h3> Add your Comment</h3>
 <form action="<?php echo $_SERVER['PHP_SELF'] .'?itemid='.$item['item_ID'] ?> " method="POST">
-<textarea name ="comment" required=" not" > </textarea>
+<textarea name="comment" required></textarea>
 <input class= "btn btn-primary" type="Submit" value="Add comment">
 </form>
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-$comment   =filter_var($_POST['comment'],FILTER_SANITIZE_STRING);
+$comment   = $_POST['comment'];
 $userid    =$_SESSION['uid'];
 $itemid    =$_GET['itemid'];
 
 
-if (!empty($comment)){
+
+
+if(!empty($comment)){
+
        $stmt= $con->prepare("INSERT INTO
           comments(comment,status,comment_date,item_id,user_id)
           VALUES(:zcomment,1,NOW(),:zitemid,:zuserid)");
@@ -110,6 +113,9 @@ if (!empty($comment)){
 
              echo'<div class="alert alert-success">CommentAdded</div>';
           }
+}
+else {
+  echo "Please Write something";
 }
 }
  ?>

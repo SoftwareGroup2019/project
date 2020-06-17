@@ -150,6 +150,7 @@ if (empty($category) ){
               <select class="form-control" id="exampleFormControlSelect6" name="categories" required>
                 <option value="0" disabled selected>...</option>
               <?php
+            //  $cats = getAllForm('categories');
               $stmt2 =$con ->prepare("select * FROM  categories");
               $stmt2 ->execute();
               $cats =$stmt2 ->fetchAll();

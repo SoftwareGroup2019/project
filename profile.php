@@ -9,6 +9,7 @@ $getUser=$con->prepare("SELECT * FROM user WHERE Username=?");
 $getUser->execute(array($_SESSION['user']));
 $info =$getUser->fetch();
 
+print_r($info);
 ?>
 
 
@@ -51,7 +52,7 @@ $info =$getUser->fetch();
   </div>
 </div>
 
-<div id="my-ads" class="my-ads block">
+<!--<div id="my-ads" class="my-ads block"> -->
 <div class="container">
   <div class="card">
     <div class="card-header text-white bg-primary">
@@ -61,7 +62,7 @@ $info =$getUser->fetch();
 
 
       <?php
-      if (!empty(getitems('Member_ID',$info['UserID']) )){
+      if (!empty($info['UserID'])){
         echo'<div class="row"';
        foreach (getitems('Member_ID',$info['UserID'],1) as $item)
       {
@@ -83,7 +84,7 @@ $info =$getUser->fetch();
       }
       echo'</div>';
     } else{
-      echo 'Sorry There\'  No Ads To Show, Create <a href="New Ad.php">New Ad</a>';
+      echo 'Sorry There\'  No Ads To Show, Create <a href="NewItem.php">New item</a>';
 
     }
       ?>
