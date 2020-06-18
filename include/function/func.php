@@ -73,7 +73,7 @@ function checkItem($select, $from , $value){
 
     $getitems->execute(array($value));
 
-    $items= $getitems->fetchALL();
+    $items = $getitems->fetchALL();
 
     return $items;
  }

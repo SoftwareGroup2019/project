@@ -9,7 +9,18 @@ $getUser=$con->prepare("SELECT * FROM user WHERE Username=?");
 $getUser->execute(array($_SESSION['user']));
 $info =$getUser->fetch();
 
-print_r($info);
+$getitems=$con->prepare("SELECT * FROM items WHERE Member_ID=?");
+$getitems->execute(array($info['UserID']));
+$items =$getitems->fetchALL();
+
+$g=$con->prepare("SELECT * FROM items WHERE Member_ID=?");
+$g->execute(array($info['UserID']));
+$i =$g->fetch();
+
+print_r($items);
+echo $info['UserID'];
+
+
 ?>
 
 
@@ -62,9 +73,10 @@ print_r($info);
 
 
       <?php
-      if (!empty($info['UserID'])){
-        echo'<div class="row"';
-       foreach (getitems('Member_ID',$info['UserID'],1) as $item)
+      if (!empty($i['Member_ID'])){
+        echo'<div class="row">';
+
+       foreach ($items as $item)
       {
 
       echo '<div class="col-sm-6 col-md-4 col-lg-3">';
