@@ -17,8 +17,6 @@ $g=$con->prepare("SELECT * FROM items WHERE Member_ID=?");
 $g->execute(array($info['UserID']));
 $i =$g->fetch();
 
-print_r($items);
-echo $info['UserID'];
 
 
 ?>
