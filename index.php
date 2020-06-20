@@ -14,7 +14,7 @@
 <?php
 
 
-$stmt = $con->prepare("SELECT * FROM items");
+$stmt = $con->prepare("SELECT * FROM items WHERE Approve = 1");
 
 //execute query
    $stmt->execute();
