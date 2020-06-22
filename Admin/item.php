@@ -48,6 +48,7 @@ user.UserID =items.Member_ID");
          <thead>
            <tr>
                <th>ID</th>
+               <th>image</th>
                <th>Name</th>
                <th>Description</th>
                <th>Price</th>
@@ -65,6 +66,11 @@ user.UserID =items.Member_ID");
         foreach ($rows as $row ) {
           echo "<tr>";
            echo "<td>". $row["item_ID"] ."</td>";
+            ?>
+            <td>
+            <img src="<?php echo "layout/admin_img/" . $row["Image"]; ?>" width="60px" height="60px" alt="###" class="img-thumbnail">
+            </td>
+            <?php
            echo "<td>". $row["Name"] ."</td>";
            echo "<td>". $row["Description"] ."</td>";
            echo "<td>". $row["Price"] ."</td>";
@@ -81,7 +87,7 @@ user.UserID =items.Member_ID");
                <a href="?do=Approve&itemid=<?php echo $row["item_ID"]; ?>"
                   class="waves-effect waves-light btn-small tooltipped "
                    data-position="right" data-tooltip="Approve" style="background-color:blue !important;">
-                  <i class="material-icons">Approve</i></a>
+                  <i class="material-icons">check_circle</i></a>
            <?php  }  ?>
 
               <?php
@@ -121,7 +127,7 @@ elseif ($do =='add') {
   <h4 class="center">Add item</h4>
 
        <!-- start of form -->
-       <form class="col s12" action="?do=insert" method="POST">
+       <form class="col s12" action="?do=insert" method="POST" enctype="multipart/form-data">
 
 
          <!-- start of row -->
@@ -159,6 +165,17 @@ elseif ($do =='add') {
           <label for="password">Country</label>
           </div>
         <!-- ////////////////// -->
+
+        <div class="file-field input-field col s12">
+           <div class="btn">
+             <span>image</span>
+             <input type="file" name="image">
+           </div>
+           <div class="file-path-wrapper">
+             <input class="file-path validate" type="text" name="image">
+           </div>
+       </div>
+
 
         <!-- start of status -->
         <div class="input-field col s12">
@@ -209,6 +226,9 @@ elseif ($do =='add') {
           </select>
           <label>Category</label>
         </div>
+
+
+
               <!-- Buttton -->
         <button class="btn waves-effect waves-light" type="submit" name="status">Add
           <i class="material-icons right"></i>
@@ -252,24 +272,41 @@ elseif ($do == 'insert')
     $member      = $_POST['member'];
     $cat         = $_POST['categories'];
 
+$itemiamge = time() . '-' . $_FILES["image"]["name"];
+// For image upload
+   $target_dir = "layout/admin_img/";
+   $target_file = $target_dir . basename($itemiamge);
 
 
+if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+  // code...
 
-    $stmt=$con->prepare("INSERT INTO
-                         items(Name,Description,Price,Country_Made,Status,Add_Date,Cat_ID,Member_ID)
-                         VALUES(:zname,:zdesc,:zprice,:zcountry,:zstatus,now(), :zcat, :zmember)");
 
- $stmt->execute(array(
+      $stmt=$con->prepare("INSERT INTO
+                           items(Name,Description,Price,Country_Made,image,Status,Add_Date,Cat_ID,Member_ID)
+                           VALUES(:zname,:zdesc,:zprice,:zcountry,:zimage,:zstatus,now(), :zcat, :zmember)");
 
- 'zname'   =>$name ,
-'zdesc'    =>$desc,
-'zprice'   =>$price,
-'zcountry' =>$country,
-'zstatus'  =>$status,
-'zcat'     => $cat ,
-'zmember'  => $member
+   $stmt->execute(array(
 
-));
+   'zname'   =>$name ,
+  'zdesc'    =>$desc,
+  'zprice'   =>$price,
+  'zcountry' =>$country,
+  'zimage'   =>$itemiamge,
+  'zstatus'  =>$status,
+  'zcat'     => $cat ,
+  'zmember'  => $member
+
+  ));
+
+  echo "done";
+
+}else {
+  // code...
+  echo "erorr";
+}
+
+
 
 
 } // end of post insert requst

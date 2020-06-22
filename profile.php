@@ -52,9 +52,11 @@ $i =$g->fetch();
           <i class="fa fa-calendar fa-fw"></i>
         <span>Register Date</span>:<?php echo $info['Date']?>
       </li>
+
         <li>
-            <i class="fa fa-tags fa-fw"></i>
-          <span> fevourite category</span>:
+            <i class="fa fa-edit fa-fw"></i>
+            <a href="#"><span>Edit Profile</span></a>
+
         </li>
         </ul>
     </div>
@@ -64,7 +66,7 @@ $i =$g->fetch();
 <!--<div id="my-ads" class="my-ads block"> -->
 <div class="container">
   <div class="card">
-    <div class="card-header text-white bg-primary">
+    <div class="card-header text-white bg-primary" id="myitem">
       My items
     </div>
     <div class="card-body">
@@ -80,7 +82,9 @@ $i =$g->fetch();
       echo '<div class="col-sm-6 col-md-4 col-lg-3">';
       echo '<div class="card">';
       if ($item['Approve']==0){echo 'Not Approved';}
-      echo '<img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">';
+      ?>
+      <img src="Admin/layout/admin_img/<?php echo $item['Image']; ?>" alt="Denim Jeans" style="width:100%">
+      <?php
       echo '<h1><a href="items.php">'.$item['Name'].'</a></h1>';//?itemid='. $itemid['item_ID'] .'
       echo '<p class="price">'.$item['Price'].'</p>';
       echo '<div class="data">'.$item['Add_Date'].'</div>';

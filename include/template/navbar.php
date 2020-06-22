@@ -1,13 +1,18 @@
 <div class="upper-bar">
   <div class="container">
     <?php
-      if(isset($_SESSION['user'])){?>
 
+      if(isset($_SESSION['user'])){
 
+        $getUser=$con->prepare("SELECT image FROM user WHERE Username=?");
+        $getUser->execute(array($_SESSION['user']));
+        $info =$getUser->fetch();
+
+        ?>
         <div class="dropdown show">
-          <img src="layout/img/haha.png" class="rounded-circle " width="32px" height="32px">
+          <img src="Admin/layout/admin_img/<?php echo $info['image']; ?>" class="rounded-circle " width="40px" height="40px">
 
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <?php  echo $_SESSION['user']?>
   </a>
 
@@ -15,7 +20,7 @@
     <li ><a class="dropdown-item" href="Profile.php"> My Profile</a></li>
     <li ><a class="dropdown-item" href="logout.php">Logout</a></li>
     <li ><a class="dropdown-item" href="Profile.php">My item</a></li>
-    <li ><a class="dropdown-item" href="NewItem.php #my-ads">New Item</a></li>
+    <li ><a class="dropdown-item" href="NewItem.php">New Item</a></li>
     <li ><a class="dropdown-item" href="items.php?itemid=2">Patrol</a></li>
   </div>
 </div>
@@ -45,26 +50,21 @@
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
 
+      <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
 
-        <?php
-          foreach (getCat() as $cat)
-          {
-          ?>
-           <!-- mn bam shewaza krditm -->
-          <li class="nav-item">
-            <a class="nav-link" href="categories.php?pageid=<?php echo $cat['ID'];?>&pagename=<?php echo str_replace(' ','-',$cat['Name']); ?>">
-              <?php echo $cat['Name'];?>
-            </a>
-          </li>
-
-          <?php
-
-           }
-        ?>
-
-        <li>
-          <a class="nav-link" href="Admin/index.php">Admin</a>
-        </li>
+  <li>
+    <a class="nav-link" href="Admin/index.php">Dashboard</a>
+  </li>
+  
     </ul>
 
 

@@ -24,7 +24,9 @@ $stmt = $con->prepare("SELECT * FROM items WHERE Approve = 1");
 
 echo '<div class="col-sm-12 col-md-4 col-lg-3">';
 echo '<div class="card">';
-echo '<img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">';
+?>
+<img src="Admin/layout/admin_img/<?php echo $item['Image']; ?>" alt="Denim Jeans" style="width:100%">
+<?php
 echo '<h1>'.$item['Name'].'</h1>';
 echo '<p class="price">'.$item['Price'].'</p>';
 echo '<div class="data">'.$item['Add_Date'].'</div>';

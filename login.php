@@ -88,24 +88,52 @@ else if ($do == 'signup') {
   $email = $_POST['email'];
 
 
-  $stmt=$con->prepare("INSERT INTO
-               user(Username,Password,Email)
-               VALUES(:zuser,:zpass,:zemail)");
-  //  echo $id . $user . $email . $name;
-  // update zanyryakany usery la naw database dakay
+  $itemiamge = time() . '-' . $_FILES["image"]["name"];
+  // For image upload
+     $target_dir = "Admin/layout/admin_img/";
+     $target_file = $target_dir . basename($itemiamge);
 
-  $stmt->execute(array(
+     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file))
+     {
+
+         $stmt=$con->prepare("INSERT INTO
+                      user(Username,Password,Email,image)
+                      VALUES(:zuser,:zpass,:zemail,:zimage)");
+         //  echo $id . $user . $email . $name;
+         // update zanyryakany usery la naw database dakay
+
+         $stmt->execute(array(
 
 
-    'zuser'=>$user,
-    'zpass'=>sha1($pass),
-    'zemail'=>$email
+           'zuser'=>$user,
+           'zpass'=>sha1($pass),
+           'zemail'=>$email,
+           'zimage'=>$itemiamge
 
 
-  // zanyary user nuwe daxl dakay baw array dachta naw database
+         // zanyary user nuwe daxl dakay baw array dachta naw database
 
-  ));
-  $mssgbox = "User Added successfully";
+         ));
+         $mssgbox = "User Added successfully";
+     }
+     else
+     {
+
+                $stmt=$con->prepare("INSERT INTO
+                             user(Username,Password,Email)
+                             VALUES(:zuser,:zpass,:zemail)");
+                //  echo $id . $user . $email . $name;
+                // update zanyryakany usery la naw database dakay
+
+                $stmt->execute(array(
+                  'zuser'=>$user,
+                  'zpass'=>sha1($pass),
+                  'zemail'=>$email
+                // zanyary user nuwe daxl dakay baw array dachta naw database
+                ));
+                $mssgbox = "User Added successfully";
+     }
+
 
 
 }
@@ -229,7 +257,7 @@ else if ($do == 'signup') {
 
 
 <!--start signup Form -->
-  <form class="signup" action="login.php?do=signup" method="post">
+  <form class="signup" action="login.php?do=signup" method="post" enctype="multipart/form-data">
 <div class="input-container">
   <input
    class="form-control"
@@ -265,6 +293,14 @@ else if ($do == 'signup') {
         placeholder="Type a valid email"
         />
   </div>
+                  <!-- image -->
+                  <div class="input-container">
+                    <input type="file" name="image" value="Choose an image" class="form-control image">
+                  </div>
+               <!-- ////////////////// -->
+
+
+
 <div class="input-container">
       <input
       class="btn btn-success btn-block"
@@ -272,6 +308,10 @@ else if ($do == 'signup') {
       type="submit"
       value="signup"
       />
+</div>
+<br>
+<div class="input-container" style="text-align:center;">
+  <img src="layout/img/defuser.png" style="width: 100px" class="img-thumbnail image-preview" alt="">
 </div>
   </form>
   <!-- end pf signup Form -->

@@ -45,6 +45,7 @@ if ($do =='manage')
          <thead>
            <tr>
                <th>ID</th>
+               <th>Image</th>
                <th>Name</th>
                <th>Email</th>
                <th>Date</th>
@@ -56,11 +57,17 @@ if ($do =='manage')
 
         <?php
 
-        foreach ($rows as $row ) {
+        foreach ($rows as $row )
+         {
           echo "<tr>";
            echo "<td>". $row["UserID"] ."</td>";
+           ?>
+           <td>
+           <img src="<?php echo "layout/admin_img/" . $row["image"]; ?>" width="60px" height="60px" alt="###" class="img-thumbnail">
+           </td>
+           <?php
            echo "<td>". $row["Username"] ."</td>";
-           echo "<td>". $row["FullName"] ."</td>";
+
            echo "<td>". $row["Email"] ."</td>";
            echo "<td>". $row['Date'] ."</td>";
            echo "<td>";
@@ -71,20 +78,16 @@ if ($do =='manage')
 
              if($row['RegStatus'] == 0 ) {
             ?>
-               <a href="?do=Activate&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped " data-position="right" data-tooltip="Delete" style="background-color:blue !important;"><i class="material-icons">delete</i></a>
+               <a href="?do=Activate&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped " data-position="right" data-tooltip="Approve" style="background-color:blue !important;"><i class="material-icons">check_circle</i></a>
 <?php
 
              }
+
+                        echo "</td>";
+                       echo "</tr>";
+                     }
           ?>
 
-              <?php
-
-
-           echo "</td>";
-          echo "</tr>";
-        }
-
-         ?>
 
 
 
@@ -342,7 +345,7 @@ elseif ($do =='add') {
         $pass = $_POST['newpassword'];
         $email = $_POST['email'];
         $name = $_POST['full'];
-
+        $hashedPass =sha1($pass);
 
         // agar inputakan ba bataly baje bely away xware tatbyq dabi
         $formErrors = array();
@@ -374,13 +377,13 @@ elseif ($do =='add') {
 
 $stmt=$con->prepare("INSERT INTO
                      user(UserName ,password,email,FullName,RegStatus,Date)
-                     VALUES(:zuser,:zpass,:zmail,:zname,0,now())");
+                     VALUES(:zuser,:zpass,:zmail,:zname,1,now())");
         //  echo $id . $user . $email . $name;
         // update zanyryakany usery la naw database dakay
 $stmt->execute(array(
 
 'zuser'=>$user,
-'zpass'=>$pass,
+'zpass'=>$hashedPass,
 'zmail'=>$email,
 'zname'=>$name
 
