@@ -90,8 +90,33 @@ $mssgbox = "item added successfully";
 
 } // end of insert
 
-else {
-  echo "err";
+else
+{
+
+      $name        = $_POST['name'];
+      $desc        = $_POST['descriptior'];
+      $price       = $_POST['price'];
+      $country     = $_POST['country'];
+      $status      = $_POST['esh'];
+      $cat         = $_POST['categories'];
+      $stmt=$con->prepare("INSERT INTO
+                           items(Name,Description,Price,Country_Made,Status,Add_Date,Cat_ID,Member_ID)
+                           VALUES(:zname,:zdesc,:zprice,:zcountry,:zstatus,now(), :zcat, :zmember)");
+
+   $stmt->execute(array(
+
+   'zname'   =>$name ,
+  'zdesc'    =>$desc,
+  'zprice'   =>$price,
+  'zcountry' =>$country,
+  'zstatus'  =>$status,
+  'zcat'     => $category ,
+  'zmember'  => $_SESSION['uid']
+
+  ));
+
+  $mssgbox = "item added successfully";
+
 }
 
 

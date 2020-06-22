@@ -21,7 +21,7 @@
     <li ><a class="dropdown-item" href="logout.php">Logout</a></li>
     <li ><a class="dropdown-item" href="Profile.php">My item</a></li>
     <li ><a class="dropdown-item" href="NewItem.php">New Item</a></li>
-    <li ><a class="dropdown-item" href="items.php?itemid=2">Patrol</a></li>
+  
   </div>
 </div>
 
@@ -64,7 +64,7 @@
   <li>
     <a class="nav-link" href="Admin/index.php">Dashboard</a>
   </li>
-  
+
     </ul>
 
 

@@ -96,9 +96,10 @@ else if ($do == 'signup') {
      if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file))
      {
 
+       $time =  date("m/d/Y h:i:s a", time());
          $stmt=$con->prepare("INSERT INTO
-                      user(Username,Password,Email,image)
-                      VALUES(:zuser,:zpass,:zemail,:zimage)");
+                      user(Username,Password,Email,RegStatus,image,Date)
+                      VALUES(:zuser,:zpass,:zemail,0,:zimage,$time)");
          //  echo $id . $user . $email . $name;
          // update zanyryakany usery la naw database dakay
 
@@ -311,7 +312,7 @@ else if ($do == 'signup') {
 </div>
 <br>
 <div class="input-container" style="text-align:center;">
-  <img src="layout/img/defuser.png" style="width: 100px" class="img-thumbnail image-preview" alt="">
+  <img src="Admin/layout/admin_img/defuser.png" style="width: 100px" class="img-thumbnail image-preview" alt="">
 </div>
   </form>
   <!-- end pf signup Form -->

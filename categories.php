@@ -5,7 +5,11 @@
 
 <div class="container">
 <h1 class="text-center">
-Show Category
+<?php
+
+$cat = $_GET['pagename'];
+echo $cat;
+?>
 </h1>
 <br>
 <div class="row">
@@ -16,7 +20,7 @@ Show Category
 
 echo '<div class="col-sm-12 col-md-4 col-lg-3">';
 echo '<div class="card">';
-echo '<img src="layout/img/haha.png" alt="Denim Jeans" style="width:100%">';
+echo '<img src="Admin/layout/admin_img/'.$item['Image'].'" alt="Denim Jeans" style="width:100%">';
 echo '<h1>'.$item['Name'].'</h1>';
 echo '<p class="price">'.$item['Price'].'</p>';
 echo '<div class="data">'.$item['Add_Date'].'</div>';

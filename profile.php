@@ -85,7 +85,7 @@ $i =$g->fetch();
       ?>
       <img src="Admin/layout/admin_img/<?php echo $item['Image']; ?>" alt="Denim Jeans" style="width:100%">
       <?php
-      echo '<h1><a href="items.php">'.$item['Name'].'</a></h1>';//?itemid='. $itemid['item_ID'] .'
+      echo '<h1><a href="items.php?itemid='.$item['item_ID'].'">'.$item['Name'].'</a></h1>';//?itemid='. $itemid['cc'] .'
       echo '<p class="price">'.$item['Price'].'</p>';
       echo '<div class="data">'.$item['Add_Date'].'</div>';
       echo '<a href="#" class="btn btn-primary" type="button">

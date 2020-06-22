@@ -40,7 +40,7 @@ if($count >0){
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <img class="img-responsive img-thumbnail center-block" src= "layout/img/ptrol.jpg"  alt""/>
+      <img class="img-responsive img-thumbnail center-block" src= "Admin/layout/admin_img/<?php echo $item['Image']; ?>"  alt""/>
     </div>
     <div class ="col-md-9 ">
       <h2>Name: <?php echo $item ['Name']?></h2>
@@ -72,7 +72,7 @@ if($count >0){
       <li>
         <i class="fa fa-user fa-fw"></i>
 
-        <span>Added By</span>:  <a href= "#"><?php echo $item ['UserName']?></a>
+        <span>Added By</span>:  <a href= "profile.php"><?php echo $item ['UserName']?></a>
       </li>
 </ul>
       </div>
@@ -177,8 +177,9 @@ foreach ($comments as $comment ){ ?>
 <?php
 
 } else {
-
-  echo'There\'s no such ID Or this item is waiting Approval ';
+  ?>
+<div class="loader">Not Approved</div>
+<?php
 }
 
  include 'include/template/footer.php'
