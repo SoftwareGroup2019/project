@@ -96,10 +96,9 @@ else if ($do == 'signup') {
      if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file))
      {
 
-       $time =  date("m/d/Y h:i:s a", time());
          $stmt=$con->prepare("INSERT INTO
                       user(Username,Password,Email,RegStatus,image,Date)
-                      VALUES(:zuser,:zpass,:zemail,0,:zimage,$time)");
+                      VALUES(:zuser,:zpass,:zemail,0,:zimage,now())");
          //  echo $id . $user . $email . $name;
          // update zanyryakany usery la naw database dakay
 
@@ -121,8 +120,8 @@ else if ($do == 'signup') {
      {
 
                 $stmt=$con->prepare("INSERT INTO
-                             user(Username,Password,Email)
-                             VALUES(:zuser,:zpass,:zemail)");
+                             user(Username,Password,Email,Date)
+                             VALUES(:zuser,:zpass,:zemail,now())");
                 //  echo $id . $user . $email . $name;
                 // update zanyryakany usery la naw database dakay
 
