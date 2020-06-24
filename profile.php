@@ -115,13 +115,17 @@ $i =$g->fetch();
     <div class="card-body">
       <?php
       //ERA CHEK BKAENAWA bzanen ba tawawe esh daka
-      $stmt = $con->prepare("SELECT  comment  FROM  comments   WHERE user_id=?");
+      $stmt = $con->prepare("SELECT  comment  FROM  comments   WHERE user_id=? ORDER BY comment desc limit 3");
          $stmt->execute(array($info['UserID']));
-
          $rows=$stmt->fetchAll();
 
-         if (!empty($comments)){
-           foreach ($comments as  $comment) {
+
+
+
+
+         if (!empty($rows)){
+
+           foreach ($rows as  $comment) {
 
              echo '<p>'.$comment['comment'] .'</p>';
            }

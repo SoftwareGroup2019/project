@@ -27,7 +27,9 @@ echo '<div class="card">';
 ?>
 <img src="Admin/layout/admin_img/<?php echo $item['Image']; ?>" alt="Denim Jeans" style="width:100%">
 <?php
-echo '<h1>'.$item['Name'].'</h1>';
+?>
+ <h1> <a href="items.php?itemid=<?php echo $item['item_ID']; ?>"> <?php echo $item['Name']; ?></a> </h1>
+<?php
 echo '<p class="price">'.$item['Price'].'</p>';
 echo '<div class="data">'.$item['Add_Date'].'</div>';
 echo '<a href="#" class="btn btn-primary" type="button">
