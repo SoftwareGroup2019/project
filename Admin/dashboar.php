@@ -18,27 +18,35 @@
 <div class="col m3">
       <div class="stat st-members">
         total members
-        <span><a href="members.php"><?php echo countItems('UserID','user')?></a></span>
+        <span><a href="members.php"><?php echo checkItem("GrupID", "user" , 0) ?></a></span>
       </div>
     </div>
      <div class="col m3">
       <div class="stat st-pending">
         pending members
-          <span><a href="members.php">
+          <span>
+            <a href="members.php">
 <?php echo checkItem("RegStatus", "user" , 0) ?>
-          </a></spam>
+          </a>
+        </spam>
       </div>
     </div>
     <div class="col m3">
       <div class="stat st-items">
         total items
-          <span>1500</span>
+        <a href="item.php">
+  <span><?php echo countItems('item_ID','items')?></span>
+        </a>
+
       </div>
         </div>
         <div class="col m3">
           <div class="stat st-comments">
             total comments
-              <span>3500</span>
+            <a href="comments.php">
+  <span><?php echo countItems('c_id','comments');?></span>
+            </a>
+
           </div>
         </div>
   </div>

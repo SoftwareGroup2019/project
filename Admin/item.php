@@ -261,7 +261,7 @@ elseif ($do == 'insert')
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST')
   {
-    echo   " <h4 class = 'center'> Insert item </h4>";
+
 
 
     $name        = $_POST['name'];
@@ -299,7 +299,33 @@ if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
 
   ));
 
-  echo "done";
+  ?>
+  <h3 class="center">
+  Item Added successfully
+  </h3>
+  <h4 class="center alert-success">
+      Insert Done. Redirecting after <span id="countdown">5</span> seconds
+  </h4>
+  <script type="text/javascript">
+     var seconds = 5;
+     function countdown() {
+         seconds = seconds - 1;
+         if (seconds < 0) {
+             // Chnage your redirection link here
+             window.location = "http://localhost/project/Admin/item.php";
+         } else {
+             // Update remaining seconds
+             document.getElementById("countdown").innerHTML = seconds;
+             // Count down using javascript
+             window.setTimeout("countdown()", 1000);
+         }
+     }
+     countdown();
+  </script>
+
+  <?php
+
+
 
 }else {
   // code...
@@ -472,7 +498,7 @@ $stmt = $con->prepare("SELECT * FROM items WHERE item_ID = ? LIMIT 1");
 /////////////////////////////////////////////////////////
 elseif($do == 'Update')
 {//start of update
-  echo   " <h4 class='center'> Update item </h4>";
+
   echo "<div class='container'>";
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -513,13 +539,40 @@ elseif($do == 'Update')
 
 
 
-echo "the items updated successfully";
+                             ?>
+                             <h3 class="center">
+                             Item Updated successfully
+                             </h3>
+                             <h4 class="center alert-success">
+                                 Update Done. Redirecting after <span id="countdown">5</span> seconds
+                             </h4>
+                             <script type="text/javascript">
+                                var seconds = 5;
+                                function countdown() {
+                                    seconds = seconds - 1;
+                                    if (seconds < 0) {
+                                        // Chnage your redirection link here
+                                        window.location = "http://localhost/project/Admin/item.php";
+                                    } else {
+                                        // Update remaining seconds
+                                        document.getElementById("countdown").innerHTML = seconds;
+                                        // Count down using javascript
+                                        window.setTimeout("countdown()", 1000);
+                                    }
+                                }
+                                countdown();
+                             </script>
+
+                             <?php
+
+
+
 
 
   } //end of post update requst
 
 
-
+echo "</div>";
 } // end of update
 //////////////////////////////////////////////////////////
 
@@ -531,7 +584,7 @@ echo "the items updated successfully";
 //////////////////////////////////////////////////////////////
 elseif ($do =='Delete')
 { // start of delete
-  echo   " <h4 class='center'> Delete item </h4>";
+
   echo "<div class='container'>";
     $itemid = isset( $_GET['itemid'] ) && is_numeric($_GET['itemid']) ? intval($_GET['itemid']) : 0;
   //lerash userman bang krditawa.
@@ -554,8 +607,33 @@ elseif ($do =='Delete')
 
    $stmt->execute();
 
-  $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Deleted</div>';
-   redirectHome($theMsg,'back');
+   ?>
+   <h3 class="center">
+   Item Deleted successfully
+   </h3>
+   <h4 class="center alert-success">
+       Delete Done. Redirecting after <span id="countdown">5</span> seconds
+   </h4>
+   <script type="text/javascript">
+      var seconds = 5;
+      function countdown() {
+          seconds = seconds - 1;
+          if (seconds < 0) {
+              // Chnage your redirection link here
+              window.location = "http://localhost/project/Admin/item.php";
+          } else {
+              // Update remaining seconds
+              document.getElementById("countdown").innerHTML = seconds;
+              // Count down using javascript
+              window.setTimeout("countdown()", 1000);
+          }
+      }
+      countdown();
+   </script>
+
+   <?php
+
+
 
   }
 
@@ -565,11 +643,12 @@ elseif ($do =='Delete')
     redirectHome($theMsg);
   }
 
+echo "</div>";
 }
 
   elseif ($do == 'Approve')
   { // start of activate
-    echo   " <h4 class='center'> Approve item </h4>";
+
     echo "<div class='container'>";
       $itemid = isset( $_GET['itemid'] ) && is_numeric($_GET['itemid']) ? intval($_GET['itemid']) : 0;
 
@@ -590,8 +669,33 @@ elseif ($do =='Delete')
 
      $stmt->execute(array($itemid));
 
-    $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Updated</div>';
-     redirectHome($theMsg,'back');
+     ?>
+     <h3 class="center">
+     Item Aprroved successfully
+     </h3>
+     <h4 class="center alert-success">
+         Aprroved Done. Redirecting after <span id="countdown">5</span> seconds
+     </h4>
+     <script type="text/javascript">
+        var seconds = 5;
+        function countdown() {
+            seconds = seconds - 1;
+            if (seconds < 0) {
+                // Chnage your redirection link here
+                window.location = "http://localhost/project/Admin/item.php";
+            } else {
+                // Update remaining seconds
+                document.getElementById("countdown").innerHTML = seconds;
+                // Count down using javascript
+                window.setTimeout("countdown()", 1000);
+            }
+        }
+        countdown();
+     </script>
+
+     <?php
+
+
 
     }
 
@@ -602,6 +706,7 @@ elseif ($do =='Delete')
     }
     // code...
 
+echo "</div>";
 
   } // end of activate
     include 'include/template/footer.php';

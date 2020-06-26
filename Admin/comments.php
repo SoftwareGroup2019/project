@@ -25,7 +25,7 @@ if ($do =='manage')
   //   echo 'hahaha';
   // } aw coda loo awaya agaer user habu ba haman naw aw if tatbyq daby
   $stmt = $con->prepare("SELECT
-                                comments.*, items.Name As Item_Name, users.Username As Member
+                                comments.*, items.Name As Item_Name, user.Username As Member
                         FROM
                                 comments
                         INNER join
@@ -33,9 +33,9 @@ if ($do =='manage')
                         ON
                                 items.Item_ID = comments.item_id
                         INNER join
-                                Users
+                                user
                         ON
-                                users.UserID = comments.user_id
+                                user.UserID = comments.user_id
                                 ORDER BY
                                 c_id DESC");
 
@@ -72,11 +72,11 @@ if ($do =='manage')
            echo "<td>". $row["c_id"] ."</td>";
            echo "<td>". $row["comment"] ."</td>";
            echo "<td>". $row["Item_Name"] ."</td>";
-           echo "<td>". $row["members"] ."</td>";
+           echo "<td>". $row["Member"] ."</td>";
            echo "<td>". $row['comment_date'] ."</td>";
            echo "<td>";
         ?>
-           <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
+           <a href="?do=Edit&comid=<?php echo $row["c_id"]; ?>" class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
            <a href="?do=Delete&comid=<?php echo $row["c_id"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>
            <?php
 
@@ -103,7 +103,6 @@ if ($do =='manage')
        </table>
 
     <br>
-    <a class="waves-effect waves-light btn"
 </div>
 
 
@@ -146,21 +145,28 @@ $stmt = $con->prepare("SELECT * FROM comments WHERE c_id = ? LIMIT 1");
 
       <h4 class="center">Edit comment</h4>
 
+
+
    <!-- start of form -->
    <form class="col s12" action="?do=Update" method="POST">
-     <input type="hidden" name="comid" value="<?php echo $comid ?>" />
+     <input type="hidden" name="comid" value="<?php echo $comid ?>"/>
 
-     <!-- start of row -->
      <div class="row">
-
-        <!-- Username -->
-       <div class="input-field col s12">
-         <i class="material-icons prefix">account_circle</i>
-         <input id="icon_prefix" type="text" name="user" class="validate" value="<?php echo $row ['Username'];?>">
-         <label for="icon_prefix">Comment</label>
+         <div class="input-field col s12">
+           <input name="comment" id="first_name2" type="text" class="validate" value="<?php echo $row['comment']; ?>">
+           <label class="active" for="first_name2">Comment</label>
+         </div>
        </div>
-       <!-- ////////////////// -->
-      <textarea class="from-control" name="comment"><<?php  echo $row['comment'] ?> </textarea>
+
+       <!-- <div class="row">
+              <div class="input-field col s12">
+                <textarea id="textarea1" class="materialize-textarea" name="comment">
+                  <?php echo $row['comment']; ?>
+                </textarea>
+                <label for="textarea1">Comment</label>
+              </div>
+            </div> -->
+
 
     <!-- ////////////////// -->
 
@@ -170,11 +176,9 @@ $stmt = $con->prepare("SELECT * FROM comments WHERE c_id = ? LIMIT 1");
     </button>
       <!-- ////////////////// -->
 
-  </div>
-  <!-- end of row -->
-
   </form>
   <!-- end of form  -->
+
    </div>
    <!-- end of container -->
 
@@ -196,7 +200,7 @@ else
 
 } //end of else if ($do == 'Edit')
     elseif($do == 'Update')  {
-    echo   " <h4 class='center'> Update Comment </h4>";
+
     echo "<div class='container'>";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -209,6 +213,34 @@ else
       $stmt->execute(array($comment, $comid));
 
 
+       ?>
+       <h3 class="center">
+       Comment Updated successfully
+       </h3>
+       <h4 class="center alert-success">
+           Update Done. Redirecting after <span id="countdown">5</span> seconds
+       </h4>
+       <script type="text/javascript">
+          var seconds = 5;
+          function countdown() {
+              seconds = seconds - 1;
+              if (seconds < 0) {
+                  // Chnage your redirection link here
+                  window.location = "http://localhost/project/Admin/comments.php";
+              } else {
+                  // Update remaining seconds
+                  document.getElementById("countdown").innerHTML = seconds;
+                  // Count down using javascript
+                  window.setTimeout("countdown()", 1000);
+              }
+          }
+          countdown();
+       </script>
+
+       <?php
+
+
+
   }
   else{
       $theMsg ='<div calss="alert alert-danger">Sorry You Cant Brouse This Page Directly</div>';
@@ -216,8 +248,9 @@ else
 
     }
 
+echo "</div>";
   } //end of post update requst
-  } // end of update
+  // end of update
 
  // end of add
 
@@ -296,46 +329,49 @@ $stmt->execute(array(
 elseif ($do =='Delete') {
 
 $comid = $_GET['comid'];
-//lerash userman bang krditawa.
-//$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
 
-$chek = checkItem('c_id', 'comments' , $comid);
 
-//execute query
-
-  //  $stmt->execute(array($userid));
-//id database rabt dakatn.
-//fetch the data
-
-  //  $row=$stmt->fetch();
-
-//the row count
-
-    //$count =$stmt->rowCount();
-
-if  ($chek >0) {
 //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
   $stmt = $con->prepare("DELETE FROM comments WHERE c_id=:zuserid");
 
- $stmt->bindparam(':zuserid',$userid);
+ $stmt->bindparam(':zuserid',$comid);
 
  $stmt->execute();
 
-$theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Deleted</div>';
- redirectHome($theMsg);
 
-}
+ ?>
+ <h3 class="center">
+ Comment Deleted successfully
+ </h3>
+ <h4 class="center alert-success">
+     Delete Done. Redirecting after <span id="countdown">5</span> seconds
+ </h4>
+ <script type="text/javascript">
+    var seconds = 5;
+    function countdown() {
+        seconds = seconds - 1;
+        if (seconds < 0) {
+            // Chnage your redirection link here
+            window.location = "http://localhost/project/Admin/comments.php";
+        } else {
+            // Update remaining seconds
+            document.getElementById("countdown").innerHTML = seconds;
+            // Count down using javascript
+            window.setTimeout("countdown()", 1000);
+        }
+    }
+    countdown();
+ </script>
 
-else {
- //agar hatw userid nabu pet ble aw usera nya.
-  $errormsg= "There is no user";
-  redirectHome($errormsg , 3);
-}
+ <?php
+
 
 
 
   // code...
-}elseif ($do == 'Approve') {
+}
+
+elseif ($do == 'Approve') {
   $comid = $_GET['comid'];
   //lerash userman bang krditawa.
   //$stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
@@ -354,14 +390,15 @@ else {
 
       //$count =$stmt->rowCount();
 
-  if  ($chek >0) {
+  if  ($chek >0)
+  {
   //agar hatw 1 gawratr bu la 0 awa ishakaman lo bkatn.
     $stmt = $con->prepare("UPDATE comments SET status =1 WHERE c_id = ? ");
 
    $stmt->execute(array($comid));
 
   $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Approve</div>';
-   redirectHome($theMsg 'back');
+   redirectHome($theMsg,'back');
 
   }
 

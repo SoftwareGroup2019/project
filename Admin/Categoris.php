@@ -14,6 +14,8 @@ $do = isset($_GET['do'])? $_GET['do']: 'manage';
 if ($do =='manage')
 {
 
+
+
   $sort = 'ASC';
 
   $soty_array = array('ASC' , 'DESC');
@@ -31,41 +33,40 @@ if ($do =='manage')
 
 <div class="container">
 
-  <ul class="collection with-header">
-         <li class="collection-header"><h4>Manage Categories</h4></li>
-<?php
+<h4 class="center">Manage Category</h4>
 
-foreach ($cats as $cat)
-{
-?>
-<li class="collection-item">
-  <div><?php echo $cat['Name']; ?>
+  <table class="responsive-table striped centered card">
+         <thead>
+           <tr>
+               <th>ID</th>
+               <th>Name</th>
+               <th>Description</th>
+               <th>Options</th>
+           </tr>
+         </thead>
 
-    <?php
-echo "<a href='Categoris.php?do=Edit&catid=" . $cat['ID'] ."' class='secondary-content' >
-  <i class='material-icons'>edit</i>
-</a>";
-     ?>
+         <tbody>
 
-<?php
-echo "<a href='Categoris.php?do=Delete&catid=" . $cat['ID'] ."' class='secondary-content'>
-    <i class='material-icons'>delete</i>
-  </a>";
- ?>
+        <?php
 
+        foreach ($cats as $cat)
+         {
+          echo "<tr>";
+           echo "<td>". $cat["ID"] ."</td>";
+           echo "<td>". $cat['Name'] ."</td>";
+            echo "<td>". $cat['Description'] ."</td>";
+           echo "<td>";
+        ?>
+           <a href="Categoris.php?do=Edit&catid=<?php echo $cat['ID']; ?>" class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
+           <a href="?do=Delete&catid=<?php echo $cat['ID']; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>
+           <?php
 
-  </div>
-</li>
-
-
-
-<?php
-
-}
-
-?>
-
- </ul>
+          echo "</td>";
+          echo "</tr>";
+                     }
+          ?>
+         </tbody>
+       </table>
 
  <a href="Categoris.php?do=add" class="waves-effect waves-light btn">
    <i class="material-icons right">add</i>
@@ -73,9 +74,6 @@ echo "<a href='Categoris.php?do=Delete&catid=" . $cat['ID'] ."' class='secondary
  </a>
 
 </div>
-
-
-
 
 
 <?php
@@ -92,7 +90,7 @@ elseif ($do =='add')
 
  <h4 class="center-align">Add New Categoris</h4>
 
-     <form class="card z-depth-2"action="Categoris.php?do=insert" method="post">
+     <form action="Categoris.php?do=insert" method="post">
 
 
 
@@ -100,12 +98,12 @@ elseif ($do =='add')
          <div class="container">
 
 
-         <div class="row">
+
          <div class="input-field col s12">
          <input id ="icon_prefix" type="text" class="validate" name="name">
          <label > name </label>
          </div>
-        </div>
+
 
          <div class="input-field col s12">
          <input id ="icon_telephone" type="text" class="validate" name="Description">
@@ -200,18 +198,16 @@ elseif($do  ==  'Edit')
 
          <h4 class="center-align">Edit Categoris</h4>
 
-             <form class="card z-depth-2"action="Categoris.php?do=Update" method="post">
+             <form class=""action="Categoris.php?do=Update" method="post">
                 <input type="hidden" name="catid" value="<?php echo $catid ?>" />
 
                  <div class="container">
 
-
-                 <div class="row">
                  <div class="input-field col s12">
                  <input id ="icon_prefix" type="text" class="validate" name="name" value="<?php echo $cat['Name']?>">
                  <label > name </label>
                  </div>
-                </div>
+
 
                  <div class="input-field col s12">
                  <input id ="icon_telephone" type="text" class="validate" name="Description" value="<?php echo $cat['Description']?>">
@@ -266,7 +262,7 @@ elseif($do  ==  'Edit')
              </p>
 
            <div class="input-field col s12">
-           <input type="submit" class=" value="SAVE">
+           <input type="submit" value="SAVE">
            </div>
         </div>
          </form>
@@ -286,7 +282,7 @@ elseif($do  ==  'Edit')
 
 } //end of else if ($do == 'Edit')
 elseif($do == 'Delete')  {
-  echo "<h1 class= 'text-center'> Delete Categoris </h1>";
+
   echo "<div class = 'container'>";
 
   $catid = isset( $_GET['catid'] ) && is_numeric($_GET['catid']) ? intval($_GET['catid']) : 0;
@@ -315,8 +311,32 @@ elseif($do == 'Delete')  {
 
    $stmt->execute();
 
-  $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Deleted</div>';
-   redirectHome($theMsg, 'back');
+
+   ?>
+   <h3 class="center">
+   Category Deleted successfully
+   </h3>
+   <h4 class="center alert-success">
+       Delete Done. Redirecting after <span id="countdown">5</span> seconds
+   </h4>
+   <script type="text/javascript">
+      var seconds = 5;
+      function countdown() {
+          seconds = seconds - 1;
+          if (seconds < 0) {
+              // Chnage your redirection link here
+              window.location = "http://localhost/project/Admin/Categoris.php";
+          } else {
+              // Update remaining seconds
+              document.getElementById("countdown").innerHTML = seconds;
+              // Count down using javascript
+              window.setTimeout("countdown()", 1000);
+          }
+      }
+      countdown();
+   </script>
+
+   <?php
 
   }
 
@@ -326,13 +346,13 @@ elseif($do == 'Delete')  {
     redirectHome($errormsg , 3);
   }
 
-
+echo "</div>";
 
 } //end of else if ($do == 'Delete')
     elseif($do == 'Update')  {
 
 
-      echo   " <h4 class='center'> Update Categories </h4>";
+
       echo "<div class='container'>";
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -368,8 +388,34 @@ elseif($do == 'Delete')  {
                               $coment,
                               $ads, $id  ));
 
-     $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Updated</div>';
-        redirectHome($theMsg, 'back');
+
+                              ?>
+                              <h3 class="center">
+                              Category Updated successfully
+                              </h3>
+                              <h4 class="center alert-success">
+                                  Update Done. Redirecting after <span id="countdown">5</span> seconds
+                              </h4>
+                              <script type="text/javascript">
+                                 var seconds = 5;
+                                 function countdown() {
+                                     seconds = seconds - 1;
+                                     if (seconds < 0) {
+                                         // Chnage your redirection link here
+                                         window.location = "http://localhost/project/Admin/Categoris.php";
+                                     } else {
+                                         // Update remaining seconds
+                                         document.getElementById("countdown").innerHTML = seconds;
+                                         // Count down using javascript
+                                         window.setTimeout("countdown()", 1000);
+                                     }
+                                 }
+                                 countdown();
+                              </script>
+
+                              <?php
+
+
 
       }
 
@@ -378,6 +424,8 @@ elseif($do == 'Delete')  {
         redirectHome($theMsg);
 
       }
+
+      echo "</div>";
 
     } //end of post update requst
 
@@ -389,7 +437,7 @@ elseif($do == 'Delete')  {
    {
       if ($_SERVER['REQUEST_METHOD'] == 'POST')
       {
-        echo   " <h4 class = 'center'> Insert Catrgory </h4>";
+
 
 
         $name = $_POST['name'];
@@ -426,8 +474,32 @@ $stmt->execute(array(
 // zanyary user nuwe daxl dakay baw array dachta naw database
 
 ));
-       echo "User Added successfully";
-      redirectHome(" ");
+
+?>
+<h3 class="center">
+Category Added successfully
+</h3>
+<h4 class="center alert-success">
+    Insert Done. Redirecting after <span id="countdown">5</span> seconds
+</h4>
+<script type="text/javascript">
+   var seconds = 5;
+   function countdown() {
+       seconds = seconds - 1;
+       if (seconds < 0) {
+           // Chnage your redirection link here
+           window.location = "http://localhost/project/Admin/Categoris.php";
+       } else {
+           // Update remaining seconds
+           document.getElementById("countdown").innerHTML = seconds;
+           // Count down using javascript
+           window.setTimeout("countdown()", 1000);
+       }
+   }
+   countdown();
+</script>
+
+<?php
 
     }
 

@@ -21,8 +21,6 @@ $pageTitle = "Login";
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
-
-
           $user = $_POST['Username'];
           $pass = $_POST['password'];
           $hashedPass =sha1($pass);
@@ -342,6 +340,11 @@ if (isset($mssgbox)) {
     </div>
 
   </div>
+
+  <br>
+  <br>
+  <br>
+   <h5 style="text-align:center;" id="ghost"></h5>
 
 
 <?php include 'include/template/footer.php' ?>

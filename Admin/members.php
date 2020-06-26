@@ -72,7 +72,7 @@ if ($do =='manage')
            echo "<td>". $row['Date'] ."</td>";
            echo "<td>";
         ?>
-           <a class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
+           <a href="members.php?do=Edit&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped" data-position="left" data-tooltip="Edit" style="background-color:#2e7d32 !important;"><i class="material-icons">edit</i></a>
            <a href="?do=Delete&userid=<?php echo $row["UserID"]; ?>" class="waves-effect waves-light btn-small tooltipped conf" data-position="right" data-tooltip="Delete" style="background-color:#b71c1c !important;"><i class="material-icons">delete</i></a>
            <?php
 
@@ -173,7 +173,7 @@ $stmt = $con->prepare("SELECT * FROM user WHERE UserID = ? LIMIT 1");
        <!-- Password -->
        <div class="input-field col s12">
          <i class="material-icons prefix">lock</i>
-      <input id="password" type="hidden" name="oldpassword" class="validate" value="<?php echo $row['Password']?>">
+      <input id="password" type="hidden" name="oldpassword" class="validate" value="<?php echo $row['password'];?>">
       <input id="password" type="password" name="newpassword" class="validate" placeholder="am basha bparena gar natawe bygory">
       <label for="password">Password</label>
       </div>
@@ -210,60 +210,79 @@ else
 }
 
 } //end of else if ($do == 'Edit')
-    elseif($do == 'Update')  {
-    echo   " <h4 class='center'> Update Member </h4>";
+
+    elseif($do == 'Update')
+    {
+
+
     echo "<div class='container'>";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
+      $pass;
+
       $id = $_POST['userid'];
       $user = $_POST['user'];
       $email = $_POST['email'];
       $name = $_POST['full'];
 
-      $formErrors = array();
-      if (strlen($user)<4){
-        $formErrors[] = 'UserName cant Be Less Than <strong> 4 Characters</strong>';
+      if (empty($_POST['newpassword'])) {
+        $pass = $_POST['oldpassword'];
       }
-      // agar username zyatr by la20 error dada away xware lo awaya
-      if (strlen($user)>20){
-        $formErrors[] = 'UserN cant Be more Than <strong> 20 Characters</strong>';
+      else {
+        $newpass = $_POST['newpassword'];
+        $pass = sha1($newpass);
       }
-      // awanash har awhaya agar batal bi aw ifana tatbyq dabi barxola
-      if(empty($user)){
-        $formErrors[] = 'UserName cant Be <strong> Empty </strong>';
-        if(empty($pass)){
-          $formErrors[] = 'password cant Be <strong> Empty </strong>';
-      }
-      if(empty($name)){
-        $formErrors[] = 'Full Name cant Be <strong> Empty </strong>';
-      }
-      if(empty($email)){
-        $formErrors[] = 'Email cant Be <strong> Empty </strong>';
-      }
-      // loop labo away bzany error haya
-      foreach($formErrors as $error){
-        echo ' <div class="alert alert-danger" ' .  $error .'</div>';
+
+          $stmt=$con ->prepare("UPDATE
+                               user
+                                SET
+                                 Username = ?
+                                  ,FullName = ?
+                                  ,Email = ?
+                                  ,password = ?
+                                WHERE UserID = ?");
+          $stmt->execute(array(
+
+                                $user,
+                                $name,
+                                $email,
+                                $pass,
+                                $id));
 
 
-      }
-      if (empty($formErrors)){
+                                ?>
+                                <h3 class="center">
+                                User Updated successfully
+                                </h3>
+                                <h4 class="center alert-success">
+                                    Update Done. Redirecting after <span id="countdown">5</span> seconds
+                                </h4>
+                                <script type="text/javascript">
+                                   var seconds = 5;
+                                   function countdown() {
+                                       seconds = seconds - 1;
+                                       if (seconds < 0) {
+                                           // Chnage your redirection link here
+                                           window.location = "http://localhost/project/Admin/members.php";
+                                       } else {
+                                           // Update remaining seconds
+                                           document.getElementById("countdown").innerHTML = seconds;
+                                           // Count down using javascript
+                                           window.setTimeout("countdown()", 1000);
+                                       }
+                                   }
+                                   countdown();
+                                </script>
 
-      //  echo $id . $user . $email . $name;
-      // update zanyryakany usery la naw database dakay
+                                <?php
 
-      echo "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Inserted</div>';
-      redirectHome($theMsg, 'back');
 
-    }
-  }
-  else{
-      $theMsg ='<div calss="alert alert-danger">Sorry You Cant Brouse This Page Directly</div>';
-      redirectHome($theMsg);
 
-    }
 
   } //end of post update requst
+
+  echo "</div>";
   } // end of update
 
 elseif ($do =='add') {
@@ -338,7 +357,7 @@ elseif ($do =='add') {
   elseif ($do == 'insert') {
       if ($_SERVER['REQUEST_METHOD'] == 'POST')
       {
-        echo   " <h4 class = 'center'> Insert Users </h4>";
+
 
 
         $user = $_POST['user'];
@@ -391,8 +410,33 @@ $stmt->execute(array(
 // zanyary user nuwe daxl dakay baw array dachta naw database
 
 ));
-       echo "User Added successfully";
-      redirectHome(" ");
+
+?>
+<h3 class="center">
+User Added successfully
+</h3>
+<h4 class="center alert-success">
+    Insert Done. Redirecting after <span id="countdown">5</span> seconds
+</h4>
+<script type="text/javascript">
+   var seconds = 5;
+   function countdown() {
+       seconds = seconds - 1;
+       if (seconds < 0) {
+           // Chnage your redirection link here
+           window.location = "http://localhost/project/Admin/members.php";
+       } else {
+           // Update remaining seconds
+           document.getElementById("countdown").innerHTML = seconds;
+           // Count down using javascript
+           window.setTimeout("countdown()", 1000);
+       }
+   }
+   countdown();
+</script>
+
+<?php
+
 
     } }// end of empty error
 
@@ -435,12 +479,37 @@ if  ($chek >0) {
 
  $stmt->execute();
 
-$theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Deleted</div>';
- redirectHome($theMsg);
+?>
+
+<h3 class="center">
+User Deleted successfully
+</h3>
+<h4 class="center">
+    Delete Done. Redirecting after <span id="countdown">5</span> seconds
+</h4>
+<script type="text/javascript">
+   var seconds = 5;
+   function countdown() {
+       seconds = seconds - 1;
+       if (seconds < 0) {
+           // Chnage your redirection link here
+           window.location = "http://localhost/project/Admin/members.php";
+       } else {
+           // Update remaining seconds
+           document.getElementById("countdown").innerHTML = seconds;
+           // Count down using javascript
+           window.setTimeout("countdown()", 1000);
+       }
+   }
+   countdown();
+</script>
+
+<?php
 
 }
 
-else {
+else
+{
  //agar hatw userid nabu pet ble aw usera nya.
   $errormsg= "There is no user";
   redirectHome($errormsg , 3);
@@ -474,8 +543,32 @@ else {
 
    $stmt->execute(array($userid));
 
-  $theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Updated</div>';
-   redirectHome($theMsg);
+   ?>
+   <h3 class="center">
+   User Approved successfully
+   </h3>
+   <h4 class="center alert-success">
+       Aprroved Done. Redirecting after <span id="countdown">5</span> seconds
+   </h4>
+   <script type="text/javascript">
+      var seconds = 5;
+      function countdown() {
+          seconds = seconds - 1;
+          if (seconds < 0) {
+              // Chnage your redirection link here
+              window.location = "http://localhost/project/Admin/item.php";
+          } else {
+              // Update remaining seconds
+              document.getElementById("countdown").innerHTML = seconds;
+              // Count down using javascript
+              window.setTimeout("countdown()", 1000);
+          }
+      }
+      countdown();
+   </script>
+
+   <?php
+
 
   }
 
