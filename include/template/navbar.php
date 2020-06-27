@@ -2,9 +2,14 @@
   <div class="container">
     <?php
 
-      if(isset($_SESSION['user'])){
 
-        $getUser=$con->prepare("SELECT image FROM user WHERE Username=?");
+
+
+
+      if(isset($_SESSION['user']))
+      {
+
+        $getUser=$con->prepare("SELECT image,GrupID FROM user WHERE Username=?");
         $getUser->execute(array($_SESSION['user']));
         $info =$getUser->fetch();
 
@@ -21,7 +26,7 @@
     <li ><a class="dropdown-item" href="logout.php">Logout</a></li>
     <li ><a class="dropdown-item" href="Profile.php">My item</a></li>
     <li ><a class="dropdown-item" href="NewItem.php">New Item</a></li>
-  
+
   </div>
 </div>
 
@@ -55,15 +60,48 @@
                 Categories
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <?php
+                $getcate=$con->prepare("SELECT * FROM categories");
+                $getcate->execute();
+                $cate =$getcate->fetchALL();
+                foreach ($cate as $c)
+                {
+                  ?>
+
+                    <a class="dropdown-item" href="categories.php?pageid=<?php echo $c['ID'];?>&pagename=<?php echo $c['Name'];?>"><?php echo $c['Name']; ?></a>
+
+                    <?php
+                }
+                 ?>
+
+
               </div>
 
-  <li>
-    <a class="nav-link" href="Admin/index.php">Dashboard</a>
-  </li>
+  <?php
+
+  if (empty($_SESSION['user'])) {
+
+  }
+  else {
+    if ($info['GrupID'] == 1)
+     {
+
+    ?>
+
+    <li>
+      <a class="nav-link" href="Admin/index.php">Dashboard</a>
+    </li>
+
+    <?php
+
+      }
+
+  }
+
+
+   ?>
+
+
 
     </ul>
 

@@ -80,13 +80,17 @@ if($count >0){
       <?php if (isset($_SESSION['user'])){ ?>
       <!--IStat Add Comment-->
 <div class="row">
-          <div class="col-md-offset-3">
-            <div class="add-comment">
+  <div class="col-sm-12">
+
 <h3> Add your Comment</h3>
 <form action="<?php echo $_SERVER['PHP_SELF'] .'?itemid='.$item['item_ID'] ?> " method="POST">
-<textarea name="comment" required></textarea>
+<textarea style="width:300px; height:100px;" name="comment" required></textarea>
+<br>
+<br>
 <input class= "btn btn-primary" type="Submit" value="Add comment">
 </form>
+<br>
+<br>
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -120,7 +124,7 @@ else {
 }
  ?>
 
-             </div>
+
              </div>
      </div>
 <!--End Add Comment-->
@@ -130,7 +134,8 @@ else {
         <hr class= "custom-hr">
         <?php
         $stmt = $con->prepare("SELECT
-                                      comments.*,  user.Username As Member
+                                      comments.*,  user.Username As Member,
+                                      user.image As img
                               FROM
                                       comments
                               INNER join
@@ -152,22 +157,42 @@ else {
 
 
          ?>
+         <!-- ggggggggggggggggggggggggggggg -->
 
+         <div class="container">
+
+
+               <?php
+               //ERA CHEK BKAENAWA bzanen ba tawawe esh daka
+
+               foreach ($comments as $comment ){ ?>
+                 <div class="comment-box">
+                 <div class="row">
+                 <div class= "col-sm-2" style="margin-top:15px;">
+                   <img src="Admin/layout/admin_img/<?php echo $comment['img']; ?>" class="img-responsive img-thumbnail" width="90px" height="90px">
+
+                   <h5 style="padding-left:15px;"> <?php echo $comment['Member']?></h5>
+                 </div>
+                     <div class= "col-sm-10" style="word-wrap: break-word; margin-top:-10px;  text-align: justify;
+  text-justify: inter-word;">
+                   <p class="lead"><?php echo $comment['comment']?></p>
+                     </div>
+
+                 </div>
+                 </div>
+                 <hr class="custom-hr">
+                <?php
+               }
+
+
+             ?>
+
+
+         </div>
+
+         <!-- ggggggggggggggggggggggggggggggggg -->
 <?php
 
-foreach ($comments as $comment ){ ?>
-  <div class="comment-box">
-  <div class="row">
-  <div class= "col-sm-2 text-center">
-  <?php   echo '<img src="layout/img/haha.png" class="rounded-circle" style="width:100%">';  ?>
-    <?php echo $comment['Member']?></div>
-      <div class= "col-sm-10"></div>
-<p class="lead"><?php echo $comment['comment']?></p>
-  </div>
-  </div>
-  <hr class="custom-hr">
- <?php
-}
 
 ?>
 

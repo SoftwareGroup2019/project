@@ -55,7 +55,7 @@ $i =$g->fetch();
 
         <li>
             <i class="fa fa-edit fa-fw"></i>
-            <a href="#"><span>Edit Profile</span></a>
+            <a href="edit.php?userid=<?php echo $info['UserID']; ?>"><span>Edit Profile</span></a>
 
         </li>
         </ul>

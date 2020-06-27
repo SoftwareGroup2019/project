@@ -15,13 +15,13 @@
 <div class="container center">
   <h1>Dashboard</h1>
   <div class="row">
-<div class="col m3">
+<div class="col s12 l3" style="margin-bottom:10px;">
       <div class="stat st-members">
         total members
         <span><a href="members.php"><?php echo checkItem("GrupID", "user" , 0) ?></a></span>
       </div>
     </div>
-     <div class="col m3">
+     <div class="col s12 l3"  style="margin-bottom:10px;">
       <div class="stat st-pending">
         pending members
           <span>
@@ -31,7 +31,7 @@
         </spam>
       </div>
     </div>
-    <div class="col m3">
+    <div class="col s12 l3"  style="margin-bottom:10px;">
       <div class="stat st-items">
         total items
         <a href="item.php">
@@ -40,7 +40,7 @@
 
       </div>
         </div>
-        <div class="col m3">
+        <div class="col s12 l3"  style="margin-bottom:10px;">
           <div class="stat st-comments">
             total comments
             <a href="comments.php">
