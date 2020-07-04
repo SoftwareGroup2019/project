@@ -1,14 +1,30 @@
 $(document).ready(function(){
- $('.collapsible').collapsible();
 
-    $('.modal').modal();
-    $(document).ready(function(){
-    $('.sidenav').sidenav();
+
+ $('.sidenav').sidenav();
+
+     $('.slider').slider();
+
+     $('.parallax').parallax();
+
+     $('.collapsible').collapsible();
+
+      $('.scrollspy').scrollSpy();
+
   });
-  $(document).ready(function(){
-    $('.slider').slider();
-  });
-  });
+
+  //smooth scroll
+   $('a').click(function () {
+       $('html , body').animate({
+           scrollTop: $( $(this).attr('href') ).offset().top
+       },1400);
+   });
+
+
+   // Loading screen
+       $('#preloader').delay(1600).fadeOut();
+       // Uncomment the above line to hide the loader on page load.
+
 
 
 
@@ -16,33 +32,28 @@ $(document).ready(function(){
     $(".item .item").slideDown();
   });
   $("#btn-web").click(function() {
-    $(".item .item").fadeout();
-    $(".item .web").fadein();
+    $(".item .item").hide("slow");
+    $(".item .hawar").show("slow");
   });
 
-  $("#btn-mobaile").click(function() {
+  $("#btn-ShipShop").click(function() {
     $(".item .item").hide("slow");
-    $(".item .mobaile").show("slow");
+    $(".item .anas").show("slow");
   });
 
   $("#btn-desk").click(function() {
     $(".item .item").slideUp();
-    $(".item .desk").slideDown();
+    $(".item .ayman").slideDown();
   });
   $(document).ready(function(){
     $('.materialboxed').materialbox();
 
   });
-   $('.parallax').parallax();
-   $('a').click(function(){
-     $('html, body').animate({
-       scrollTop: $( $(this).attr('herf') ).offset().top
-     },800);
-   });
-   // Loadding Screen
-   $(window).load(function(){
-     $(".loadding-screen .preloader-wrapper").fadeout(2000,
-     function(){
-       $(this).parent().function(1500)
-     });
-   })
+
+   // // Loadding Screen
+   // $(window).load(function(){
+   //   $(".loadding-screen .preloader-wrapper").fadeout(2000,
+   //   function(){
+   //     $(this).parent().function(1500)
+   //   });
+   // })

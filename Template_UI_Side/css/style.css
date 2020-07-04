@@ -7,19 +7,25 @@ nav .brand-long{
   padding-left: 10px;
 }
 /* slider style  */
-#hero .slider{
+#Home .slider{
   height: 650px !important;
 }
-#hero .slider .slides{
+#Home .slider .slides{
   height: 100% !important;
 }
-#hero .silder .indicatros{
-  bottom: 60px;
-  z-index: 2;
+.slider .indicators {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    margin: 0;
+    z-index: 2;
 }
-#hero .silder .indicatros-item.active{
-  background: #1565c0;
+.slider .indicators .indicator-item.active {
+    background-color: #1565c0;
 }
+
 /* Service Style*/
 #Service h2{
   margin-bottom: 60px;
@@ -164,7 +170,7 @@ z-index: 10000;
 
 /* General Style*/
 .section{
-  padding: 35px 0;
+  padding: 0 0;
 }
  .container{
    width: 80%;
@@ -176,3 +182,7 @@ h2 {
 p {
   font-weight: 300;
 }
+
+
+/* Preloader */
+#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; height: 100%; overflow: visible; background: #333 url('../img/833.gif') no-repeat center center; }
