@@ -88,10 +88,11 @@ $i =$g->fetch();
       echo '<h1><a href="items.php?itemid='.$item['item_ID'].'">'.$item['Name'].'</a></h1>';//?itemid='. $itemid['cc'] .'
       echo '<p class="price">'.$item['Price'].'</p>';
       echo '<div class="data">'.$item['Add_Date'].'</div>';
-      echo '<a href="#" class="btn btn-primary" type="button">
-      ';
-      echo 'Read More...';
-      echo '</a>';
+      ?>
+      <a href="items.php?itemid=<?php echo $item['item_ID'];?>" class="btn btn-primary" type="button">
+      More...
+      </a>
+      <?php
       echo '</div>';
       echo '</div>';
 
