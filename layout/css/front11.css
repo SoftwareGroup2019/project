@@ -156,6 +156,11 @@
   z-index: 0;
   text-transform: uppercase;
 }
+.comment-box img {
+    max-width: 100px;
+    display: block;
+    background-color: #bbdefb;
+}
 
 .loader:before,
 .loader:after {

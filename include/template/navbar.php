@@ -85,17 +85,12 @@
   else {
     if ($info['GrupID'] == 1)
      {
-
     ?>
-
     <li>
       <a class="nav-link" href="Admin/index.php">Dashboard</a>
-    </li>
-
+    </li
     <?php
-
       }
-
   }
 
 

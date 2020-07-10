@@ -201,10 +201,10 @@ if ($info['RegStatus'] == "1") {
                 <label for="exampleFormControlSelect5">Status</label>
                 <select class="form-control" id="exampleFormControlSelect5" name="esh"required >
                   <option value="0">...</option>
-                  <option value="1">New</option>
-                  <option value="2">Like New</option>
-                  <option value="4">Used</option>
-                  <option value="5">Very Old</option>
+                  <option value="New">New</option>
+                  <option value="Like New">Like New</option>
+                  <option value="Used">Used</option>
+                  <option value="Very Old">Very Old</option>
                 </select>
               </div>
                <!-- end of status -->

@@ -70,6 +70,16 @@ if($count >0){
 
       </li>
       <li>
+          <i class="fa fa-tags fa-fw"></i>
+        <span>status</span>:<a href="categories.php?pageid=<?php echo $item['Cat_ID']?>&pagename=<?php echo $item['Status']; ?>">
+
+          <?php echo $item['Status']?>
+
+        </a>
+
+
+      </li>
+      <li>
         <i class="fa fa-user fa-fw"></i>
 
         <span>Added By</span>:  <a href= "profile.php"><?php echo $item ['UserName']?></a>

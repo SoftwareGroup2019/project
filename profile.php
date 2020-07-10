@@ -81,12 +81,15 @@ $i =$g->fetch();
 
       echo '<div class="col-sm-6 col-md-4 col-lg-3">';
       echo '<div class="card">';
-      if ($item['Approve']==0){echo 'Not Approved';}
+
       ?>
       <img src="Admin/layout/admin_img/<?php echo $item['Image']; ?>" alt="Denim Jeans" style="width:100%">
       <?php
-      echo '<h1><a href="items.php?itemid='.$item['item_ID'].'">'.$item['Name'].'</a></h1>';//?itemid='. $itemid['cc'] .'
+      echo '<h3><a href="items.php?itemid='.$item['item_ID'].'">'.$item['Name'].'</a></h3>';//?itemid='. $itemid['cc'] .'
+  if ($item['Approve']==0){echo 'Not Approved';}
+
       echo '<p class="price">'.$item['Price'].'</p>';
+
       echo '<div class="data">'.$item['Add_Date'].'</div>';
       ?>
       <a href="items.php?itemid=<?php echo $item['item_ID'];?>" class="btn btn-primary" type="button">

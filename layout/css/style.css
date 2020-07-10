@@ -18,6 +18,11 @@ border-radius:12px;
 .Home-stats .stat a{
   color: #FFF;
 }
+.comment-box img {
+    max-width: 100px;
+    display: block;
+    background-color: #bbdefb;
+}
 .Home-stats .stat a:hover{
 text-decoration: none;
 }
